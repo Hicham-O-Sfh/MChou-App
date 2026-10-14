@@ -1,0 +1,12 @@
+# Réglages Claude Code propres à la machine
+.claude/settings.local.json
+
+# OS / éditeurs
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Python (serveur local)
+__pycache__/
