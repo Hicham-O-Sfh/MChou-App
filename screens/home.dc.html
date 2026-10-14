@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<div data-screen="home" data-screen-label="05 Home" style="position:absolute;inset:0;background:#3A0B40">
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,216,77,.09) 1px,transparent 1.6px),radial-gradient(circle,rgba(233,211,238,.07) 1.3px,transparent 2px);background-size:23px 23px,37px 37px;background-position:0 0,11px 17px;pointer-events:none"></div>
+<div style="position:absolute;inset:0;overflow-y:auto;scrollbar-width:none;padding:54px 0 130px">
+<div style="display:flex;align-items:center;gap:12px;padding:6px 20px 0">
+<img src="assets/mchou-logo.png" alt="M'Chou" style="flex:none;width:48px;height:48px;border-radius:50%;box-shadow:0 6px 14px -6px rgba(0,0,0,.6)">
+<button type="button" onClick="{{ onAddr }}" style="flex:1;min-width:0;min-height:48px;padding:0;border:0;background:none;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:start;color:#FFF6E9;cursor:pointer"><span style="font:700 12px/16px Nunito;color:#E9D3EE">Livrer à</span><span style="display:flex;align-items:center;gap:2px;max-width:100%;font:600 16px/20px Fredoka"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ addrShort }}</span><span style="flex:none;font:22px/1 'Material Symbols Rounded';color:#FFD84D">expand_more</span></span></button>
+<button type="button" onClick="{{ onStreak }}" aria-label="Ma série" style="flex:none;height:48px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out"><span style="display:flex;align-items:center;gap:4px;height:42px;padding-inline:10px 14px;border-radius:999px;background:#24062A;box-shadow:0 0 0 2px #FFD84D,0 4px 0 2px #C98A12"><span style="font:24px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#FF4D6D">local_fire_department</span><span style="font:700 17px/1 Fredoka;color:#FFF6E9">{{ streak }}</span></span></button>
+</div>
+<div style="padding:20px 20px 0"><div style="font:600 20px/26px Fredoka;color:#FFF6E9">Salut Hicham,</div><div style="font:400 26px/40px Pacifico;color:#FFD84D">une petite envie sucrée&nbsp;?</div></div>
+<div style="padding:14px 20px 0"><label style="display:flex;align-items:center;gap:12px;height:56px;padding-inline:20px 6px;border-radius:999px;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.35)"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'wght' 600;color:#FFD84D">search</span><input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Crêpe, choux, mojito…" style="flex:1;min-width:0;height:48px;padding:0;border:0;outline:none;background:none;font:500 16px/24px Nunito;color:#FFF6E9"><sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ onClearQuery }}" aria-label="Effacer" style="flex:none;width:44px;height:44px;border:0;border-radius:50%;background:rgba(0,0,0,.25);display:grid;place-items:center;font:22px/1 'Material Symbols Rounded';color:#FFF6E9;cursor:pointer">close</button></sc-if></label></div>
+<div style="display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:16px 20px 8px">
+<sc-for list="{{ cats }}" as="c" hint-placeholder-count="5"><button type="button" onClick="{{ c.onClick }}" style="flex:none;display:flex;align-items:center;gap:8px;height:52px;padding-inline:6px 18px;border:0;border-radius:999px;background:{{ c.bg }};box-shadow:{{ c.sh }};cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out"><span style="width:40px;height:40px;border-radius:50%;background:{{ c.ibg }};display:grid;place-items:center;font:22px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#FFD84D">{{ c.icon }}</span><span style="font:600 16px/1 Fredoka;color:{{ c.fg }}">{{ c.name }}</span></button></sc-for>
+</div>
+<div style="padding:12px 20px 0">
+<div style="position:relative;overflow:hidden;min-height:200px;border-radius:28px;background:linear-gradient(160deg,#FFE08A 0%,#F7B538 100%);box-shadow:inset 0 2px 0 rgba(255,255,255,.55),0 6px 0 #C98A12,0 26px 36px -20px rgba(0,0,0,.8)">
+<div style="position:absolute;inset-inline-end:-30px;top:20px;width:172px;height:172px;border-radius:50%;padding:5px;box-sizing:border-box;background:#3A0B40;transform:rotate(-8deg);box-shadow:0 14px 24px -10px rgba(58,11,64,.7)"><div style="width:100%;height:100%;border-radius:50%;overflow:hidden;background:#BFE3A5;color:#3A0B40"><image-slot id="b-drop" shape="circle" placeholder="Brownie Extra Pistachio"></image-slot></div></div>
+<div style="position:relative;display:flex;flex-direction:column;gap:10px;max-width:206px;padding-block:18px 20px;padding-inline:20px 0;pointer-events:none">
+<span style="align-self:flex-start;padding:5px 10px;border-radius:999px;background:#3A0B40;font:800 12px/14px Nunito;letter-spacing:.06em;color:#FFD84D">DROP DU JOUR</span>
+<div style="font:700 24px/27px Fredoka;color:#3A0B40;text-wrap:balance">Brownie Extra Pistachio</div>
+<div style="display:flex;align-items:center;gap:6px;font:700 13px/16px Nunito;color:#4E1256">Fin dans<span dir="ltr" style="display:flex;align-items:center;gap:3px;font:700 15px/1 Fredoka;color:#3A0B40;font-variant-numeric:tabular-nums"><span style="padding:5px 6px;border-radius:8px;background:#3A0B40;color:#FFD84D">{{ drop.h }}</span>:<span style="padding:5px 6px;border-radius:8px;background:#3A0B40;color:#FFD84D">{{ drop.m }}</span>:<span style="padding:5px 6px;border-radius:8px;background:#3A0B40;color:#FFD84D">{{ drop.s }}</span></span></div>
+<div style="display:flex;align-items:center;gap:12px;margin-top:4px;pointer-events:auto">
+<button type="button" onClick="{{ onDrop }}" style="height:48px;padding:0 20px;display:flex;align-items:center;border:0;border-radius:999px;background:#3A0B40;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 4px 0 #24062A;font:600 17px/1 Fredoka;color:#FFD84D;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out">Je goûte</button>
+<div style="display:flex;flex-direction:column;font:700 12px/14px Nunito;color:#4E1256">dès<span style="font:700 20px/24px Fredoka;color:#3A0B40">35 DH</span></div>
+</div>
+</div>
+</div>
+</div>
+<div style="margin:18px 20px 0;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:24px;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.25)">
+<div style="flex:none;width:52px;height:52px;border-radius:18px;background:linear-gradient(#FFD36B,#F7B538);display:grid;place-items:center;box-shadow:0 4px 0 #C98A12;font:28px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#3A0B40">redeem</div>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font:600 16px/20px Fredoka;color:#FFF6E9">{{ rw.title }}</span><span style="flex:none;font:700 13px/16px Nunito;color:#E9D3EE;font-variant-numeric:tabular-nums">{{ rw.count }}</span></div>
+<div style="height:14px;border-radius:999px;background:rgba(0,0,0,.3);overflow:hidden"><div style="width:{{ rw.pct }};height:100%;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 -3px 0 rgba(201,138,18,.45),inset 0 2px 0 rgba(255,255,255,.55)"></div></div>
+<span style="font:600 13px/18px Nunito;color:#E9D3EE">{{ rw.msg }}</span>
+</div>
+</div>
+<sc-if value="{{ hasLast }}" hint-placeholder-val="{{ true }}">
+<div style="margin:16px 20px 0;padding:16px;border-radius:24px;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.25);display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:14px">
+<div style="flex:none;position:relative;width:84px;height:54px">
+<div style="position:absolute;inset-inline-start:0;top:0;width:54px;height:54px;border-radius:50%;overflow:hidden;background:{{ last.t1 }};box-shadow:0 0 0 3px #4E1256;color:#3A0B40"><image-slot id="{{ last.s1 }}" shape="circle" placeholder="Photo"></image-slot></div>
+<div style="position:absolute;inset-inline-start:30px;top:0;width:54px;height:54px;border-radius:50%;overflow:hidden;background:{{ last.t2 }};box-shadow:0 0 0 3px #4E1256;color:#3A0B40"><image-slot id="{{ last.s2 }}" shape="circle" placeholder="Photo"></image-slot></div>
+</div>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:800 12px/16px Nunito;letter-spacing:.06em;color:#FFD84D">TA DERNIÈRE COMMANDE</span><span style="font:600 16px/21px Fredoka;color:#FFF6E9">{{ last.names }}</span></div>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+<span style="font:600 14px/20px Nunito;color:#E9D3EE">{{ last.when }} · <span style="font:700 17px/20px Fredoka;color:#FFD84D">{{ last.total }} DH</span></span>
+<button type="button" onClick="{{ onReorder }}" style="height:48px;padding-inline:14px 20px;display:flex;align-items:center;gap:8px;border:0;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 4px 0 #C98A12;font:600 16px/1 Fredoka;color:#3A0B40;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out"><span style="font:22px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1,'wght' 600">replay</span>Recommander</button>
+</div>
+</div>
+</sc-if>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:24px 20px 0"><span style="font:400 24px/34px Pacifico;color:#FFD84D">{{ listTitle }}</span><button type="button" onClick="{{ onSeeAll }}" style="height:48px;padding:0 4px;border:0;background:none;font:700 14px/20px Nunito;color:#E9D3EE;cursor:pointer">Tout voir</button></div>
+<div style="display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:8px 20px 8px">
+<sc-for list="{{ prods }}" as="p" hint-placeholder-count="2">
+<div style="flex:none;width:168px;border-radius:24px;background:#4E1256;box-shadow:{{ p.ring }};padding:8px 8px 10px;display:flex;flex-direction:column;gap:10px;transition:box-shadow 200ms">
+<div onClick="{{ p.onOpen }}" style="position:relative;height:132px;border-radius:18px;overflow:hidden;background:{{ p.tint }};color:#3A0B40;cursor:{{ p.cursor }};filter:{{ p.filter }};opacity:{{ p.op }}"><image-slot id="{{ p.slot }}" shape="rounded" radius="18" placeholder="{{ p.full }}"></image-slot><sc-if value="{{ p.hasTag }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset-inline-start:8px;top:8px;padding:4px 9px;border-radius:999px;background:{{ p.tagBg }};font:800 12px/14px Nunito;letter-spacing:.04em;color:{{ p.tagFg }};pointer-events:none">{{ p.tag }}</span></sc-if><sc-if value="{{ p.fav }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset-inline-end:6px;bottom:6px;width:36px;height:36px;border-radius:50%;background:#3A0B40;display:grid;place-items:center;font:20px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#FF4D6D;pointer-events:none">favorite</span></sc-if></div>
+<div onClick="{{ p.onOpen }}" style="padding:0 6px;display:flex;flex-direction:column;gap:2px;cursor:{{ p.cursor }}"><span style="font:600 16px/20px Fredoka;color:#FFF6E9">{{ p.name }}</span><span style="font:600 13px/18px Nunito;color:#E9D3EE">{{ p.sub }}</span></div>
+<sc-if value="{{ p.canAdd }}" hint-placeholder-val="{{ true }}"><div style="padding-inline-start:6px;display:flex;align-items:center;justify-content:space-between"><span style="font:700 18px/22px Fredoka;color:#FFD84D">{{ p.price }} DH</span><button type="button" onClick="{{ p.onAdd }}" aria-label="Ajouter" style="width:48px;height:48px;margin:-2px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:scale(.86);transition:transform 90ms ease-out"><span style="width:44px;height:44px;border-radius:50%;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #C98A12;display:grid;place-items:center;font:26px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:#3A0B40">add</span></button></div></sc-if>
+<sc-if value="{{ p.inCart }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;justify-content:space-between;height:48px;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:0 3px 0 #C98A12"><button type="button" onClick="{{ p.onMinus }}" aria-label="Retirer" style="width:48px;height:48px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer"><span style="width:38px;height:38px;border-radius:50%;background:rgba(58,11,64,.12);display:grid;place-items:center;font:22px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:#3A0B40">remove</span></button><span style="font:700 17px/1 Fredoka;color:#3A0B40;font-variant-numeric:tabular-nums">{{ p.qty }}</span><button type="button" onClick="{{ p.onAdd }}" aria-label="Ajouter" style="width:48px;height:48px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer"><span style="width:38px;height:38px;border-radius:50%;background:rgba(58,11,64,.12);display:grid;place-items:center;font:22px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:#3A0B40">add</span></button></div></sc-if>
+<sc-if value="{{ p.soldOut }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;margin-inline-start:6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.12);font:800 12px/14px Nunito;color:#E9D3EE">Épuisé · retour demain</span></sc-if>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}"><div style="margin:8px 20px 0;padding:24px 20px;border-radius:24px;background:#4E1256;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><span style="font:40px/1 'Material Symbols Rounded';color:#FFD84D">search_off</span><span style="font:600 17px/22px Fredoka">Rien pour « {{ emptyQ }} »</span><span style="font:600 14px/20px Nunito;color:#E9D3EE">Essaie « crêpe », « pistache » ou « mojito ».</span></div></sc-if>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

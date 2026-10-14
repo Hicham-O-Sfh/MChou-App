@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<div data-screen="phone" data-screen-label="03 Phone number" style="position:absolute;inset:0;background:#3A0B40;display:flex;flex-direction:column">
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,216,77,.09) 1px,transparent 1.6px),radial-gradient(circle,rgba(233,211,238,.07) 1.3px,transparent 2px);background-size:23px 23px,37px 37px;background-position:0 0,11px 17px;pointer-events:none"></div>
+<div style="position:relative;display:flex;align-items:center;gap:14px;padding:58px 20px 0">
+<button type="button" onClick="{{ onBack }}" aria-label="Retour" style="flex:none;width:48px;height:48px;border:0;border-radius:50%;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.3);display:grid;place-items:center;font:24px/1 'Material Symbols Rounded';font-variation-settings:'wght' 600;color:#FFF6E9;cursor:pointer"><span style="transform:scaleX({{ flip }})">arrow_back</span></button>
+<div style="flex:1;display:flex;gap:6px"><span style="flex:1;height:8px;border-radius:9px;background:#FFD84D"></span><span style="flex:1;height:8px;border-radius:9px;background:rgba(0,0,0,.3)"></span></div>
+<span style="font:800 13px/16px Nunito;color:#E9D3EE;font-variant-numeric:tabular-nums">1/2</span>
+</div>
+<div style="position:relative;flex:1;display:flex;flex-direction:column;gap:10px;padding:28px 20px 0">
+<span style="font:400 26px/40px Pacifico;color:#FFD84D">Salut Hicham&nbsp;!</span>
+<span style="font:700 26px/30px Fredoka">Ton numéro de téléphone</span>
+<span style="font:500 16px/24px Nunito;color:#E9D3EE;text-wrap:pretty">Le livreur t'appelle seulement s'il ne trouve pas ta porte. Jamais de pub, promis.</span>
+<label style="display:flex;flex-direction:column;gap:8px;margin-top:18px"><span style="font:700 14px/18px Nunito;color:#E9D3EE">Numéro de mobile</span>
+<span style="display:flex;align-items:center;gap:10px;height:60px;padding-inline:6px 16px;border-radius:18px;background:#4E1256;box-shadow:{{ phoneRing }};transition:box-shadow 180ms ease-out"><span dir="ltr" style="height:48px;padding:0 12px;display:flex;align-items:center;border-radius:14px;background:rgba(0,0,0,.25);font:600 17px/1 Fredoka">+212</span><input type="tel" dir="ltr" value="{{ phoneFmt }}" onChange="{{ onPhone }}" onFocus="{{ onPhoneFocus }}" onBlur="{{ onPhoneBlur }}" placeholder="6 12 34 56 78" style="flex:1;min-width:0;height:48px;padding:0;border:0;outline:none;background:none;font:600 19px/1 Fredoka;letter-spacing:.04em;color:#FFF6E9"><sc-if value="{{ phoneOk }}" hint-placeholder-val="{{ false }}"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#8FCB6B">check_circle</span></sc-if></span>
+</label>
+<sc-if value="{{ phoneErr }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:6px;font:700 14px/20px Nunito;color:#FF6B85"><span style="font:20px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1">error</span>Un mobile marocain commence par 6 ou 7, avec 9 chiffres.</span></sc-if>
+<sc-if value="{{ phoneHint }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ onPhoneHint }}" style="display:flex;align-items:center;gap:14px;min-height:64px;margin-top:8px;padding-inline:12px 18px;border:0;border-radius:20px;background:rgba(0,0,0,.22);box-shadow:inset 0 0 0 1.5px rgba(233,211,238,.18);color:#FFF6E9;text-align:start;cursor:pointer"><span style="flex:none;width:40px;height:40px;border-radius:12px;background:#4E1256;display:grid;place-items:center;font:22px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#FFD84D">sim_card</span><span style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font:700 12px/16px Nunito;color:#E9D3EE">Numéro de ce téléphone</span><span dir="ltr" style="font:600 17px/22px Fredoka;text-align:start">+212 6 12 34 56 78</span></span><span style="font:700 15px/1 Nunito;color:#FFD84D">Utiliser</span></button></sc-if>
+</div>
+<div style="position:relative;padding:16px 20px 40px">
+<sc-if value="{{ phoneOk }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ onPhoneNext }}" style="width:100%;height:56px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 4px 0 #C98A12;font:600 17px/1 Fredoka;color:#3A0B40;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out">Continuer</button></sc-if>
+<sc-if value="{{ phoneNotOk }}" hint-placeholder-val="{{ true }}"><div style="height:56px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:rgba(255,255,255,.08);font:600 17px/1 Fredoka;color:#C9A9D1">Continuer</div></sc-if>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

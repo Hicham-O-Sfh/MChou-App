@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<div data-screen="cart" data-screen-label="07 Cart" style="position:absolute;inset:0;background:#3A0B40;display:flex;flex-direction:column">
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,216,77,.09) 1px,transparent 1.6px),radial-gradient(circle,rgba(233,211,238,.07) 1.3px,transparent 2px);background-size:23px 23px,37px 37px;background-position:0 0,11px 17px;pointer-events:none"></div>
+<div style="position:relative;display:flex;align-items:center;gap:12px;padding-block:56px 8px;padding-inline:20px 12px">
+<button type="button" onClick="{{ onBack }}" aria-label="Retour" style="flex:none;width:48px;height:48px;border:0;padding:0;border-radius:50%;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.3);display:grid;place-items:center;font:24px/1 'Material Symbols Rounded';font-variation-settings:'wght' 600;color:#FFF6E9;cursor:pointer"><span style="transform:scaleX({{ flip }})">arrow_back</span></button>
+<span style="flex:1;font:700 24px/30px Fredoka">Mon panier</span>
+<sc-if value="{{ cartFull }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ onClear }}" style="height:48px;padding:0 8px;display:flex;align-items:center;gap:6px;border:0;background:none;font:700 15px/1 Nunito;color:#FF6B85;cursor:pointer"><span style="font:20px/1 'Material Symbols Rounded'">delete</span>Vider</button></sc-if>
+</div>
+<sc-if value="{{ cartFull }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:8px 20px 20px;display:flex;flex-direction:column;gap:14px">
+<div style="padding:16px;border-radius:24px;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.25);display:flex;flex-direction:column;gap:12px">
+<sc-if value="{{ free.notDone }}" hint-placeholder-val="{{ true }}"><span style="font:600 15px/20px Fredoka">Plus que <span style="color:#FFD84D">{{ free.left }} DH</span> pour la livraison offerte</span></sc-if>
+<sc-if value="{{ free.done }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:8px;font:600 15px/20px Fredoka;color:#8FCB6B"><span style="font:22px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1">check_circle</span>Livraison offerte débloquée&nbsp;!</span></sc-if>
+<div data-freebar="1" style="position:relative;height:16px;margin-inline:4px 16px;border-radius:999px;background:rgba(0,0,0,.3)"><div style="width:{{ free.pct }};height:100%;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 -3px 0 rgba(201,138,18,.45),inset 0 2px 0 rgba(255,255,255,.55);transition:width 600ms cubic-bezier(.22,1,.36,1)"></div><span style="position:absolute;inset-inline-start:{{ free.pct }};top:50%;width:34px;height:34px;margin-top:-17px;margin-inline-start:-17px;border-radius:50%;background:#3A0B40;box-shadow:0 0 0 2px #FFD84D;display:grid;place-items:center;font:20px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#FFD84D;transition:inset-inline-start 600ms cubic-bezier(.22,1,.36,1)">moped</span></div>
+<span style="font:600 13px/18px Nunito;color:#C9A9D1">{{ free.sub }}</span>
+</div>
+<sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+<div style="display:flex;gap:12px;padding:10px;border-radius:24px;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.14)">
+<div style="flex:none;width:76px;height:76px;border-radius:18px;overflow:hidden;background:{{ l.tint }};color:#3A0B40"><image-slot id="{{ l.slot }}" shape="rounded" radius="18" placeholder="{{ l.name }}"></image-slot></div>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+<span style="font:600 16px/20px Fredoka">{{ l.name }}</span>
+<span style="font:600 13px/18px Nunito;color:#E9D3EE;text-wrap:pretty">{{ l.desc }}</span>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px">
+<span style="font:700 17px/22px Fredoka;color:#FFD84D;font-variant-numeric:tabular-nums">{{ l.price }} DH</span>
+<div style="display:flex;align-items:center;height:48px;border-radius:999px;background:rgba(0,0,0,.25)"><button type="button" onClick="{{ l.onMinus }}" aria-label="Moins" style="width:48px;height:48px;border:0;padding:0;background:none;display:grid;place-items:center;cursor:pointer"><sc-if value="{{ l.one }}" hint-placeholder-val="{{ true }}"><span style="font:22px/1 'Material Symbols Rounded';color:#FF6B85">delete</span></sc-if><sc-if value="{{ l.many }}" hint-placeholder-val="{{ false }}"><span style="font:22px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:#FFD84D">remove</span></sc-if></button><span style="min-width:20px;text-align:center;font:700 17px/1 Fredoka;font-variant-numeric:tabular-nums">{{ l.qty }}</span><button type="button" onClick="{{ l.onPlus }}" aria-label="Plus" style="width:48px;height:48px;border:0;padding:0;background:none;display:grid;place-items:center;cursor:pointer"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(#FFD36B,#F7B538);box-shadow:0 2px 0 #C98A12;display:grid;place-items:center;font:22px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:#3A0B40">add</span></button></div>
+</div>
+</div>
+</div>
+</sc-for>
+<sc-if value="{{ hasCartUps }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:10px;margin-top:4px"><span style="font:600 18px/24px Fredoka">Ça se marie bien</span><div style="display:flex;gap:10px;margin:0 -20px;padding:0 20px 6px;overflow-x:auto;scrollbar-width:none"><sc-for list="{{ cartUps }}" as="u" hint-placeholder-count="3"><div style="flex:none;width:136px;padding:6px 6px 8px;box-sizing:border-box;border-radius:20px;background:#4E1256;display:flex;flex-direction:column;gap:6px"><div style="height:84px;border-radius:15px;overflow:hidden;background:{{ u.tint }};color:#3A0B40"><image-slot id="{{ u.slot }}" shape="rounded" radius="15" placeholder="{{ u.name }}"></image-slot></div><span style="padding:0 4px;font:600 14px/18px Fredoka">{{ u.name }}</span><div style="display:flex;align-items:center;justify-content:space-between;padding-inline-start:4px"><span style="font:700 15px/18px Fredoka;color:#FFD84D">{{ u.price }} DH</span><button type="button" onClick="{{ u.onAdd }}" aria-label="Ajouter" style="width:48px;height:48px;margin:-6px;border:0;padding:0;background:none;display:grid;place-items:center;cursor:pointer"><span style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.25);box-shadow:inset 0 0 0 1.5px rgba(255,216,77,.5);display:grid;place-items:center;font:22px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:#FFD84D">add</span></button></div></div></sc-for></div></div></sc-if>
+<div data-promo="1" style="display:flex;align-items:center;gap:10px;height:56px;padding-inline:16px 6px;border-radius:18px;background:#4E1256;box-shadow:{{ promoRing }}"><span style="font:20px/1 'Material Symbols Rounded';color:{{ promoIcon }}">sell</span><sc-if value="{{ promoIdle }}" hint-placeholder-val="{{ true }}"><input value="{{ promo }}" onChange="{{ onPromo }}" placeholder="Code promo" aria-label="Code promo" style="flex:1;min-width:0;height:44px;padding:0;border:0;outline:none;background:none;font:600 17px/1 Fredoka;letter-spacing:.06em;color:#FFF6E9"><button type="button" onClick="{{ onPromoApply }}" style="height:44px;padding:0 16px;border:0;border-radius:14px;background:rgba(0,0,0,.25);font:600 15px/1 Fredoka;color:#FFD84D;cursor:pointer">Appliquer</button></sc-if><sc-if value="{{ promoOk }}" hint-placeholder-val="{{ false }}"><span style="flex:1;font:600 17px/1 Fredoka;letter-spacing:.06em">MCHOU10</span><span style="height:44px;padding:0 12px;display:flex;align-items:center;gap:6px;border-radius:14px;background:#8FCB6B;font:600 15px/1 Fredoka;color:#24062A"><span style="font:20px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1">check_circle</span>-10 %</span><button type="button" onClick="{{ onPromoRemove }}" aria-label="Retirer le code" style="width:44px;height:44px;border:0;padding:0;border-radius:50%;background:none;display:grid;place-items:center;font:22px/1 'Material Symbols Rounded';color:#E9D3EE;cursor:pointer">close</button></sc-if></div>
+<sc-if value="{{ promoErr }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:6px;margin-top:-6px;font:700 13px/18px Nunito;color:#FF6B85"><span style="font:18px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1">error</span>Ce code n'existe pas ou a expiré.</span></sc-if>
+<div style="display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:24px;background:rgba(0,0,0,.2)">
+<div style="display:flex;justify-content:space-between;font:600 15px/20px Nunito;color:#E9D3EE"><span>Sous-total</span><span style="font:700 16px/20px Fredoka;color:#FFF6E9;font-variant-numeric:tabular-nums">{{ tot.sub }} DH</span></div>
+<div style="display:flex;justify-content:space-between;font:600 15px/20px Nunito;color:#E9D3EE"><span>Livraison</span><span style="font:700 16px/20px Fredoka;color:{{ tot.feeColor }}">{{ tot.fee }}</span></div>
+<sc-if value="{{ tot.hasDisc }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:space-between;font:600 15px/20px Nunito;color:#E9D3EE"><span>Code MCHOU10</span><span style="font:700 16px/20px Fredoka;color:#8FCB6B;font-variant-numeric:tabular-nums">−{{ tot.disc }} DH</span></div></sc-if>
+<div style="height:1px;background:rgba(233,211,238,.14)"></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:700 18px/22px Fredoka">Total</span><span style="font:700 24px/28px Fredoka;color:#FFD84D;font-variant-numeric:tabular-nums">{{ tot.total }} DH</span></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:2px"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE9A0,#F7B538 60%,#C98A12);box-shadow:inset 0 0 0 2px rgba(201,138,18,.6);display:grid;place-items:center;font:700 13px/1 Fredoka;color:#3A0B40">M</span><span style="font:600 14px/20px Nunito;color:#E9D3EE">Tu gagnes <b style="color:#FFD84D">{{ gain }} Miams</b> avec cette commande</span></div>
+</div>
+</div>
+<div style="flex:none;padding:12px 20px 34px;background:#3A0B40;box-shadow:0 -1px 0 rgba(233,211,238,.12)"><button type="button" onClick="{{ onCheckout }}" style="width:100%;height:56px;display:flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 4px 0 #C98A12;font:600 17px/1 Fredoka;color:#3A0B40;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out">Commander<span style="width:4px;height:4px;border-radius:50%;background:#3A0B40"></span><span style="font-variant-numeric:tabular-nums">{{ tot.total }} DH</span></button></div>
+</div>
+</sc-if>
+<sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 32px 90px;text-align:center">
+<div style="position:relative;width:180px;height:180px;margin-bottom:12px;border-radius:50%;background:radial-gradient(circle,#FFFFFF 0 58%,#F1E4D2 59% 64%,#FFFDF8 65% 100%);box-shadow:0 22px 34px -14px rgba(0,0,0,.7)"><span style="position:absolute;left:72px;top:78px;width:8px;height:6px;border-radius:3px;background:#C77B30"></span><span style="position:absolute;left:100px;top:96px;width:6px;height:6px;border-radius:50%;background:#4B2615"></span><span style="position:absolute;left:86px;top:112px;width:7px;height:5px;border-radius:3px;background:#E9AE55"></span></div>
+<span style="font:700 26px/30px Fredoka">Ton assiette est vide</span>
+<span style="font:500 16px/24px Nunito;color:#E9D3EE;text-wrap:pretty">Une petite crêpe pour commencer&nbsp;? La livraison est offerte dès 150 DH.</span>
+<button type="button" onClick="{{ onFill }}" style="margin-top:10px;height:56px;padding:0 28px;border:0;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 4px 0 #C98A12;font:600 17px/1 Fredoka;color:#3A0B40;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out">Remplir mon assiette</button>
+</div>
+</sc-if>
+</div>
+</x-dc>
+</body>
+</html>

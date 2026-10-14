@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<div data-screen="splash" data-screen-label="01 Splash" onClick="{{ onSplash }}" style="position:absolute;inset:0;background:#651A6C;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;cursor:pointer">
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,216,77,.12) 1px,transparent 1.6px),radial-gradient(circle,rgba(233,211,238,.09) 1.3px,transparent 2px);background-size:23px 23px,37px 37px;background-position:0 0,11px 17px;pointer-events:none"></div>
+<div style="position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,77,.22),rgba(255,216,77,0) 65%);pointer-events:none"></div>
+<img data-p="logo" src="assets/mchou-logo.png" alt="M'Chou" style="position:relative;width:188px;height:188px;border-radius:50%;box-shadow:0 26px 40px -16px rgba(0,0,0,.65)">
+<span data-p="tag" style="position:relative;font:400 28px/40px Pacifico;color:#FFD84D">Crêpes &amp; douceurs</span>
+<div style="position:absolute;bottom:72px;display:flex;flex-direction:column;align-items:center;gap:14px">
+<span data-spin="1" style="width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(160,86,10,.5) 0 3px,transparent 4px),radial-gradient(circle at 66% 62%,rgba(160,86,10,.45) 0 4px,transparent 5px),radial-gradient(circle at 62% 26%,rgba(160,86,10,.4) 0 2px,transparent 3px),radial-gradient(circle at 40% 40%,#F5C46A,#D98E34);box-shadow:0 0 0 3px #3A0B40"></span>
+<span style="font:800 13px/16px Nunito;letter-spacing:.16em;color:#E9D3EE">OUJDA</span>
+</div>
+</div>
+</x-dc>
+</body>
+</html>
