@@ -10,7 +10,7 @@
 <helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@500;600;700;800&family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script><script src="image-slot.js"></script><style>body{margin:0;background:#24062A;color:#FFF6E9;font-family:Nunito,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#FFD84D}a:hover{color:#FFF6E9}input::placeholder,textarea::placeholder{color:#C9A9D1;opacity:1}.leaflet-container{font-family:Nunito,system-ui,sans-serif}</style></helmet>
 <div style="min-height:100vh;box-sizing:border-box;padding:12px 24px;display:flex;flex-wrap:wrap-reverse;align-items:flex-end;justify-content:center;gap:24px 48px;background:#24062A">
 <div style="flex:0 1 300px;min-width:250px;max-width:330px;max-height:calc(100vh - 24px);overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:16px">
-<div style="display:flex;align-items:center;gap:12px"><img src="assets/mchou-logo.png" alt="M'Chou" style="width:44px;height:44px;border-radius:50%"><div style="display:flex;flex-direction:column"><span style="font:400 22px/30px Pacifico;color:#FFD84D">Prototype</span><span style="font:600 13px/18px Nunito;color:#E9D3EE">Ordering flow · 10 screens · tap through</span></div></div>
+<div style="display:flex;align-items:center;gap:12px"><img src="assets/mchou-logo.png" alt="M'Chou" style="width:44px;height:44px;border-radius:50%"><div style="display:flex;flex-direction:column"><span style="font:400 22px/30px Pacifico;color:#FFD84D">Prototype</span><span style="font:600 13px/18px Nunito;color:#E9D3EE">Ordering flow · 11 screens · tap through</span></div></div>
 <div style="display:flex;flex-direction:column;gap:2px">
 <sc-for list="{{ steps }}" as="st" hint-placeholder-count="10"><button type="button" onClick="{{ st.onClick }}" style="display:flex;align-items:center;gap:12px;min-height:38px;padding:0 14px;border:0;border-radius:999px;background:{{ st.bg }};color:{{ st.fg }};font:600 15px/20px Fredoka;text-align:start;cursor:pointer"><span style="width:20px;font:800 12px/16px Nunito;letter-spacing:.04em;color:{{ st.nfg }};font-variant-numeric:tabular-nums">{{ st.n }}</span>{{ st.label }}</button></sc-for>
 </div>
@@ -36,6 +36,8 @@
 
 <sc-if value="{{ is.home }}" hint-placeholder-val="{{ false }}"><dc-import name="screens/home" dcProps="{{ all }}"/></sc-if>
 
+<sc-if value="{{ is.menu }}" hint-placeholder-val="{{ false }}"><dc-import name="screens/menu" dcProps="{{ all }}"/></sc-if>
+
 <sc-if value="{{ is.builder }}" hint-placeholder-val="{{ false }}"><dc-import name="screens/builder" dcProps="{{ all }}"/></sc-if>
 
 <sc-if value="{{ is.cart }}" hint-placeholder-val="{{ false }}"><dc-import name="screens/cart" dcProps="{{ all }}"/></sc-if>
@@ -51,8 +53,8 @@
 <sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;left:0;right:0;bottom:0;height:130px;z-index:29;background:linear-gradient(rgba(58,11,64,0),#3A0B40 62%);pointer-events:none"></div>
 <div style="position:absolute;left:16px;right:16px;bottom:22px;height:72px;z-index:30;border-radius:999px;background:#24062A;box-shadow:0 0 0 1.5px rgba(255,216,77,.2),0 20px 36px -14px rgba(0,0,0,.8);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center">
-<button type="button" onClick="{{ onTabHome }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#FFD84D;cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1">home</span><span style="font:700 12px/14px Nunito">Accueil</span></button>
-<button type="button" onClick="{{ onTabMenu }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#C9A9D1;cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded'">restaurant_menu</span><span style="font:700 12px/14px Nunito">Menu</span></button>
+<button type="button" onClick="{{ onTabHome }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:{{ tabHome.fg }};cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ tabHome.fill }}">home</span><span style="font:700 12px/14px Nunito">Accueil</span></button>
+<button type="button" onClick="{{ onTabMenu }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:{{ tabMenu.fg }};cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ tabMenu.fill }}">restaurant_menu</span><span style="font:700 12px/14px Nunito">Menu</span></button>
 <div style="display:flex;justify-content:center"><button type="button" data-cart-target="bar" onClick="{{ onCart }}" aria-label="Panier" style="position:relative;width:66px;height:66px;margin-top:-34px;padding:0;border:0;border-radius:50%;background:linear-gradient(#FFD36B,#F7B538);box-shadow:0 0 0 6px #3A0B40,inset 0 3px 0 rgba(255,255,255,.6),inset 0 -4px 0 #C98A12,0 14px 20px -8px rgba(0,0,0,.6);display:grid;place-items:center;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:scale(.9);transition:transform 90ms ease-out"><span style="font:32px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#3A0B40">shopping_bag</span><sc-if value="{{ hasCount }}" hint-placeholder-val="{{ false }}"><span data-badge="1" style="position:absolute;top:-4px;inset-inline-end:-4px;min-width:26px;height:26px;padding:0 7px;box-sizing:border-box;border-radius:999px;background:#E0284B;color:#fff;font:700 14px/26px Fredoka;text-align:center;box-shadow:0 0 0 3px #3A0B40">{{ cartCount }}</span></sc-if></button></div>
 <button type="button" onClick="{{ onTabGifts }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#C9A9D1;cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded'">redeem</span><span style="font:700 12px/14px Nunito">Cadeaux</span></button>
 <button type="button" onClick="{{ onTabProfile }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#C9A9D1;cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded'">person</span><span style="font:700 12px/14px Nunito">Profil</span></button>
@@ -92,7 +94,7 @@
 <div data-scrim="1" onClick="{{ onUpsNo }}" style="position:absolute;inset:0;background:rgba(18,2,21,.6)"></div>
 <div data-panel="1" style="position:absolute;left:0;right:0;bottom:0;padding:10px 20px 36px;border-radius:28px 28px 0 0;background:#4E1256;display:flex;flex-direction:column;gap:14px">
 <span style="align-self:center;width:44px;height:5px;border-radius:9px;background:rgba(233,211,238,.4)"></span>
-<div style="display:flex;align-items:center;gap:10px"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#8FCB6B">check_circle</span><span style="font:600 16px/20px Fredoka;color:#E9D3EE">Crêpe ajoutée au panier</span></div>
+<div style="display:flex;align-items:center;gap:10px"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#8FCB6B">check_circle</span><span style="font:600 16px/20px Fredoka;color:#E9D3EE">{{ bName }} est dans ton panier</span></div>
 <span style="font:600 20px/26px Fredoka">Une boisson avec ça&nbsp;?</span>
 <sc-for list="{{ ups }}" as="u" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:12px"><div style="flex:none;width:56px;height:56px;border-radius:16px;overflow:hidden;background:{{ u.tint }};color:#3A0B40"><image-slot id="{{ u.slot }}" shape="rounded" radius="16" placeholder="{{ u.name }}"></image-slot></div><span style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font:600 16px/20px Fredoka">{{ u.name }}</span><span style="font:700 15px/18px Fredoka;color:#FFD84D">{{ u.price }} DH</span></span><sc-if value="{{ u.notAdded }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ u.onAdd }}" aria-label="Ajouter" style="width:48px;height:48px;border:0;padding:0;border-radius:50%;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #C98A12;display:grid;place-items:center;font:26px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:#3A0B40;cursor:pointer">add</button></sc-if><sc-if value="{{ u.added }}" hint-placeholder-val="{{ false }}"><span style="height:44px;padding-inline:10px 14px;display:flex;align-items:center;gap:6px;border-radius:999px;background:#8FCB6B;font:600 15px/1 Fredoka;color:#24062A"><span style="font:22px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1">check_circle</span>Ajouté</span></sc-if></div></sc-for>
 <div style="display:flex;gap:10px;margin-top:4px">
@@ -102,6 +104,8 @@
 </div>
 </div>
 </sc-if>
+
+<sc-if value="{{ sheetOpts }}" hint-placeholder-val="{{ false }}"><dc-import name="sheets/options" dcProps="{{ all }}"/></sc-if>
 
 <sc-if value="{{ tds }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;inset:0;z-index:46">
@@ -137,14 +141,15 @@ class Component extends DCLogic {
   SHOP = [34.6829, -1.9081];
   HOME0 = [34.6598, -1.9006];
   TW = { sound: true, reduceMotion: false, rtl: false };
-  SCREENS = [['splash', 'Splash'], ['login', 'Google sign-in'], ['phone', 'Phone number'], ['address', 'Address'], ['home', 'Home'], ['builder', 'Crêpe builder'], ['cart', 'Cart'], ['checkout', 'Checkout'], ['confirm', 'Confirmation'], ['track', 'Tracking']];
+  SCREENS = [['splash', 'Splash'], ['login', 'Google sign-in'], ['phone', 'Phone number'], ['address', 'Address'], ['home', 'Home'], ['menu', 'Menu'], ['builder', 'Builder'], ['cart', 'Cart'], ['checkout', 'Checkout'], ['confirm', 'Confirmation'], ['track', 'Tracking']];
   HINTS = {
     splash: 'Auto-advances after 2.6 s, or tap anywhere.',
     login: 'Tap “Continuer avec Google”, then the account. “Continuer avec mon numéro” skips Google.',
     phone: 'Type a Moroccan mobile (6 or 7, then 8 digits) or tap the SIM suggestion. Start with 5 to see the error.',
     address: 'Drag the map: the pin lifts and drops, distance and zone update (6 km around the shop). The street field is required.',
-    home: 'Chips and search filter the list. “+” flies to the cart and becomes a stepper. The Nutella banane card opens the builder. Tap the flame.',
-    builder: 'Toggle toppings and watch them land. The price counts up; “Ajouter” flies to the bag, then the drink sheet opens.',
+    home: 'Chips and search filter the list. “+” flies to the cart and becomes a stepper. Tap a card for its options (the Nutella banane card opens the builder). “Tout voir” opens the menu. Tap the flame.',
+    menu: 'Flavour chips filter the whole menu, the family bar follows the scroll. “+” adds the cheapest option; tap a sweet to open its builder, a drink or pack for its options sheet. Packs and services at the bottom.',
+    builder: 'Any sweet item opens here (tap a row in the menu). Pick options, toggle toppings and watch them land. The price counts up; “Ajouter” flies to the bag, then the drink sheet opens.',
     cart: 'Free-delivery bar at 150 DH, steppers with undo, “Vider” with undo. Promo code: MCHOU10.',
     checkout: 'Cash: bills under the total are disabled and the change is computed. Card: “Scanner ma carte” fills a test card (add any CVV). 4000 0000 0000 0002 is declined after 3-D Secure.',
     confirm: 'Crêpe scene then the scooter, about 7 s. “Passer” skips, the speaker mutes. Miams and streak count up at the end.',
@@ -152,23 +157,62 @@ class Component extends DCLogic {
   };
   CATS = [['crepes', 'Crêpes', 'skillet'], ['brownies', 'Brownies', 'cake'], ['choux', 'Choux', 'bakery_dining'], ['shakes', 'Milkshakes', 'icecream'], ['mojitos', 'Mojitos', 'local_bar']];
   SLOT = { 'crepe-nb': 'b-ml-1', 'brownie-bueno': 'b-ml-2', 'brownie-pista': 'b-drop', 'mojito-fraise': 'b-re-2' };
-  P = {
-    'crepe-nb': { name: 'Nutella banane', full: 'Crêpe Nutella banane', sub: 'Crêpe sucrée', price: 25, cat: 'crepes', icon: 'skillet', tag: 'N°1', builder: true, tint: '#F7C873' },
-    'crepe-lotus': { name: 'Lotus', full: 'Crêpe Lotus', sub: 'Spéculoos croquant', price: 25, cat: 'crepes', icon: 'skillet', tint: '#F5D2A8' },
-    'crepe-bueno': { name: 'Kinder Bueno', full: 'Crêpe Kinder Bueno', sub: 'Crêpe sucrée', price: 28, cat: 'crepes', icon: 'skillet', tag: 'Nouveau', tint: '#F3D9B8' },
-    'brownie-bueno': { name: 'Brownie Bueno', full: 'Brownie Bueno', sub: 'Taille M', price: 28, cat: 'brownies', icon: 'cake', tint: '#C9A27E' },
-    'brownie-pista': { name: 'Extra Pistachio', full: 'Brownie Extra Pistachio', sub: 'Drop du jour · M', price: 35, cat: 'brownies', icon: 'cake', tag: 'DROP', tint: '#BFE3A5' },
-    'brownie-dubai': { name: 'Brownie Dubaï', full: 'Brownie Dubaï', sub: 'Taille M', price: 32, cat: 'brownies', icon: 'cake', soldOut: true, tint: '#D9C3B0' },
-    'choux-choco': { name: 'Choux chocolat', full: 'Choux chocolat', sub: 'Les 3', price: 15, cat: 'choux', icon: 'bakery_dining', tint: '#E8C9A8' },
-    'choux-pista': { name: 'Choux pistache', full: 'Choux pistache', sub: 'Les 3', price: 18, cat: 'choux', icon: 'bakery_dining', tint: '#DDF0CF' },
-    'shake-oreo': { name: 'Milkshake Oreo', full: 'Milkshake Oreo', sub: '40 cl', price: 25, cat: 'shakes', icon: 'icecream', tint: '#E9E1EC' },
-    'shake-lotus': { name: 'Milkshake Lotus', full: 'Milkshake Lotus', sub: '40 cl', price: 27, cat: 'shakes', icon: 'icecream', tint: '#F5D2A8' },
-    'mojito-fraise': { name: 'Mojito fraise', full: 'Mojito fraise', sub: 'Sans alcool · 50 cl', price: 20, cat: 'mojitos', icon: 'local_bar', tint: '#FFB3C1' },
-    'mojito-passion': { name: 'Mojito passion', full: 'Mojito passion', sub: 'Sans alcool · 50 cl', price: 20, cat: 'mojitos', icon: 'local_bar', tint: '#FFE08A' }
+  // Vraie carte M'Chou (.notes/ecrans/menu.md). Prix en DH ; tableau = un prix par combinaison d'options.
+  FAMS = [
+    { k: 'crepes', n: 'Crêpes', t: 'Crêpes sucrées', icon: 'skillet', tint: '#F7C873', pre: 'Crêpe ', sub: 'Crêpe sucrée', ex: true, bld: 'crepe', sugar: true, desc: 'Crêpe dorée, pliée en quart.', items: [
+      ['Nutella', 20], ['Nutella banane', 25, { id: 'crepe-nb', tag: 'N°1', pop: 1, desc: 'Crêpe dorée, Nutella généreux et rondelles de banane fraîche, pliée en quart.' }], ['Oreo', 25], ['Bueno', 25, { pop: 1 }], ['Lotus', 25, { pop: 1 }], ['Amande', 25],
+      ['Nutella crème pistache', 25], ['Nutella pistachio', 30, { pop: 1 }], ['Extra amande pistachio', 30], ['Croquant amande', 35], ['Extra pistachio', 35], ['Filet d’amande', 35]] },
+    { k: 'spaghetti', n: 'Spaghetti', t: 'Spaghetti crêpes', icon: 'dinner_dining', tint: '#F5D2A8', pre: 'Spaghetti crêpe ', sub: 'Spaghetti crêpe', ex: true, bld: 'spaghetti', sugar: true, desc: 'Crêpe coupée en lanières, nappée comme tu l’aimes.', items: [
+      ['Nutella', 25], ['Nutella banane', 30], ['Oreo', 30], ['Bueno', 30], ['Lotus', 35], ['Amande', 35],
+      ['Nutella crème pistache', 35], ['Nutella pistachio', 40], ['Croquant amande', 40], ['Extra pistachio', 45], ['Filet d’amande', 40]] },
+    { k: 'speciales', n: 'Spéciales', t: 'Crêpes spéciales', icon: 'auto_awesome', tint: '#F3D9B8', pre: 'Crêpe ', sub: 'Crêpe spéciale', ex: true, bld: 'crepe', sugar: true, desc: 'Une recette signature de la maison.', items: [
+      ['Kunafa pistachio burritos', 38, { tag: 'Nouveau', full: 'Kunafa pistachio burritos' }], ['Brownie chocolat', 35], ['Corne de gazelle', 45],
+      ['Brownie dubaï', 50, { soldOut: true }], ['Box mixte', 35, { full: 'Box mixte crêpes' }], ['Enfant', 35]] },
+    { k: 'gaufres', n: 'Gaufres', t: 'Gaufres croustillantes', icon: 'breakfast_dining', tint: '#F5C46A', pre: 'Gaufre ', sub: 'Gaufre croustillante', ex: true, bld: 'gaufre', sugar: true, desc: 'Gaufre croustillante et dorée.', items: [
+      ['Natural', 15], ['Nutella', 20], ['Nutella banane', 25], ['Oreo', 25], ['Lotus', 25], ['Bueno', 25], ['Amande', 25],
+      ['Nutella crème pistachio', 25], ['Nutella pistachio', 30], ['Croquant amande', 35], ['Box mixte', 35, { full: 'Box mixte gaufres' }], ['Extra pistachio', 40]] },
+    { k: 'choux', n: 'Choux', t: 'Les choux', icon: 'bakery_dining', tint: '#E8C9A8', pre: 'Choux ', sub: 'Choux', ex: true, bld: 'choux', desc: 'Classiques, ou farcis à la crème vanille ou chocolat.', ax: ['pcs', 'garn', 'creme'], items: [
+      ['Nutella', [12, 15, 18, 24], { pop: 1 }], ['Bueno', [13, 16, 20, 25]], ['Lotus', [16, 20, 22, 27], { pop: 1 }], ['Oreo', [15, 20, 20, 26]],
+      ['Croquant amande', [20, 25, 30, 35]], ['Pistache', [20, 25, 25, 30], { pop: 1 }], ['Amande', [16, 20, 22, 27]], ['Box mixte', [20, 25, 25, 30], { full: 'Box mixte choux' }]] },
+    { k: 'brownies', n: 'Brownies', t: 'Les brownies', icon: 'cake', tint: '#C9A27E', pre: 'Brownie ', sub: 'Brownie', note: 'Kunafa pistachou & crème fromagère', ex: true, bld: 'brownie', desc: 'Brownie fondant, avec kunafa pistachou et crème fromagère.', ax: ['taille'], items: [
+      ['Nutella', [27, 49]], ['Bueno', [28, 50], { id: 'brownie-bueno', pop: 1 }], ['Nutella pistachou', [30, 55]], ['Nutella crème pistachio', [28, 50]], ['Amande', [30, 55]],
+      ['Croquant amande', [35, 55]], ['Lotus', [30, 55], { pop: 1 }], ['Oreo', [30, 55]], ['Extra pistachio', [35, 59], { id: 'brownie-pista', tag: 'DROP', pop: 1 }], ['Box mixte', [30, 55], { full: 'Box mixte brownies' }]] },
+    { k: 'packs', n: 'Packs', t: 'Packs famille', icon: 'redeem', tint: '#FFE08A', pre: '', sub: 'Pack famille', pack: true, items: [
+      ['Choux mixtes', 93, { d: '24 pièces', icon: 'bakery_dining', full: 'Pack 24 choux mixtes' }], ['Brownies mixtes', 149, { d: '12 pièces', icon: 'cake', full: 'Pack 12 brownies mixtes' }],
+      ['Brownies extra pistachou', 155, { d: '12 pièces', icon: 'cake', full: 'Pack 12 brownies extra pistachou' }]] },
+    { k: 'shakes', n: 'Milkshakes', t: 'Milkshakes', icon: 'icecream', tint: '#E9E1EC', pre: 'Milkshake ', sub: 'Milkshake', items: [
+      ['Vanille', 27], ['Fraise', 27, { pop: 1 }], ['Framboise', 27], ['Banane', 27], ['Chocolat', 27, { pop: 1 }], ['Caramel', 27], ['Oreo', 27, { id: 'shake-oreo', pop: 1 }]] },
+    { k: 'mojitos', n: 'Mojitos', t: 'Les mojitos', icon: 'local_bar', tint: '#FFB3C1', pre: 'Mojito ', sub: 'Mojito sans alcool', items: [
+      ['Citron', 20, { pop: 1 }], ['Fraise', 20, { id: 'mojito-fraise', pop: 1 }], ['Framboise', 20], ['Blueberry', 20], ['Fruits de la passion', 20, { id: 'mojito-passion', pop: 1 }], ['Ananas', 20]] },
+    { k: 'jus', n: 'Jus', t: 'Les jus', icon: 'nutrition', tint: '#FFE08A', pre: 'Jus de ', sub: 'Jus', items: [
+      ['Citron', 15], ['Orange', 20, { full: 'Jus d’orange' }], ['Pomme', [15, 25], { ax: ['lait'] }], ['Banane', [15, 25], { ax: ['lait'] }], ['Fraise', [23, 28], { ax: ['lait'] }],
+      ['Avocat', [25, 30], { ax: ['lait'], full: 'Jus d’avocat' }], ['Ananas', 28, { full: 'Jus d’ananas' }], ['Mangue', 28], ['Kiwi', 28]] },
+    { k: 'cocktails', n: 'Cocktails', t: 'Cocktails', icon: 'blender', tint: '#FFD1DA', pre: 'Cocktail ', sub: 'Cocktail de fruits', items: [
+      ['Hawaï', 45, { d: 'Mangue et fraise' }], ['Bora Bora', 35, { d: 'Banane et pomme' }], ['Île Maurice', 45, { d: 'Ananas et kiwi' }], ['Île Fraîcheur', 45, { d: 'Ananas, citron et sirop de menthe' }]] },
+    { k: 'chauds', n: 'Boissons chaudes', t: 'Boissons chaudes', icon: 'local_cafe', tint: '#D9C3B0', pre: '', sub: 'Boisson chaude', ax: ['arome'], items: [
+      ['Café noir', 8], ['Café expresso', 8], ['Café américain', 8], ['Café crème', 10], ['Chocolat chaud', 15], ['Chocolat fondu', 25], ['Cappuccino', 15], ['Nescafé', 10]] }
+  ];
+  // o : [valeur, libellé du bouton, libellé dans le panier] ; price : l'axe change le prix de base
+  AX = {
+    pcs: { n: 'Pièces', price: true, hint: '4 ou 6 pièces', o: [['4', '4 pièces', '4 pièces'], ['6', '6 pièces', '6 pièces']] },
+    garn: { n: 'Façon', price: true, hint: 'classiques ou farcis', o: [['classiques', 'Classiques', 'Classiques'], ['farcis', 'Farcis à la crème', 'Farcis à la crème']] },
+    creme: { n: 'Crème', when: { garn: 'farcis' }, o: [['vanille', 'Vanille', 'crème vanille'], ['chocolat', 'Chocolat', 'crème chocolat']] },
+    taille: { n: 'Taille', price: true, hint: 'Taille M ou L', o: [['M', 'M', 'Taille M'], ['L', 'L', 'Taille L']] },
+    lait: { n: 'Version', price: true, hint: 'Nature ou au lait', o: [['nature', 'Nature', 'Nature'], ['lait', 'Au lait', 'Au lait']] },
+    arome: { n: 'Arôme', add: 5, hint: 'Arôme au choix +5 DH', o: [['', 'Sans', ''], ['vanille', 'Vanille', 'Arôme vanille'], ['caramel', 'Caramel', 'Arôme caramel'], ['noisette', 'Noisette', 'Arôme noisette']] }
   };
+  FLAV = [
+    ['nutella', 'Nutella', '#4B2615', '#E8C9A8', /nutella/i], ['pistache', 'Pistache', '#8FCB6B', '#DDF0CF', /pista|kunafa/i], ['lotus', 'Lotus', '#C77B30', '#F5D2A8', /lotus/i],
+    ['bueno', 'Bueno', '#E7B97A', '#F3D9B8', /bueno/i], ['oreo', 'Oreo', '#2B1409', '#E9E1EC', /oreo/i], ['amande', 'Amande', '#EAD7BF', '#F3E6D3', /amande|gazelle/i],
+    ['fruit', 'Fruité', '#FF4D6D', '#FFD1DA', /fraise|banane|framboise|mangue|kiwi|ananas|citron|orange|pomme|passion|blueberry|avocat/i]
+  ];
+  SAUCE = { nutella: ['#8A5636', '#4B2615', '#351A0D'], pistache: ['#CDEBB0', '#8FCB6B', '#5E9A3E'], lotus: ['#E6A866', '#C77B30', '#9A5A1E'], bueno: ['#F6DDB2', '#E7B97A', '#B98A4E'],
+    oreo: ['#FFFFFF', '#EFE8DE', '#CFC2B0'], amande: ['#FFF6E6', '#EAD7BF', '#C9A06A'], chocolat: ['#7A4A30', '#4B2615', '#2B1409'] };
+  FM = Object.fromEntries(this.FAMS.map(f => [f.k, f]));
+  P = this.buildP();
   EX = [
-    { k: 'banane', n: 'Extra banane', p: 5 }, { k: 'pistache', n: 'Pistache concassée', p: 10 }, { k: 'bueno', n: 'Kinder Bueno', p: 8 },
-    { k: 'fraise', n: 'Fraises fraîches', p: 7 }, { k: 'lotus', n: 'Crumble Lotus', p: 6 }, { k: 'chantilly', n: 'Chantilly maison', p: 5 }, { k: 'glace', n: 'Boule vanille', p: 8 }
+    { k: 'banane', n: 'Banane', p: 5 }, { k: 'fraise', n: 'Fraise', p: 8 }, { k: 'chantilly', n: 'Crème chantilly', p: 8 }, { k: 'pistache', n: 'Pistache', p: 10 },
+    { k: 'amande', n: 'Amande', p: 8 }, { k: 'lotus', n: 'Lotus', p: 8 }, { k: 'oreo', n: 'Oreo', p: 5 }, { k: 'kunafa', n: 'Kunafa pistache', p: 15 }
   ];
   maps = {};
   timers = [];
@@ -179,8 +223,8 @@ class Component extends DCLogic {
     screen: 'splash', hist: [], gsheet: false, gbusy: false,
     phone: '', phoneBlur: false, phoneFocus: false,
     q: 'Hay Al Qods', city: 'Oujda', street: '', mark: '', label: 'Maison', ll: [34.6598, -1.9006], dist: 2.7, inZone: true, addrEdit: false,
-    cat: 'crepes', query: '', cart: [], favs: { 'crepe-nb': true },
-    ex: {}, sugar: true, bqty: 1, note: '', bAdded: false, upsAdded: {},
+    cat: 'crepes', query: '', cart: [], mq: '', flav: '', mfam: 'crepes', po: null, favs: { 'crepe-nb': true },
+    bid: 'crepe-nb', bsel: {}, ex: {}, sugar: true, bqty: 1, note: '', bAdded: false, upsAdded: {},
     promo: '', promoOk: false, promoErr: false, when: 'asap', slot: '',
     pay: 'cash', bill: null, num: '', exp: '', cvv: '', cname: '', cardTry: false, saveCard: true, payErr: '',
     tds: false, otp: '', tdsBusy: false, tdsSms: false, busy: false,
@@ -190,6 +234,81 @@ class Component extends DCLogic {
     stage: 1, prog: 0, toast: null, sheet: null, tw: {}, now: Date.now(), muted: false, scale: 1
   };
 
+  buildP() {
+    const P = {}, slug = x => x.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const brand = /^(Nutella|Oreo|Lotus|Bueno|Kunafa)/;
+    this.FAMS.forEach(f => f.items.forEach(([name, pr, o]) => {
+      o = o || {};
+      const id = o.id || f.k + '-' + slug(name), ax = o.ax || f.ax || [], hay = name + ' ' + (o.d || '');
+      const fl = this.FLAV.filter(x => x[4].test(hay)).map(x => x[0]), ft = this.FLAV.find(x => x[0] === fl[0]);
+      const hint = ax.map(a => this.AX[a].hint).filter(Boolean).join(' · ') || o.d || '';
+      const prices = Array.isArray(pr) ? pr : [pr];
+      P[id] = { id, name, full: o.full || (f.pre && !brand.test(name) ? f.pre + name.charAt(0).toLowerCase() + name.slice(1) : f.pre + name), sub: hint || f.sub, hint, d: o.d || '',
+        price: Math.min.apply(null, prices), prices, multi: prices.length > 1, ax, ex: !!f.ex, cat: f.k, icon: o.icon || f.icon, tint: o.tint || (ft ? ft[3] : f.tint),
+        flav: fl, tag: o.tag, soldOut: !!o.soldOut, pop: !!o.pop, bld: f.bld || '', sugar: !!f.sugar, desc: o.desc || f.desc || '' };
+    }));
+    return P;
+  }
+  bVis(p, sel) {
+    const nm = p.name.toLowerCase(), shape = p.bld || 'crepe';
+    const hit = [['nutella', /nutella|box/], ['pistache', /pista|duba/], ['lotus', /lotus/], ['bueno', /bueno/], ['oreo', /oreo/], ['amande', /amande|gazelle/], ['chocolat', /chocolat|brownie/]]
+      .map(([k, r]) => [k, nm.search(r)]).filter(x => x[1] >= 0).sort((a, b) => a[1] - b[1]).map(x => x[0]);
+    const C = this.SAUCE[hit[0]], C2 = this.SAUCE[hit[1]], inc = {};
+    [['banane', /banane/], ['pistache', /pista/], ['amande', /amande/], ['lotus', /lotus/], ['oreo', /oreo/], ['kunafa', /kunafa|duba/], ['bueno', /bueno/]].forEach(([k, r]) => { inc[k] = r.test(nm); });
+    const L = sel.taille === 'L', bw = L ? 176 : 144, choux = shape === 'choux';
+    const pos = sel.pcs === '6' ? [[14, 46], [71, 38], [128, 46], [14, 106], [71, 114], [128, 106]] : [[40, 42], [102, 42], [40, 104], [102, 104]];
+    const LB = { nutella: 'Nutella', pistache: 'Pistache', lotus: 'Lotus', bueno: 'Bueno', oreo: 'Oreo', amande: 'Amande', chocolat: 'Chocolat', banane: 'Banane', kunafa: 'Kunafa' };
+    const chips = hit.concat(Object.keys(inc).filter(k => inc[k])).filter((k, i, a) => a.indexOf(k) === i).map(k => ({ name: LB[k] }));
+    if (shape === 'crepe' || shape === 'spaghetti') chips.push({ name: 'Pâte maison' });
+    return {
+      crepe: shape === 'crepe', spaghetti: shape === 'spaghetti', gaufre: shape === 'gaufre', brownie: shape === 'brownie', choux,
+      k: { spaghetti: .92, gaufre: .8, brownie: L ? .84 : .68, choux: .86 }[shape] || 1, bw, bo: 22 + (200 - bw) / 2,
+      sp: C && !choux ? 1 : 0, spk: shape === 'spaghetti' ? .6 : 1, s1: (C || [])[0] || 'transparent', s2: (C || [])[1] || 'transparent', s3: (C || [])[2] || 'transparent',
+      drz: C2 && !choux ? 1 : 0, d1: (C2 || [])[1] || 'transparent', incBan: inc.banane ? 1 : 0, bueno: inc.bueno ? 1 : 0, inc,
+      puffs: pos.map(([x, y], i) => ({ x, y, g: ((i % 2 && C2) || C || ['', '#F1D9A8'])[1] })), cream: sel.garn === 'farcis' ? 1 : 0, creamC: sel.creme === 'chocolat' ? '#6B3A22' : '#FFF4CF',
+      chips, watch: { crepe: 'Regarde ta crêpe se garnir', spaghetti: 'Regarde tes spaghetti se garnir', gaufre: 'Regarde ta gaufre se garnir', brownie: 'Regarde ton brownie se garnir', choux: 'Regarde tes choux se garnir' }[shape]
+    };
+  }
+  axOn(a, sel) { const w = this.AX[a].when; return !w || Object.keys(w).every(k => sel[k] === w[k]); }
+  defSel(p) { const sel = {}; p.ax.forEach(a => { sel[a] = this.AX[a].o[0][0]; }); return sel; }
+  optUnit(p, sel, ex) {
+    let i = 0, m = 1;
+    p.ax.filter(a => this.AX[a].price).forEach(a => { const o = this.AX[a].o; i += Math.max(0, o.findIndex(x => x[0] === sel[a])) * m; m *= o.length; });
+    let u = p.prices[i] != null ? p.prices[i] : p.prices[0];
+    p.ax.forEach(a => { if (this.AX[a].add && sel[a] && this.axOn(a, sel)) u += this.AX[a].add; });
+    return u + this.EX.reduce((t, e) => t + (ex && ex[e.k] ? e.p : 0), 0);
+  }
+  optLabel(p, sel) { return p.ax.filter(a => this.axOn(a, sel)).map(a => (this.AX[a].o.find(x => x[0] === sel[a]) || [])[2]).filter(Boolean).join(' · '); }
+  defLine(id) { const p = this.P[id], sel = this.defSel(p); return { id, v: this.optLabel(p, sel), ex: [], sugar: true, note: '', unit: this.optUnit(p, sel), qty: 1 }; }
+  poPrice(s) { const o = s.po, p = o && this.P[o.id]; return p ? this.optUnit(p, o.sel, o.ex) * o.qty : null; }
+  openOpts(id) {
+    const p = this.P[id]; if (!p || p.soldOut) return;
+    if (p.bld) { this.openBuilder(id); return; }
+    this.snd('tap');
+    this.setState(s => ({ po: { id, sel: this.defSel(p), ex: {}, qty: 1 }, sheet: 'opts', tw: Object.assign({}, s.tw, { o: null }) }));
+  }
+  setPo(ch) { this.setState(s => ({ po: Object.assign({}, s.po, ch) })); }
+  addOpts() {
+    const o = this.state.po, p = o && this.P[o.id]; if (!p) return;
+    const line = { id: p.id, v: this.optLabel(p, o.sel), ex: this.EX.filter(e => o.ex[e.k]).map(e => e.n), sugar: true, note: '', unit: this.optUnit(p, o.sel, o.ex), qty: o.qty };
+    this.fly(this.root && this.root.querySelector('[data-opt-thumb]'), p.icon, () => this.addLine(line), 56);
+    this.closeSheet(() => this.toastShow(o.qty > 1 ? o.qty + ' ajoutés au panier' : 'Ajouté au panier', 'check_circle', '#8FCB6B', { label: 'Voir', fn: () => this.go('cart') }));
+  }
+  offIn(el, sc) { let y = 0; while (el && el !== sc) { y += el.offsetTop; el = el.offsetParent; } return y; }
+  menuSc() { return this.root && this.root.querySelector('[data-menu-scroll]'); }
+  menuTo(k, smooth) {
+    const sc = this.menuSc(), sec = sc && sc.querySelector('[data-sec="' + k + '"]'); if (!sec) return;
+    const st = sc.querySelector('[data-menu-stick]'), h = st ? st.offsetHeight : 110;
+    this.menuLock = Date.now() + 900;
+    sc.scrollTo({ top: Math.max(0, this.offIn(sec, sc) - h + 2), behavior: smooth && !this.rm() ? 'smooth' : 'auto' });
+    this.setState({ mfam: k });
+  }
+  onMenuScroll(sc) {
+    if (this.menuLock && Date.now() < this.menuLock) return;
+    const st = sc.querySelector('[data-menu-stick]'), lim = sc.scrollTop + (st ? st.offsetHeight : 110) + 14;
+    let cur = null; sc.querySelectorAll('[data-sec]').forEach(x => { if (cur === null || this.offIn(x, sc) <= lim) cur = x.getAttribute('data-sec'); });
+    if (cur && cur !== this.state.mfam) this.setState({ mfam: cur });
+  }
   slot(id) { return this.SLOT[id] || 'p-' + id; }
   rm() { return !!this.TW.reduceMotion || !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
   later(fn, ms) { const id = setTimeout(fn, ms); this.timers.push(['t', id]); return id; }
@@ -220,7 +339,9 @@ class Component extends DCLogic {
     if ((s.sheet && ps.sheet !== s.sheet) || (s.gsheet && !ps.gsheet) || (s.tds && !ps.tds)) this.animSheet();
     if (s.toast && ps.toast !== s.toast) this.animToast();
     if (s.caption && s.caption !== ps.caption) this.popEl('[data-caption]');
-    if (ps.ex !== s.ex || ps.bqty !== s.bqty) { const a = this.bPrice(ps), b = this.bPrice(s); if (a !== b) this.tween('b', s.tw.b != null ? s.tw.b : a, b); }
+    { const a = this.poPrice(ps), b = this.poPrice(s); if (a != null && b != null && a !== b && ps.po.id === s.po.id) this.tween('o', s.tw.o != null ? s.tw.o : a, b); }
+    if (ps.mfam !== s.mfam && s.screen === 'menu') { const bar = this.root && this.root.querySelector('[data-fambar]'), c = bar && bar.querySelector('[data-fam="' + s.mfam + '"]'); if (c) bar.scrollTo({ left: Math.max(0, c.offsetLeft - 20), behavior: this.rm() ? 'auto' : 'smooth' }); }
+    if (ps.ex !== s.ex || ps.bqty !== s.bqty || ps.bsel !== s.bsel || ps.bid !== s.bid) { const a = this.bPrice(ps), b = this.bPrice(s); if (a !== b) this.tween('b', s.tw.b != null ? s.tw.b : a, b); }
     const ta = this.totals(ps), tb = this.totals(s);
     if (ta.total !== tb.total) this.tween('ct', s.tw.ct != null ? s.tw.ct : ta.total, tb.total);
     if (!ta.free && tb.free && s.screen === 'cart') { this.snd('win'); this.burst('[data-freebar]', 28); }
@@ -242,6 +363,7 @@ class Component extends DCLogic {
     if (sc === 'splash') this.runSplash();
     if (sc === 'confirm') this.runScene();
     if (sc === 'track') this.runTrack();
+    if (sc === 'menu' && this.menuGo) { const k = this.menuGo; this.menuGo = null; this.menuTo(k); }
   }
   stopAnims() { this.sceneAnims.concat(this.loopAnims).forEach(a => { try { a.cancel(); } catch (e) {} }); this.sceneAnims = []; this.loopAnims = []; }
   go(sc, o) {
@@ -411,15 +533,20 @@ class Component extends DCLogic {
     }, 700);
   }
 
-  bUnit(s) { s = s || this.state; return 25 + this.EX.reduce((a, e) => a + (s.ex[e.k] ? e.p : 0), 0); }
+  bUnit(s) { s = s || this.state; return this.optUnit(this.P[s.bid], s.bsel, s.ex); }
   bPrice(s) { s = s || this.state; return this.bUnit(s) * s.bqty; }
-  openBuilder() { this.snd('tap'); this.setState(s => ({ ex: {}, sugar: true, bqty: 1, note: '', bAdded: false, upsAdded: {}, tw: Object.assign({}, s.tw, { b: null }) })); this.go('builder'); }
+  openBuilder(id) { id = id || 'crepe-nb'; const p = this.P[id]; this.snd('tap'); this.setState(s => ({ bid: id, bsel: this.defSel(p), ex: {}, sugar: true, bqty: 1, note: '', bAdded: false, upsAdded: {}, tw: Object.assign({}, s.tw, { b: null }) })); this.go('builder'); }
   toggleEx(k) {
     const on = !this.state.ex[k], e = this.EX.find(x => x.k === k);
     this.setState(s => ({ ex: Object.assign({}, s.ex, { [k]: on }), bAdded: false }), () => { if (on) this.dropTop(k); });
     this.snd(on ? 'pop' : 'off'); this.buzz(6);
     const pl = this.root && this.root.querySelector('[data-plate]');
     if (pl) { const r = this.rel(pl); this.floatTxt(r.x, r.y - 100, (on ? '+' : '−') + e.p + ' DH', on ? '#FFD84D' : '#C9A9D1'); }
+  }
+  setBsel(a, v) {
+    this.setState(s => ({ bsel: Object.assign({}, s.bsel, { [a]: v }), bAdded: false }));
+    this.snd('pop'); this.buzz(6);
+    const cr = this.root && this.root.querySelector('[data-crepe]'); if (cr && !this.rm()) cr.animate([{ scale: '1' }, { scale: '.94' }, { scale: '1.04' }, { scale: '1' }], { duration: 480, easing: 'ease-out' });
   }
   toggleSugar() { const on = !this.state.sugar; this.setState({ sugar: on, bAdded: false }); this.snd(on ? 'pop' : 'off'); }
   dropTop(k) {
@@ -429,13 +556,13 @@ class Component extends DCLogic {
   }
   addBuilder() {
     if (this.state.bAdded) return;
-    const s = this.state, line = { id: 'crepe-nb', ex: this.EX.filter(x => s.ex[x.k]).map(x => x.n), sugar: s.sugar, note: s.note.trim(), unit: this.bUnit(), qty: s.bqty };
+    const s = this.state, p = this.P[s.bid], line = { id: s.bid, v: this.optLabel(p, s.bsel), ex: this.EX.filter(x => s.ex[x.k]).map(x => x.n), sugar: p.sugar ? s.sugar : true, note: s.note.trim(), unit: this.bUnit(), qty: s.bqty };
     this.setState({ bAdded: true });
-    this.fly(this.root.querySelector('[data-crepe]'), 'skillet', () => { this.addLine(line); this.later(() => this.setState({ sheet: 'upsell' }), 380); }, 64);
+    this.fly(this.root.querySelector('[data-crepe]'), this.P[s.bid].icon, () => { this.addLine(line); this.later(() => this.setState({ sheet: 'upsell' }), 380); }, 64);
   }
-  lineKey(l) { return l.id + '|' + (l.ex || []).join(',') + '|' + (l.sugar === false ? 0 : 1) + '|' + (l.note || ''); }
+  lineKey(l) { return l.id + '|' + (l.v || '') + '|' + (l.ex || []).join(',') + '|' + (l.sugar === false ? 0 : 1) + '|' + (l.note || ''); }
   addLine(l) { this.setState(s => { const k = this.lineKey(l), cart = s.cart.slice(), i = cart.findIndex(x => this.lineKey(x) === k); if (i >= 0) cart[i] = Object.assign({}, cart[i], { qty: Math.min(20, cart[i].qty + l.qty) }); else cart.push(Object.assign({}, l)); return { cart }; }); }
-  addSimple(id, el) { const p = this.P[id]; if (!p || p.soldOut) return; this.fly(el, p.icon, () => this.addLine({ id, ex: [], sugar: true, note: '', unit: p.price, qty: 1 })); }
+  addSimple(id, el) { const p = this.P[id]; if (!p || p.soldOut) return; this.fly(el, p.icon, () => this.addLine(this.defLine(id))); }
   minusId(id) { this.setState(s => { const cart = s.cart.slice(); for (let i = cart.length - 1; i >= 0; i--) if (cart[i].id === id) { if (cart[i].qty > 1) cart[i] = Object.assign({}, cart[i], { qty: cart[i].qty - 1 }); else cart.splice(i, 1); break; } return { cart }; }); this.snd('off'); this.buzz(6); }
   lineQty(i, d) {
     const prev = this.state.cart, l = prev[i]; if (!l) return;
@@ -600,7 +727,7 @@ class Component extends DCLogic {
   }
 
   jump(k) {
-    const s = this.state, seed = [{ id: 'crepe-nb', ex: ['Pistache concassée'], sugar: true, note: '', unit: 35, qty: 1 }, { id: 'mojito-fraise', ex: [], sugar: true, note: '', unit: 20, qty: 1 }];
+    const s = this.state, seed = [{ id: 'crepe-nb', ex: ['Pistache'], sugar: true, note: '', unit: 35, qty: 1 }, { id: 'mojito-fraise', ex: [], sugar: true, note: '', unit: 20, qty: 1 }];
     if (k === 'builder') { this.openBuilder(); return; }
     if (k === 'confirm' || k === 'track') {
       if (k === 'confirm' && s.screen === 'confirm') { this.replay(); return; }
@@ -625,26 +752,27 @@ class Component extends DCLogic {
     const pst = this.phoneState(s);
     const norm = x => String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     const qn = norm(s.query.trim());
-    const catName = id => (this.CATS.find(c => c[0] === P[id].cat) || [])[1] || '';
-    const ids = Object.keys(P).filter(id => (qn ? norm(P[id].full + ' ' + P[id].sub + ' ' + catName(id)).indexOf(qn) >= 0 : P[id].cat === s.cat));
+    const catName = id => this.FM[P[id].cat].n;
+    const ids = Object.keys(P).filter(id => (qn ? norm(P[id].full + ' ' + P[id].sub + ' ' + catName(id)).indexOf(qn) >= 0 : P[id].cat === s.cat && P[id].pop)).slice(0, 12);
     const TAGS = { 'N°1': ['#FFD84D', '#3A0B40'], 'Nouveau': ['#8FCB6B', '#24062A'], 'DROP': ['#24062A', '#FFD84D'] };
     const prods = ids.map(id => {
       const p = P[id], n = qty[id] || 0, tg = TAGS[p.tag] || TAGS['N°1'];
-      return { id, slot: this.slot(id), name: p.name, sub: p.sub, full: p.full, price: p.price, tint: p.tint, tag: p.tag || '', hasTag: !!p.tag, tagBg: tg[0], tagFg: tg[1], fav: !!s.favs[id], soldOut: !!p.soldOut, canAdd: !p.soldOut && !n, inCart: !p.soldOut && n > 0, qty: n, ring: n ? '0 0 0 2px #FFD84D' : '0 0 0 1.5px rgba(255,216,77,.22)', cursor: p.builder ? 'pointer' : 'default', filter: p.soldOut ? 'grayscale(1)' : 'none', op: p.soldOut ? .6 : 1, onOpen: () => { if (p.builder) this.openBuilder(); }, onAdd: e => this.addSimple(id, e.currentTarget), onMinus: () => this.minusId(id) };
+      return { id, slot: this.slot(id), name: p.name, sub: p.sub, full: p.full, price: p.price, tint: p.tint, tag: p.tag || '', hasTag: !!p.tag, tagBg: tg[0], tagFg: tg[1], fav: !!s.favs[id], soldOut: !!p.soldOut, canAdd: !p.soldOut && !n, inCart: !p.soldOut && n > 0, qty: n, ring: n ? '0 0 0 2px #FFD84D' : '0 0 0 1.5px rgba(255,216,77,.22)', cursor: p.soldOut ? 'default' : 'pointer', filter: p.soldOut ? 'grayscale(1)' : 'none', op: p.soldOut ? .6 : 1, onOpen: () => this.openOpts(id), onAdd: e => this.addSimple(id, e.currentTarget), onMinus: () => this.minusId(id) };
     });
     const cats = this.CATS.map(([k, n, ic]) => { const on = !qn && s.cat === k; return { name: n, icon: ic, bg: on ? 'linear-gradient(#FFD36B,#F7B538)' : '#4E1256', sh: on ? 'inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 #C98A12' : '0 0 0 1.5px rgba(233,211,238,.18),0 4px 0 #24062A', fg: on ? '#3A0B40' : '#FFF6E9', ibg: on ? '#3A0B40' : 'rgba(0,0,0,.25)', onClick: () => { this.snd('tap'); this.setState({ cat: k, query: '' }); } }; });
     const steps = this.SCREENS.map(([k, l], i) => { const on = k === sc; return { n: String(i + 1).padStart(2, '0'), label: l, bg: on ? '#FFD84D' : 'transparent', fg: on ? '#3A0B40' : '#E9D3EE', nfg: on ? '#3A0B40' : '#C9A9D1', onClick: () => this.jump(k) }; });
     const tt = s.toast;
     const toast = tt ? { icon: tt.icon, color: tt.color, text: tt.text, hasAction: !!tt.action, label: tt.action ? tt.action.label : '', onAction: () => { const a = tt.action; this.setState({ toast: null }); if (a) a.fn(); } } : { icon: '', color: '#FFF6E9', text: '', hasAction: false, label: '', onAction: null };
     const sw = on => ({ op: on ? 1 : 0, ring: on ? '0 0 0 2px #FFD84D' : '0 0 0 1.5px rgba(233,211,238,.14)', track: on ? '#FFD84D' : 'rgba(0,0,0,.3)', tsh: on ? 'inset 0 -2px 0 #C98A12' : 'inset 0 0 0 1.5px rgba(233,211,238,.3)', knob: on ? '26px' : '4px', kbg: on ? '#3A0B40' : '#C9A9D1' });
-    const bx = {}; this.EX.forEach(e => { bx[e.k] = Object.assign(sw(!!s.ex[e.k]), { onClick: () => this.toggleEx(e.k) }); });
-    bx.sucre = Object.assign(sw(s.sugar), { onClick: () => this.toggleSugar() });
-    const lines = s.cart.map((l, i) => { const p = P[l.id], d = (l.ex || []).slice(); if (l.id === 'crepe-nb' && l.sugar === false) d.push('Sans sucre glace'); if (l.note) d.push('« ' + l.note + ' »'); return { slot: this.slot(l.id), name: p.full, desc: d.length ? d.join(' · ') : p.sub, price: l.unit * l.qty, qty: l.qty, one: l.qty === 1, many: l.qty > 1, tint: p.tint, onMinus: () => this.lineQty(i, -1), onPlus: () => this.lineQty(i, 1) }; });
+    const bp = P[s.bid] || P['crepe-nb'], bv = this.bVis(bp, s.bsel);
+    const bx = {}; this.EX.forEach(e => { bx[e.k] = Object.assign(sw(!!s.ex[e.k]), { onClick: () => this.toggleEx(e.k) }); if (e.k !== 'banane' && bv.inc[e.k]) bx[e.k].op = 1; });
+    bx.sucre = Object.assign(sw(s.sugar), { onClick: () => this.toggleSugar() }); if (!bp.sugar) bx.sucre.op = 0;
+    const lines = s.cart.map((l, i) => { const p = P[l.id], d = [l.v].filter(Boolean).concat((l.ex || []).map(x => '+ ' + x)); if (l.sugar === false) d.push('Sans sucre glace'); if (l.note) d.push('« ' + l.note + ' »'); return { slot: this.slot(l.id), name: p.full, desc: d.length ? d.join(' · ') : p.sub, price: l.unit * l.qty, qty: l.qty, one: l.qty === 1, many: l.qty > 1, tint: p.tint, onMinus: () => this.lineQty(i, -1), onPlus: () => this.lineQty(i, 1) }; });
     const ctShown = s.tw.ct != null ? s.tw.ct : t.total;
     const tot = { sub: t.sub, fee: t.fee ? t.fee + ' DH' : 'Offerte', feeColor: t.fee ? '#FFF6E9' : '#8FCB6B', disc: t.disc, hasDisc: t.disc > 0, total: ctShown };
     const free = { pct: t.pct + '%', left: t.left, done: t.free, notDone: !t.free, sub: t.free ? 'Dès 150 DH, la livraison est pour nous.' : t.sub + ' / 150 DH · sinon livraison 15 DH' };
-    const cartUps = ['mojito-fraise', 'choux-choco', 'shake-oreo', 'mojito-passion', 'choux-pista'].filter(id => !qty[id]).slice(0, 3).map(id => ({ slot: this.slot(id), name: P[id].name, price: P[id].price, tint: P[id].tint, onAdd: e => this.addSimple(id, e.currentTarget) }));
-    const ups = ['mojito-fraise', 'shake-oreo'].map(id => ({ slot: this.slot(id), name: P[id].full, price: P[id].price, tint: P[id].tint, added: !!s.upsAdded[id], notAdded: !s.upsAdded[id], onAdd: () => { this.addLine({ id, ex: [], sugar: true, note: '', unit: P[id].price, qty: 1 }); this.setState(st => ({ upsAdded: Object.assign({}, st.upsAdded, { [id]: true }) })); this.snd('ding'); this.buzz(8); this.bump(this.root && this.root.querySelector('[data-cart-target]')); } }));
+    const cartUps = ['mojito-fraise', 'choux-nutella', 'shake-oreo', 'mojito-passion', 'choux-pistache'].filter(id => !qty[id]).slice(0, 3).map(id => ({ slot: this.slot(id), name: P[id].full, price: P[id].price, tint: P[id].tint, onAdd: e => this.addSimple(id, e.currentTarget) }));
+    const ups = ['mojito-fraise', 'shake-oreo'].map(id => ({ slot: this.slot(id), name: P[id].full, price: P[id].price, tint: P[id].tint, added: !!s.upsAdded[id], notAdded: !s.upsAdded[id], onAdd: () => { this.addLine(this.defLine(id)); this.setState(st => ({ upsAdded: Object.assign({}, st.upsAdded, { [id]: true }) })); this.snd('ding'); this.buzz(8); this.bump(this.root && this.root.querySelector('[data-cart-target]')); } }));
     const bsel = this.billSel();
     const billStyle = (on, ok) => ({ bg: on ? '#FFD84D' : ok ? '#4E1256' : 'rgba(255,255,255,.06)', sh: on ? '0 0 0 2px #FFD84D,0 4px 0 2px #C98A12' : ok ? '0 0 0 1.5px rgba(233,211,238,.25)' : 'none', fg: on ? '#3A0B40' : ok ? '#FFF6E9' : '#C9A9D1', deco: ok ? 'none' : 'line-through', cur: ok ? 'pointer' : 'not-allowed' });
     const bills = [50, 100, 200].map(v => { const ok = v >= t.total; return Object.assign(billStyle(ok && bsel === v, ok), { label: v + ' DH', onClick: () => { if (ok) { this.snd('tap'); this.setState({ bill: v }); } } }); });
@@ -673,15 +801,51 @@ class Component extends DCLogic {
     const zone = s.inZone, addrValid = zone && s.street.trim().length >= 3;
     const SB = { splash: 'transparent', login: 'transparent', builder: 'transparent', confirm: 'transparent', track: 'linear-gradient(rgba(36,6,42,.92) 45%,rgba(36,6,42,0))' };
     const payNote = o.pay === 'card' ? 'Payé par carte •••• ' + o.last4 : o.bill === 'exact' ? 'Espèces · prépare l\u2019appoint : ' + o.total + ' DH' : 'Espèces · prépare ton billet de ' + o.bill + ' DH, Yassine te rend ' + o.change + ' DH';
+    const mq = norm(s.mq.trim()), FL = this.FLAV.find(x => x[0] === s.flav);
+    const mIds = Object.keys(P).filter(id => { const p = P[id], f = this.FM[p.cat]; return (!FL || p.flav.indexOf(s.flav) >= 0) && (!mq || norm(p.full + ' ' + p.name + ' ' + p.d + ' ' + f.n + ' ' + f.t).indexOf(mq) >= 0); });
+    const mRow = id => {
+      const p = P[id], n = qty[id] || 0, tg = TAGS[p.tag] || TAGS['N°1'];
+      return { id, name: p.name, hint: p.hint, hasHint: !!p.hint, price: p.price, from: p.multi, icon: p.icon, tint: p.tint, tag: p.tag || '', hasTag: !!p.tag, tagBg: tg[0], tagFg: tg[1],
+        soldOut: p.soldOut, canAdd: !p.soldOut && !n, inCart: !p.soldOut && n > 0, qty: n, op: p.soldOut ? .55 : 1, cursor: p.soldOut ? 'default' : 'pointer',
+        ring: n ? '0 0 0 2px #FFD84D' : '0 0 0 1.5px rgba(233,211,238,.12)', onOpen: () => this.openOpts(id), onAdd: e => this.addSimple(id, e.currentTarget), onMinus: () => this.minusId(id) };
+    };
+    const secs = this.FAMS.map(f => ({ k: f.k, title: f.t, note: f.note || (f.ex ? 'Suppléments au choix' : ''), hasNote: !!(f.note || f.ex), pack: !!f.pack, list: !f.pack, items: mIds.filter(id => P[id].cat === f.k).map(mRow) })).filter(x => x.items.length);
+    const famOn = secs.some(x => x.k === s.mfam) ? s.mfam : (secs[0] || {}).k;
+    const mn = {
+      q: s.mq, onQ: e => this.setState({ mq: e.target.value.slice(0, 40) }), hasQ: !!s.mq, onClearQ: () => this.setState({ mq: '' }),
+      flavs: this.FLAV.map(([k, n, c]) => { const on = s.flav === k; return { name: n, dot: c, bg: on ? '#FFD84D' : '#4E1256', fg: on ? '#3A0B40' : '#FFF6E9', sh: on ? '0 3px 0 #C98A12' : '0 0 0 1.5px rgba(233,211,238,.18)', ring: on ? '0 0 0 2px #3A0B40' : '0 0 0 2px rgba(255,246,233,.3)',
+        onClick: () => { this.snd('tap'); this.setState({ flav: on ? '' : k }); const sc = this.menuSc(), m = sc && sc.querySelector('[data-secs-top]'), st = sc && sc.querySelector('[data-menu-stick]'), y = m && st ? this.offIn(m, sc) - st.offsetHeight : 0; if (m && sc.scrollTop > y) sc.scrollTo({ top: y }); } }; }),
+      fams: secs.map(x => { const on = x.k === famOn, f = this.FM[x.k]; return { k: x.k, name: f.n, icon: f.icon, bg: on ? 'linear-gradient(#FFD36B,#F7B538)' : '#4E1256', fg: on ? '#3A0B40' : '#FFF6E9', ic: on ? '#3A0B40' : '#FFD84D', sh: on ? '0 3px 0 #C98A12' : '0 0 0 1.5px rgba(233,211,238,.18)', onClick: () => { this.snd('tap'); this.menuTo(x.k, true); } }; }),
+      secs, empty: !secs.length, notEmpty: secs.length > 0, emptyTxt: s.mq.trim() ? '« ' + s.mq.trim() + ' »' + (FL ? ' en ' + FL[1].toLowerCase() : '') : FL ? FL[1].toLowerCase() : '',
+      onReset: () => this.setState({ mq: '', flav: '' }), onScroll: e => this.onMenuScroll(e.currentTarget),
+      onServices: () => this.toastShow('Écris-nous sur Instagram : @mchou._._', 'chat', '#E9D3EE')
+    };
+    const po = s.po, pp = po && P[po.id], chip = on => ({ bg: on ? '#FFD84D' : '#3A0B40', fg: on ? '#3A0B40' : '#FFF6E9', pfg: on ? '#3A0B40' : '#FFD84D', sh: on ? '0 0 0 2px #FFD84D,0 4px 0 2px #C98A12' : '0 0 0 1.5px rgba(233,211,238,.25)' });
+    const opt = { name: '', fam: '', d: '', hasD: false, icon: '', tint: '', slot: 'x', axes: [], hasAxes: false, exs: [], hasEx: false, qty: 1, minusFg: '', total: 0 };
+    if (pp) {
+      const fam = this.FM[pp.cat], tot = this.poPrice(s);
+      const axes = pp.ax.filter(a => this.axOn(a, po.sel)).map(a => { const A = this.AX[a]; return { n: A.n, opts: A.o.map(([val, lb]) => {
+        const on = po.sel[a] === val, sel2 = Object.assign({}, po.sel, { [a]: val }), pr = A.price ? this.optUnit(pp, sel2) + ' DH' : A.add && val ? '+' + A.add + ' DH' : '';
+        return Object.assign(chip(on), { label: lb, price: pr, hasPrice: !!pr, onClick: () => { if (!on) { this.snd('tap'); this.setPo({ sel: sel2 }); } } }); }) }; });
+      const exs = pp.ex ? this.EX.map(e => { const on = !!po.ex[e.k]; return Object.assign(chip(on), { name: e.n, price: '+' + e.p, icon: on ? 'check' : 'add', onClick: () => { this.snd(on ? 'off' : 'pop'); this.setPo({ ex: Object.assign({}, po.ex, { [e.k]: !on }) }); } }); }) : [];
+      Object.assign(opt, { name: pp.full, fam: fam.n, d: pp.d || fam.note || '', hasD: !!(pp.d || fam.note), icon: pp.icon, tint: pp.tint, slot: this.slot(pp.id), axes, hasAxes: axes.length > 0, exs, hasEx: exs.length > 0,
+        qty: po.qty, minusFg: po.qty > 1 ? '#FFD84D' : 'rgba(201,169,209,.5)', total: s.tw.o != null ? s.tw.o : tot,
+        onMinus: () => { if (po.qty > 1) { this.snd('off'); this.setPo({ qty: po.qty - 1 }); } }, onPlus: () => { if (po.qty < 9) { this.snd('pop'); this.setPo({ qty: po.qty + 1 }); } }, onAdd: () => this.addOpts() });
+    }
+    const bAxes = bp.ax.filter(a => this.axOn(a, s.bsel)).map(a => { const A = this.AX[a]; return { n: A.n, opts: A.o.map(([val, lb]) => {
+      const on = s.bsel[a] === val, sel2 = Object.assign({}, s.bsel, { [a]: val }), pr = A.price ? this.optUnit(bp, sel2) + ' DH' : A.add && val ? '+' + A.add + ' DH' : '';
+      return Object.assign(chip(on), { bg: on ? '#FFD84D' : '#4E1256', label: lb, price: pr, hasPrice: !!pr, onClick: () => { if (!on) this.setBsel(a, val); } }); }) }; });
     const v = {
       rootRef: this.rootRef, fxRef: this.fxRef, addrMapRef: this.addrMapRef, trackMapRef: this.trackMapRef,
       scale: s.scale, wrapW: Math.round(410 * s.scale), wrapH: Math.round(864 * s.scale), dir: rtl ? 'rtl' : 'ltr', flip,
       is, statusBg: SB[sc] || 'linear-gradient(#3A0B40 72%,rgba(58,11,64,0))', steps, hint: this.HINTS[sc],
       onRestart: () => this.restart(), onReplay: () => this.replay(),
       onAdvance: () => { const k = this.state.stage; if (k <= 1) this.setStage(2); else if (k === 2) { this.setState({ prog: 1 }); this.setStage(3); } },
-      showBar: is.home, hasCount: t.count > 0, cartCount: t.count,
-      onTabHome: () => { const sc2 = this.root && this.root.querySelector('[data-screen="home"] > div:nth-child(2)'); if (sc2) sc2.scrollTo({ top: 0, behavior: 'smooth' }); },
-      onTabMenu: () => this.soon('Le Menu'), onTabGifts: () => this.soon('Cadeaux'), onTabProfile: () => this.soon('Profil'),
+      showBar: is.home || is.menu, hasCount: t.count > 0, cartCount: t.count,
+      tabHome: { fg: is.home ? '#FFD84D' : '#C9A9D1', fill: is.home ? 1 : 0 }, tabMenu: { fg: is.menu ? '#FFD84D' : '#C9A9D1', fill: is.menu ? 1 : 0 },
+      onTabHome: () => { if (!is.home) { this.snd('tap'); this.go('home', { reset: true, back: true }); return; } const sc2 = this.root && this.root.querySelector('[data-screen="home"] > div:nth-child(2)'); if (sc2) sc2.scrollTo({ top: 0, behavior: 'smooth' }); },
+      onTabMenu: () => { if (!is.menu) { this.snd('tap'); this.go('menu', { reset: true }); return; } const sc2 = this.menuSc(); if (sc2) sc2.scrollTo({ top: 0, behavior: 'smooth' }); },
+      mn, opt, sheetOpts: s.sheet === 'opts', onCloseOpts: () => this.closeSheet(), onTabGifts: () => this.soon('Cadeaux'), onTabProfile: () => this.soon('Profil'),
       onCart: () => { this.snd('tap'); this.go('cart'); },
       hasToast: !!tt, toast,
       sheetStreak: s.sheet === 'streak', sheetUpsell: s.sheet === 'upsell', onCloseSheet: () => this.closeSheet(),
@@ -713,16 +877,18 @@ class Component extends DCLogic {
       cats, drop: { h: pad(Math.floor(left / 3600)), m: pad(Math.floor(left % 3600 / 60)), s: pad(left % 60) },
       onDrop: e => this.addSimple('brownie-pista', e.currentTarget), rw,
       hasLast: !!L0, last: L0 ? { names: L0.names, when: L0.when, total: L0.total, s1: this.slot(l1.id), s2: this.slot(l2.id), t1: P[l1.id].tint, t2: P[l2.id].tint } : { names: '', when: '', total: 0, s1: 'x', s2: 'y', t1: '', t2: '' },
-      onReorder: e => this.reorder(e.currentTarget), listTitle: qn ? 'Résultats' : 'Les plus aimés', onSeeAll: () => this.soon('Le menu complet'),
+      onReorder: e => this.reorder(e.currentTarget), listTitle: qn ? 'Résultats' : 'Les plus aimés', onSeeAll: () => { this.snd('tap'); if (qn) this.setState({ mq: s.query.trim() }); else this.menuGo = s.cat; this.go('menu', { reset: true }); },
       prods, noResults: !ids.length, emptyQ: s.query.trim(),
       bx, bShown: s.tw.b != null ? s.tw.b : this.bPrice(), bQty: s.bqty, bMinusFg: s.bqty > 1 ? '#FFD84D' : 'rgba(201,169,209,.5)',
       onBMinus: () => { if (this.state.bqty > 1) { this.setState(x => ({ bqty: x.bqty - 1, bAdded: false })); this.snd('off'); } },
       onBPlus: () => { if (this.state.bqty < 9) { this.setState(x => ({ bqty: x.bqty + 1, bAdded: false })); this.snd('pop'); } },
       bNote: s.note, onBNote: e => this.setState({ note: e.target.value.slice(0, 120) }), bNoteLen: s.note.length,
       onBAdd: () => this.addBuilder(), bAddIdle: !s.bAdded, bAddDone: s.bAdded,
-      favColor: s.favs['crepe-nb'] ? '#FF4D6D' : '#FFF6E9', favFill: s.favs['crepe-nb'] ? 1 : 0, onBFav: e => this.toggleFav('crepe-nb', e.currentTarget),
+      favColor: s.favs[bp.id] ? '#FF4D6D' : '#FFF6E9', favFill: s.favs[bp.id] ? 1 : 0, onBFav: e => this.toggleFav(bp.id, e.currentTarget),
+      bv, bName: bp.full, bDesc: bp.desc, bBase: this.optUnit(bp, s.bsel), bSugar: bp.sugar, bTagOn: !!bp.tag, bTag: { 'N°1': 'N°1 DES VENTES', DROP: 'DROP DU JOUR', Nouveau: 'NOUVEAU' }[bp.tag] || '',
+      bTagBg: (TAGS[bp.tag] || TAGS['N°1'])[0], bTagFg: (TAGS[bp.tag] || TAGS['N°1'])[1], bAxes, hasBAxes: bAxes.length > 0,
       ups, upsNoLabel: Object.keys(s.upsAdded).length ? 'Continuer' : 'Non merci',
-      onUpsNo: () => this.closeSheet(() => { this.go('home', { reset: true, back: true }); this.toastShow('Ajouté au panier', 'check_circle', '#8FCB6B', { label: 'Voir', fn: () => this.go('cart') }); }),
+      onUpsNo: () => this.closeSheet(() => { this.go(this.state.hist[this.state.hist.length - 1] === 'menu' ? 'menu' : 'home', { reset: true, back: true }); this.toastShow('Ajouté au panier', 'check_circle', '#8FCB6B', { label: 'Voir', fn: () => this.go('cart') }); }),
       onUpsCart: () => this.closeSheet(() => this.go('cart')),
       cartEmpty: !s.cart.length, cartFull: s.cart.length > 0, lines, free, tot, gain: t.gain, cartUps, hasCartUps: cartUps.length > 0,
       promo: s.promo, onPromo: e => this.setState({ promo: e.target.value.toUpperCase().replace(/\s/g, '').slice(0, 12), promoErr: false }),

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:absolute;inset:0;z-index:45">
+<div data-scrim="1" onClick="{{ onCloseOpts }}" style="position:absolute;inset:0;background:rgba(18,2,21,.6)"></div>
+<div data-panel="1" style="position:absolute;left:0;right:0;bottom:0;max-height:88%;border-radius:28px 28px 0 0;background:#4E1256;display:flex;flex-direction:column">
+<div style="flex:none;padding:10px 20px 0;display:flex;flex-direction:column;gap:12px">
+<span style="align-self:center;width:44px;height:5px;border-radius:9px;background:rgba(233,211,238,.4)"></span>
+<div style="display:flex;align-items:center;gap:14px">
+<span data-opt-thumb="1" style="flex:none;width:64px;height:64px;border-radius:20px;background:{{ opt.tint }};display:grid;place-items:center;font:34px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#3A0B40">{{ opt.icon }}</span>
+<span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:800 12px/16px Nunito;letter-spacing:.06em;text-transform:uppercase;color:#FFD84D">{{ opt.fam }}</span><span style="font:600 20px/26px Fredoka;color:#FFF6E9">{{ opt.name }}</span><sc-if value="{{ opt.hasD }}" hint-placeholder-val="{{ false }}"><span style="font:600 13px/18px Nunito;color:#E9D3EE">{{ opt.d }}</span></sc-if></span>
+<button type="button" onClick="{{ onCloseOpts }}" aria-label="Fermer" style="flex:none;align-self:flex-start;width:48px;height:48px;border:0;padding:0;border-radius:50%;background:rgba(0,0,0,.25);display:grid;place-items:center;font:24px/1 'Material Symbols Rounded';color:#FFF6E9;cursor:pointer">close</button>
+</div>
+</div>
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:18px 20px 12px;display:flex;flex-direction:column;gap:18px">
+<sc-for list="{{ opt.axes }}" as="ax" hint-placeholder-count="2"><div style="display:flex;flex-direction:column;gap:10px"><span style="font:600 17px/22px Fredoka;color:#FFF6E9">{{ ax.n }}</span><div style="display:flex;flex-wrap:wrap;gap:10px">
+<sc-for list="{{ ax.opts }}" as="o" hint-placeholder-count="2"><button type="button" onClick="{{ o.onClick }}" style="flex:1 1 0;min-width:72px;min-height:56px;padding:8px 10px;border:0;border-radius:18px;background:{{ o.bg }};box-shadow:{{ o.sh }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1),background 160ms" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out"><span style="font:600 16px/20px Fredoka;color:{{ o.fg }};text-align:center">{{ o.label }}</span><sc-if value="{{ o.hasPrice }}" hint-placeholder-val="{{ true }}"><span style="font:700 14px/18px Fredoka;color:{{ o.pfg }};font-variant-numeric:tabular-nums">{{ o.price }}</span></sc-if></button></sc-for>
+</div></div></sc-for>
+<sc-if value="{{ opt.hasEx }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:600 17px/22px Fredoka;color:#FFF6E9">Suppléments</span><span style="font:700 13px/18px Nunito;color:#C9A9D1">au choix</span></div><div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ opt.exs }}" as="e" hint-placeholder-count="8"><button type="button" onClick="{{ e.onClick }}" style="display:flex;align-items:center;gap:6px;height:44px;padding-inline:10px 14px;border:0;border-radius:999px;background:{{ e.bg }};box-shadow:{{ e.sh }};cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1),background 160ms" style-active="transform:scale(.93);transition:transform 90ms ease-out"><span style="font:20px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:{{ e.pfg }}">{{ e.icon }}</span><span style="font:600 15px/1 Fredoka;color:{{ e.fg }}">{{ e.name }}</span><span style="font:700 13px/1 Fredoka;color:{{ e.pfg }};font-variant-numeric:tabular-nums">{{ e.price }}</span></button></sc-for>
+</div></div></sc-if>
+</div>
+<div style="flex:none;display:flex;align-items:center;gap:12px;padding:12px 20px 34px;box-shadow:0 -1px 0 rgba(233,211,238,.12)">
+<div style="flex:none;display:flex;align-items:center;gap:2px;height:56px;padding:0 4px;border-radius:999px;background:#3A0B40;box-shadow:0 0 0 1.5px rgba(255,216,77,.3)"><button type="button" onClick="{{ opt.onMinus }}" aria-label="Moins" style="width:48px;height:48px;border:0;padding:0;border-radius:50%;background:rgba(0,0,0,.25);display:grid;place-items:center;font:24px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:{{ opt.minusFg }};cursor:pointer">remove</button><span style="width:26px;text-align:center;font:700 19px/1 Fredoka;font-variant-numeric:tabular-nums">{{ opt.qty }}</span><button type="button" onClick="{{ opt.onPlus }}" aria-label="Plus" style="width:48px;height:48px;border:0;padding:0;border-radius:50%;background:rgba(0,0,0,.25);display:grid;place-items:center;font:24px/1 'Material Symbols Rounded';font-variation-settings:'wght' 700;color:#FFD84D;cursor:pointer">add</button></div>
+<button type="button" onClick="{{ opt.onAdd }}" style="flex:1;height:56px;display:flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 4px 0 #C98A12;font:600 17px/1 Fredoka;color:#3A0B40;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:translateY(3px) scale(.95);transition:transform 90ms ease-out">Ajouter<span style="width:4px;height:4px;border-radius:50%;background:#3A0B40"></span><span style="font-variant-numeric:tabular-nums">{{ opt.total }} DH</span></button>
+</div>
+</div>
+</div>
+</x-dc>
+</body>
+</html>
