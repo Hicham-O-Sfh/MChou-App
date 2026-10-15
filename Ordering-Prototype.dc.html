@@ -2,15 +2,20 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#3A0B40">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@500;600;700;800&family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script><script src="image-slot.js"></script><style>body{margin:0;background:#24062A;color:#FFF6E9;font-family:Nunito,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#FFD84D}a:hover{color:#FFF6E9}input::placeholder,textarea::placeholder{color:#C9A9D1;opacity:1}.leaflet-container{font-family:Nunito,system-ui,sans-serif}</style></helmet>
-<div style="min-height:100vh;box-sizing:border-box;padding:12px 24px;display:flex;flex-wrap:wrap-reverse;align-items:flex-end;justify-content:center;gap:24px 48px;background:#24062A">
-<div style="flex:0 1 300px;min-width:250px;max-width:330px;max-height:calc(100vh - 24px);overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:16px">
-<div style="display:flex;align-items:center;gap:12px"><img src="assets/mchou-logo.png" alt="M'Chou" style="width:44px;height:44px;border-radius:50%"><div style="display:flex;flex-direction:column"><span style="font:400 22px/30px Pacifico;color:#FFD84D">Prototype</span><span style="font:600 13px/18px Nunito;color:#E9D3EE">Ordering flow · 11 screens · tap through</span></div></div>
+<div style="position:{{ sh.pos }};inset:0;min-height:100vh;box-sizing:border-box;padding:{{ sh.pad }};display:flex;flex-wrap:wrap-reverse;align-items:flex-end;justify-content:center;gap:24px 48px;overflow:{{ sh.ov }};background:{{ sh.bg }};touch-action:manipulation">
+<sc-if value="{{ notMob }}" hint-placeholder-val="{{ true }}"><div style="flex:0 1 300px;min-width:250px;max-width:330px;max-height:calc(100vh - 24px);overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:12px"><img src="assets/mchou-logo.png" alt="M'Chou" style="width:44px;height:44px;border-radius:50%"><div style="display:flex;flex-direction:column"><span style="font:400 22px/30px Pacifico;color:#FFD84D">Prototype</span><span style="font:600 13px/18px Nunito;color:#E9D3EE">Ordering flow · 13 screens · tap through</span></div></div>
 <div style="display:flex;flex-direction:column;gap:2px">
 <sc-for list="{{ steps }}" as="st" hint-placeholder-count="10"><button type="button" onClick="{{ st.onClick }}" style="display:flex;align-items:center;gap:12px;min-height:38px;padding:0 14px;border:0;border-radius:999px;background:{{ st.bg }};color:{{ st.fg }};font:600 15px/20px Fredoka;text-align:start;cursor:pointer"><span style="width:20px;font:800 12px/16px Nunito;letter-spacing:.04em;color:{{ st.nfg }};font-variant-numeric:tabular-nums">{{ st.n }}</span>{{ st.label }}</button></sc-for>
 </div>
@@ -21,10 +26,10 @@
 <sc-if value="{{ is.confirm }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ onReplay }}" style="height:40px;padding:0 16px;display:flex;align-items:center;gap:6px;border:0;border-radius:999px;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.35);font:600 14px/1 Fredoka;color:#FFF6E9;cursor:pointer"><span style="font:18px/1 'Material Symbols Rounded';color:#FFD84D">replay</span>Replay scene</button></sc-if>
 </div>
 <span style="font:600 12px/18px Nunito;color:#C9A9D1;text-wrap:pretty">Sound, Reduce motion and RTL are set in the <code>TW</code> constant of the script. Photos go in the <code>src</code> of a slot.</span>
-</div>
-<div style="flex:none;position:sticky;top:12px;width:{{ wrapW }}px;height:{{ wrapH }}px">
-<div style="width:410px;height:864px;transform:scale({{ scale }});transform-origin:0 0">
-<div ref="{{ rootRef }}" dir="{{ dir }}" style="position:relative;width:390px;height:844px;margin:10px;border-radius:48px;overflow:hidden;background:#3A0B40;box-shadow:0 0 0 10px #1B1110,0 30px 60px -20px rgba(0,0,0,.7);font-family:Nunito,system-ui,sans-serif;color:#FFF6E9;isolation:isolate">
+</div></sc-if>
+<div style="flex:none;position:sticky;top:{{ sh.top }}px;width:{{ wrapW }}px;height:{{ wrapH }}px">
+<div style="width:{{ sh.fw }}px;height:{{ sh.fh }}px;transform:scale({{ scale }});transform-origin:0 0">
+<div ref="{{ rootRef }}" dir="{{ dir }}" style="position:relative;width:390px;height:{{ sh.ph }}px;margin:{{ sh.m }}px;border-radius:{{ sh.r }}px;overflow:hidden;background:#3A0B40;box-shadow:{{ sh.bs }};font-family:Nunito,system-ui,sans-serif;color:#FFF6E9;isolation:isolate">
 
 <sc-if value="{{ is.splash }}" hint-placeholder-val="{{ true }}"><dc-import name="screens/splash" dcProps="{{ all }}"/></sc-if>
 
@@ -48,7 +53,11 @@
 
 <sc-if value="{{ is.track }}" hint-placeholder-val="{{ false }}"><dc-import name="screens/track" dcProps="{{ all }}"/></sc-if>
 
-<div dir="ltr" style="position:absolute;left:0;right:0;top:0;height:52px;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:6px 26px 0 34px;box-sizing:border-box;background:{{ statusBg }};font:600 16px/1 Fredoka;color:#FFF6E9;pointer-events:none"><span>9:41</span><span style="display:flex;gap:5px;align-items:center;font:18px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1"><span>signal_cellular_alt</span><span>wifi</span><span style="transform:rotate(90deg)">battery_full</span></span></div>
+<sc-if value="{{ is.gifts }}" hint-placeholder-val="{{ false }}"><dc-import name="screens/gifts" dcProps="{{ all }}"/></sc-if>
+
+<sc-if value="{{ is.profile }}" hint-placeholder-val="{{ false }}"><dc-import name="screens/profile" dcProps="{{ all }}"/></sc-if>
+
+<sc-if value="{{ notMob }}" hint-placeholder-val="{{ true }}"><div dir="ltr" style="position:absolute;left:0;right:0;top:0;height:52px;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:6px 26px 0 34px;box-sizing:border-box;background:{{ statusBg }};font:600 16px/1 Fredoka;color:#FFF6E9;pointer-events:none"><span>9:41</span><span style="display:flex;gap:5px;align-items:center;font:18px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1"><span>signal_cellular_alt</span><span>wifi</span><span style="transform:rotate(90deg)">battery_full</span></span></div></sc-if>
 
 <sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;left:0;right:0;bottom:0;height:130px;z-index:29;background:linear-gradient(rgba(58,11,64,0),#3A0B40 62%);pointer-events:none"></div>
@@ -56,8 +65,8 @@
 <button type="button" onClick="{{ onTabHome }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:{{ tabHome.fg }};cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ tabHome.fill }}">home</span><span style="font:700 12px/14px Nunito">Accueil</span></button>
 <button type="button" onClick="{{ onTabMenu }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:{{ tabMenu.fg }};cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ tabMenu.fill }}">restaurant_menu</span><span style="font:700 12px/14px Nunito">Menu</span></button>
 <div style="display:flex;justify-content:center"><button type="button" data-cart-target="bar" onClick="{{ onCart }}" aria-label="Panier" style="position:relative;width:66px;height:66px;margin-top:-34px;padding:0;border:0;border-radius:50%;background:linear-gradient(#FFD36B,#F7B538);box-shadow:0 0 0 6px #3A0B40,inset 0 3px 0 rgba(255,255,255,.6),inset 0 -4px 0 #C98A12,0 14px 20px -8px rgba(0,0,0,.6);display:grid;place-items:center;cursor:pointer;transition:transform 420ms cubic-bezier(.34,1.56,.64,1)" style-active="transform:scale(.9);transition:transform 90ms ease-out"><span style="font:32px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#3A0B40">shopping_bag</span><sc-if value="{{ hasCount }}" hint-placeholder-val="{{ false }}"><span data-badge="1" style="position:absolute;top:-4px;inset-inline-end:-4px;min-width:26px;height:26px;padding:0 7px;box-sizing:border-box;border-radius:999px;background:#E0284B;color:#fff;font:700 14px/26px Fredoka;text-align:center;box-shadow:0 0 0 3px #3A0B40">{{ cartCount }}</span></sc-if></button></div>
-<button type="button" onClick="{{ onTabGifts }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#C9A9D1;cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded'">redeem</span><span style="font:700 12px/14px Nunito">Cadeaux</span></button>
-<button type="button" onClick="{{ onTabProfile }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#C9A9D1;cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded'">person</span><span style="font:700 12px/14px Nunito">Profil</span></button>
+<button type="button" onClick="{{ onTabGifts }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:{{ tabGifts.fg }};cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ tabGifts.fill }}">redeem</span><span style="font:700 12px/14px Nunito">Cadeaux</span></button>
+<button type="button" onClick="{{ onTabProfile }}" style="height:72px;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:{{ tabProfile.fg }};cursor:pointer"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ tabProfile.fill }}">person</span><span style="font:700 12px/14px Nunito">Profil</span></button>
 </div>
 </sc-if>
 
@@ -81,9 +90,10 @@
 <div data-panel="1" style="position:absolute;left:0;right:0;bottom:0;padding:10px 24px 40px;border-radius:28px 28px 0 0;background:#4E1256;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
 <span style="width:44px;height:5px;border-radius:9px;background:rgba(233,211,238,.4)"></span>
 <div style="margin-top:6px;width:96px;height:96px;border-radius:50%;background:#24062A;box-shadow:0 0 0 3px #FFD84D,0 6px 0 3px #C98A12;display:grid;place-items:center"><span style="font:56px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#FF4D6D">local_fire_department</span></div>
-<span style="font:700 26px/30px Fredoka">{{ streak }} semaines d'affilée&nbsp;!</span>
-<span style="max-width:300px;font:500 16px/24px Nunito;color:#E9D3EE;text-wrap:pretty">{{ streakMsg }}</span>
-<div style="display:flex;gap:8px"><sc-for list="{{ weeks }}" as="w" hint-placeholder-count="5"><span style="width:48px;height:58px;border-radius:16px;background:{{ w.bg }};box-shadow:{{ w.ring }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font:800 12px/14px Nunito;color:{{ w.fg }}"><span style="font:22px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:{{ w.ic }}">{{ w.icon }}</span>{{ w.l }}</span></sc-for></div>
+<span style="font:700 26px/30px Fredoka">{{ fl.title }}</span>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 18px/24px Fredoka;color:#FFD84D;text-wrap:pretty">{{ fl.head }}</span><span style="max-width:310px;font:500 16px/24px Nunito;color:#E9D3EE;text-wrap:pretty">{{ fl.sub }}</span></div>
+<dc-import name="parts/flame" dcProps="{{ all }}"/>
+<span style="display:flex;align-items:flex-start;gap:8px;max-width:320px;padding:10px 14px;border-radius:16px;background:rgba(0,0,0,.22);font:600 14px/20px Nunito;color:#E9D3EE;text-align:start;text-wrap:pretty"><span style="flex:none;font:20px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#FFD84D">info</span>Une commande dans la semaine allume une flamme. Une semaine sans commande et la série repart à zéro.</span>
 <button type="button" onClick="{{ onCloseSheet }}" style="align-self:stretch;margin-top:8px;height:56px;border:0;border-radius:999px;background:linear-gradient(#FFD36B,#F7B538);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 4px 0 #C98A12;font:600 17px/1 Fredoka;color:#3A0B40;cursor:pointer">Compris</button>
 </div>
 </div>
@@ -106,6 +116,8 @@
 </sc-if>
 
 <sc-if value="{{ sheetOpts }}" hint-placeholder-val="{{ false }}"><dc-import name="sheets/options" dcProps="{{ all }}"/></sc-if>
+
+<sc-if value="{{ sheetGift }}" hint-placeholder-val="{{ false }}"><dc-import name="sheets/gift" dcProps="{{ all }}"/></sc-if>
 
 <sc-if value="{{ tds }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;inset:0;z-index:46">
@@ -130,7 +142,7 @@
 </sc-if>
 
 <div ref="{{ fxRef }}" dir="ltr" style="position:absolute;inset:0;z-index:60;pointer-events:none;overflow:hidden"></div>
-<div style="position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;z-index:70;border-radius:9px;background:#FFF6E9;pointer-events:none"></div>
+<sc-if value="{{ notMob }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;z-index:70;border-radius:9px;background:#FFF6E9;pointer-events:none"></div></sc-if>
 </div>
 </div>
 </div>
@@ -141,19 +153,23 @@ class Component extends DCLogic {
   SHOP = [34.6829, -1.9081];
   HOME0 = [34.6598, -1.9006];
   TW = { sound: true, reduceMotion: false, rtl: false };
-  SCREENS = [['splash', 'Splash'], ['login', 'Google sign-in'], ['phone', 'Phone number'], ['address', 'Address'], ['home', 'Home'], ['menu', 'Menu'], ['builder', 'Builder'], ['cart', 'Cart'], ['checkout', 'Checkout'], ['confirm', 'Confirmation'], ['track', 'Tracking']];
+  // Mode téléphone : ?mobile dans l'URL ou écran étroit -> plein écran, sans panneau ni cadre
+  MOB = /[?&]mobile\b/.test(location.search) || !!(window.matchMedia && window.matchMedia('(max-width: 600px)').matches);
+  SCREENS = [['splash', 'Splash'], ['login', 'Google sign-in'], ['phone', 'Phone number'], ['address', 'Address'], ['home', 'Home'], ['menu', 'Menu'], ['builder', 'Builder'], ['cart', 'Cart'], ['checkout', 'Checkout'], ['confirm', 'Confirmation'], ['track', 'Tracking'], ['gifts', 'Gifts'], ['profile', 'Profile']];
   HINTS = {
     splash: 'Auto-advances after 2.6 s, or tap anywhere.',
     login: 'Tap “Continuer avec Google”, then the account. “Continuer avec mon numéro” skips Google.',
     phone: 'Type a Moroccan mobile (6 or 7, then 8 digits) or tap the SIM suggestion. Start with 5 to see the error.',
-    address: 'Drag the map: the pin lifts and drops, distance and zone update (6 km around the shop). The street field is required.',
+    address: 'Drag the map: the pin lifts and drops, distance and zone update (6 km around the shop). Phone is optional, but must be valid if typed.',
     home: 'Chips and search filter the list. “+” flies to the cart and becomes a stepper. Tap a card for its options (the Nutella banane card opens the builder). “Tout voir” opens the menu. Tap the flame.',
     menu: 'Flavour chips filter the whole menu, the family bar follows the scroll. “+” adds the cheapest option; tap a sweet to open its builder, a drink or pack for its options sheet. Packs and services at the bottom.',
     builder: 'Any sweet item opens here (tap a row in the menu). Pick options, toggle toppings and watch them land. The price counts up; “Ajouter” flies to the bag, then the drink sheet opens.',
     cart: 'Free-delivery bar at 150 DH, steppers with undo, “Vider” with undo. Promo code: MCHOU10.',
-    checkout: 'Cash: bills under the total are disabled and the change is computed. Card: “Scanner ma carte” fills a test card (add any CVV). 4000 0000 0000 0002 is declined after 3-D Secure.',
+    checkout: 'Card is first and selected by default; cash on delivery is the second choice. “Scanner ma carte” fills a test card (add any CVV). 4000 0000 0000 0002 is declined after 3-D Secure.',
     confirm: 'Crêpe scene then the scooter, about 7 s. “Passer” skips, the speaker mutes. Miams and streak count up at the end.',
-    track: 'Simulated timeline: kitchen, on the way, delivered. “Next status” jumps ahead.'
+    track: 'Simulated timeline: kitchen, on the way, delivered. “Next status” jumps ahead.',
+    gifts: '11 rewards paid in Miams (1 DH = 1 Miam). Tap one: a sheet confirms, Miams are spent and it lands in the cart for 0 DH. Removing it from the cart gives the Miams back. Tap the flame card for the streak.',
+    profile: 'First name and phone save as you type. The birthday can be set only once, then it locks. Orders list every order placed (new ones on top). Arabic is not built yet.'
   };
   CATS = [['crepes', 'Crêpes', 'skillet'], ['brownies', 'Brownies', 'cake'], ['choux', 'Choux', 'bakery_dining'], ['shakes', 'Milkshakes', 'icecream'], ['mojitos', 'Mojitos', 'local_bar']];
   SLOT = { 'crepe-nb': 'b-ml-1', 'brownie-bueno': 'b-ml-2', 'brownie-pista': 'b-drop', 'mojito-fraise': 'b-re-2' };
@@ -214,6 +230,21 @@ class Component extends DCLogic {
     { k: 'banane', n: 'Banane', p: 5 }, { k: 'fraise', n: 'Fraise', p: 8 }, { k: 'chantilly', n: 'Crème chantilly', p: 8 }, { k: 'pistache', n: 'Pistache', p: 10 },
     { k: 'amande', n: 'Amande', p: 8 }, { k: 'lotus', n: 'Lotus', p: 8 }, { k: 'oreo', n: 'Oreo', p: 5 }, { k: 'kunafa', n: 'Kunafa pistache', p: 15 }
   ];
+  // Cadeaux contre des Miams : servis tels quels (options figées), jamais via le builder
+  GIFTS = [
+    { k: 'cafe', n: 'Le p’tit noir', d: 'Un café expresso bien serré', cost: 40, lines: [['chauds-cafe-expresso']] },
+    { k: 'choux4', n: 'Quatre choux Nutella', d: '4 choux classiques nappés de Nutella', cost: 60, lines: [['choux-nutella', { pcs: '4', garn: 'classiques' }]] },
+    { k: 'mojito', n: 'Mojito fraise', d: 'Frais, pétillant, sans alcool', cost: 90, lines: [['mojito-fraise']] },
+    { k: 'crepe', n: 'Crêpe Nutella', d: 'La classique, pliée en quart', cost: 100, lines: [['crepes-nutella']] },
+    { k: 'crepe-nb', n: 'Crêpe Nutella banane', d: 'Notre N°1, avec banane fraîche', cost: 120, lines: [['crepe-nb']] },
+    { k: 'shake', n: 'Milkshake Oreo', d: 'Crémeux et plein de biscuits', cost: 130, lines: [['shake-oreo']] },
+    { k: 'brownie', n: 'Brownie Lotus', d: 'Taille M, kunafa pistachou et crème fromagère', cost: 140, lines: [['brownies-lotus', { taille: 'M' }]] },
+    { k: 'choux6', n: 'Six choux pistache', d: 'Farcis à la crème vanille', cost: 160, lines: [['choux-pistache', { pcs: '6', garn: 'farcis', creme: 'vanille' }]] },
+    { k: 'duo', n: 'Le duo goûter', d: 'Une crêpe Nutella et un mojito fraise', cost: 190, lines: [['crepes-nutella'], ['mojito-fraise']] },
+    { k: 'pista', n: 'Brownie Extra pistachio', d: 'Le DROP en grand format, taille L', cost: 250, lines: [['brownie-pista', { taille: 'L' }]] },
+    { k: 'pack', n: 'La fête des choux', d: '24 choux mixtes à partager', cost: 400, lines: [['packs-choux-mixtes']] }
+  ];
+  FLAME = { goal: 5, bonus: 200 };
   maps = {};
   timers = [];
   sceneAnims = [];
@@ -222,16 +253,19 @@ class Component extends DCLogic {
   state = {
     screen: 'splash', hist: [], gsheet: false, gbusy: false,
     phone: '', phoneBlur: false, phoneFocus: false,
-    q: 'Hay Al Qods', city: 'Oujda', street: '', mark: '', label: 'Maison', ll: [34.6598, -1.9006], dist: 2.7, inZone: true, addrEdit: false,
-    cat: 'crepes', query: '', cart: [], mq: '', flav: '', mfam: 'crepes', po: null, favs: { 'crepe-nb': true },
+    q: 'Hay Al Qods', city: 'Oujda', ll: [34.6598, -1.9006], dist: 2.7, inZone: true, addrEdit: false,
+    cat: 'crepes', query: '', cart: [], mq: '', flav: '', mfam: 'crepes', po: null,
     bid: 'crepe-nb', bsel: {}, ex: {}, sugar: true, bqty: 1, note: '', bAdded: false, upsAdded: {},
     promo: '', promoOk: false, promoErr: false, when: 'asap', slot: '',
-    pay: 'cash', bill: null, num: '', exp: '', cvv: '', cname: '', cardTry: false, saveCard: true, payErr: '',
+    pay: 'card', num: '', exp: '', cvv: '', cname: '', cardTry: false, saveCard: true, payErr: '',
     tds: false, otp: '', tdsBusy: false, tdsSms: false, busy: false,
     order: null, caption: '', sceneOn: false, streakShown: 0, unlockShown: false,
-    miams: 112, streak: 4, weekDone: false, rewards: 0,
+    miams: 112, streak: 4, weekDone: false, gift: 'crepe',
+    fname: 'Hicham', bday: '', bdayDraft: '', savedCard: { brand: 'VISA', last4: '4242' },
+    orders: [{ date: '13/10', items: 'Crêpe Nutella banane, Mojito fraise', total: 45 }, { date: '06/10', items: 'Brownie Lotus, Milkshake Oreo', total: 57 },
+      { date: '29/09', items: 'Choux pistache', total: 30 }, { date: '22/09', items: 'Crêpe Bueno, Jus d’orange', total: 45 }],
     last: { names: 'Crêpe Nutella banane, Mojito fraise', when: 'Mardi', total: 45, lines: [{ id: 'crepe-nb', ex: [], sugar: true, note: '', unit: 25, qty: 1 }, { id: 'mojito-fraise', ex: [], sugar: true, note: '', unit: 20, qty: 1 }] },
-    stage: 1, prog: 0, toast: null, sheet: null, tw: {}, now: Date.now(), muted: false, scale: 1
+    stage: 1, prog: 0, toast: null, sheet: null, tw: {}, now: Date.now(), muted: false, scale: 1, ph: 844
   };
 
   buildP() {
@@ -327,7 +361,11 @@ class Component extends DCLogic {
   componentDidMount() {
     this.init0 = JSON.stringify(this.state);
     this._ps = this.state; this._pp = this.props;
-    this.fit = () => { const k = Math.max(.45, Math.min(1, (window.innerHeight - 24) / 864, (window.innerWidth - 24) / 410)); if (Math.abs(k - this.state.scale) > .004) this.setState({ scale: k }); };
+    this.fit = () => {
+      // En mode téléphone, largeur fixe de 390 px mise à l'échelle de l'écran, hauteur adaptée
+      if (this.MOB) { const k = window.innerWidth / 390, ph = Math.round(window.innerHeight / k); if (Math.abs(k - this.state.scale) > .004 || ph !== this.state.ph) this.setState({ scale: k, ph }); return; }
+      const k = Math.max(.45, Math.min(1, (window.innerHeight - 24) / 864, (window.innerWidth - 24) / 410)); if (Math.abs(k - this.state.scale) > .004) this.setState({ scale: k });
+    };
     this.fit(); window.addEventListener('resize', this.fit);
     this.tick = setInterval(() => { if (this.state.screen === 'home') this.setState({ now: Date.now() }); }, 1000);
     this.onEnter(this.state.screen);
@@ -515,7 +553,8 @@ class Component extends DCLogic {
     const tp = m.getPane('tilePane'); if (tp) tp.style.filter = 'saturate(.85) sepia(.1) hue-rotate(-8deg)';
   }
   km(a, b) { const R = 6371, r = x => x * Math.PI / 180, dLat = r(b[0] - a[0]), dLon = r(b[1] - a[1]), h = Math.sin(dLat / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLon / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); }
-  etaRange(d) { const lo = Math.max(20, Math.round((14 + d * 4) / 5) * 5); return lo + '–' + (lo + 10) + ' min'; }
+  etaSteps(d) { return Math.max(1, Math.ceil(d / 5)); }
+  etaRange(d) { const n = this.etaSteps(d); return 10 * n + '–' + 15 * n + ' min'; }
   initAddrMap(el) {
     if (!el.isConnected || this.maps.addr) return;
     const L = window.L, m = L.map(el, { zoomControl: false }).setView(this.state.ll, 16);
@@ -565,27 +604,59 @@ class Component extends DCLogic {
     this.setState({ bAdded: true });
     this.fly(this.root.querySelector('[data-crepe]'), this.P[s.bid].icon, () => { this.addLine(line); this.later(() => this.setState({ sheet: 'upsell' }), 380); }, 64);
   }
-  lineKey(l) { return l.id + '|' + (l.v || '') + '|' + (l.ex || []).join(',') + '|' + (l.sugar === false ? 0 : 1) + '|' + (l.note || ''); }
+  lineKey(l) { return l.id + '|' + (l.v || '') + '|' + (l.ex || []).join(',') + '|' + (l.sugar === false ? 0 : 1) + '|' + (l.note || '') + '|' + (l.gift || ''); }
   addLine(l) { this.setState(s => { const k = this.lineKey(l), cart = s.cart.slice(), i = cart.findIndex(x => this.lineKey(x) === k); if (i >= 0) cart[i] = Object.assign({}, cart[i], { qty: Math.min(20, cart[i].qty + l.qty) }); else cart.push(Object.assign({}, l)); return { cart }; }); }
   addSimple(id, el) { const p = this.P[id]; if (!p || p.soldOut) return; this.fly(el, p.icon, () => this.addLine(this.defLine(id))); }
-  minusId(id) { this.setState(s => { const cart = s.cart.slice(); for (let i = cart.length - 1; i >= 0; i--) if (cart[i].id === id) { if (cart[i].qty > 1) cart[i] = Object.assign({}, cart[i], { qty: cart[i].qty - 1 }); else cart.splice(i, 1); break; } return { cart }; }); this.snd('off'); this.buzz(6); }
+  minusId(id) { this.setState(s => { const cart = s.cart.slice(); for (let i = cart.length - 1; i >= 0; i--) if (cart[i].id === id && !cart[i].gift) { if (cart[i].qty > 1) cart[i] = Object.assign({}, cart[i], { qty: cart[i].qty - 1 }); else cart.splice(i, 1); break; } return { cart }; }); this.snd('off'); this.buzz(6); }
   lineQty(i, d) {
     const prev = this.state.cart, l = prev[i]; if (!l) return;
+    if (l.gift) {
+      const m0 = this.state.miams, back = this.giftBack(prev.filter(x => x.gift === l.gift));
+      this.setState({ cart: prev.filter(x => x.gift !== l.gift), miams: m0 + back }); this.snd('off'); this.buzz(6);
+      this.toastShow('Cadeau retiré, tes ' + back + ' Miams sont rendus', 'undo', '#FFD84D', { label: 'Annuler', fn: () => this.setState({ cart: prev, miams: m0 }) }); return;
+    }
     const q = l.qty + d, cart = prev.slice();
     if (q <= 0) { cart.splice(i, 1); this.toastShow('Retiré du panier', 'delete', '#FF6B85', { label: 'Annuler', fn: () => this.setState({ cart: prev }) }); }
     else cart[i] = Object.assign({}, l, { qty: Math.min(20, q) });
     this.setState({ cart }); this.snd(d > 0 ? 'pop' : 'off'); this.buzz(6);
   }
-  clearCart() { const prev = this.state.cart; this.setState({ cart: [] }); this.snd('off'); this.toastShow('Panier vidé', 'delete', '#FF6B85', { label: 'Annuler', fn: () => this.setState({ cart: prev }) }); }
+  clearCart() { const prev = this.state.cart, m0 = this.state.miams; this.setState({ cart: [], miams: m0 + this.giftBack(prev) }); this.snd('off'); this.toastShow('Panier vidé', 'delete', '#FF6B85', { label: 'Annuler', fn: () => this.setState({ cart: prev, miams: m0 }) }); }
+  ddmm(ts) { const d = new Date(ts); return String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0'); }
+  fmtBday(v) { const [y, m, d] = v.split('-').map(Number); return d + ' ' + ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'][m - 1] + ' ' + y; }
+  // Date d'anniversaire : une seule saisie possible, ensuite verrouillée
+  saveBday() { const v = this.state.bdayDraft; if (!v || this.state.bday) return; this.setState({ bday: v }); this.snd('ding'); this.toastShow('Anniversaire enregistré', 'cake', '#FFD84D'); }
+  dropCard() { const c = this.state.savedCard; this.setState({ savedCard: null }); this.snd('off'); this.toastShow('Carte supprimée', 'delete', '#FF6B85', { label: 'Annuler', fn: () => this.setState({ savedCard: c }) }); }
+  gift(k) { return this.GIFTS.find(g => g.k === k) || this.GIFTS[0]; }
+  // Le duo a deux lignes : rembourser une seule fois par cadeau
+  giftBack(cart) { const seen = {}; return cart.reduce((a, l) => { if (!l.gift || seen[l.gift]) return a; seen[l.gift] = 1; return a + this.gift(l.gift).cost * l.qty; }, 0); }
+  giftLines(g) { return g.lines.map(([id, sel]) => { const p = this.P[id], s2 = Object.assign(this.defSel(p), sel || {}); return { id, v: this.optLabel(p, s2), ex: [], sugar: true, note: '', unit: 0, qty: 1, gift: g.k }; }); }
+  nextGift(m) {
+    const g = this.GIFTS.find(x => x.cost > m), n = this.GIFTS.filter(x => x.cost <= m).length;
+    return { n, pct: g ? Math.min(100, m / g.cost * 100) + '%' : '100%', msg: g ? 'Plus que ' + (g.cost - m) + ' Miams pour : ' + g.n : 'Tous les cadeaux sont à ta portée !' };
+  }
+  openGift(k) { this.snd('tap'); this.setState({ gift: k, sheet: 'gift' }); }
+  redeem() {
+    const g = this.gift(this.state.gift); if (this.state.miams < g.cost) return;
+    this.setState(s => ({ miams: s.miams - g.cost })); this.snd('win'); this.buzz(15); this.burst('[data-gift-thumb]', 36);
+    this.closeSheet(() => { this.giftLines(g).forEach(l => this.addLine(l)); this.toastShow(g.n + ' ajouté au panier', 'redeem', '#8FCB6B', { label: 'Voir', fn: () => this.go('cart') }); });
+  }
+  // Une flamme = une commande dans la semaine, sans semaine de grâce. Toutes les 5 flammes : bonus
+  flame(s) {
+    const G = this.FLAME.goal, B = this.FLAME.bonus, full = s.weekDone && s.streak > 0 && s.streak % G === 0, lit = full ? G : s.streak % G, cur = full ? -1 : lit, left = G - lit;
+    const nodes = Array.from({ length: G }, (_, i) => {
+      const on = i < lit, now = i === cur, last = i === G - 1;
+      return { icon: on || !last ? 'local_fire_department' : 'redeem', ic: on ? '#FF4D6D' : last || now ? '#FFD84D' : 'rgba(201,169,209,.45)',
+        bg: on ? '#24062A' : now ? '#4E1256' : 'rgba(0,0,0,.25)', bd: now ? '2px dashed #FFD84D' : on || last ? '2px solid #FFD84D' : '2px solid rgba(233,211,238,.22)',
+        size: last ? 52 : 44, cap: last ? '+' + B + ' Miams' : now ? (s.weekDone ? 'Semaine pro' : 'Cette semaine') : '', capFg: last ? '#FFD84D' : '#FFF6E9' };
+    });
+    const sem = n => n + (n > 1 ? ' semaines' : ' semaine');
+    const head = full ? 'Série bouclée : +' + B + ' Miams pour toi !' : s.weekDone ? 'Ta flamme de la semaine est allumée !' : left === 1 ? 'Plus qu’une flamme pour gagner ' + B + ' Miams !' : 'Encore ' + left + ' flammes pour gagner ' + B + ' Miams';
+    const sub = full ? 'Une nouvelle série démarre la semaine prochaine.' : s.weekDone ? 'Encore ' + sem(left) + ' d’affilée pour gagner ' + B + ' Miams.' : left === 1 ? 'Commande cette semaine et la ' + G + 'e flamme s’allume.' : 'Une commande cette semaine allume la prochaine flamme.';
+    return { nodes, head, sub, fill: Math.max(0, lit - 1) / (G - 1) * 80 + '%', title: s.streak ? sem(s.streak) + ' d’affilée !' : 'Allume ta première flamme !' };
+  }
   reorder(el) {
     const L = this.state.last; if (!L) return;
     this.fly(el, 'replay', () => { L.lines.forEach(l => this.addLine(Object.assign({}, l))); const n = L.lines.reduce((a, l) => a + l.qty, 0); this.toastShow(n > 1 ? n + ' articles ajoutés' : 'Ajouté au panier', 'check_circle', '#8FCB6B', { label: 'Voir', fn: () => this.go('cart') }); });
-  }
-  toggleFav(id, el) {
-    const on = !this.state.favs[id];
-    this.setState(s => ({ favs: Object.assign({}, s.favs, { [id]: on }) })); this.snd(on ? 'pop' : 'off'); this.buzz(8);
-    if (el && !this.rm()) el.animate([{ scale: '1' }, { scale: '1.35' }, { scale: '.9' }, { scale: '1' }], { duration: 480, easing: 'cubic-bezier(.34,1.56,.64,1)' });
-    this.toastShow(on ? 'Ajouté à tes favoris' : 'Retiré de tes favoris', on ? 'favorite' : 'heart_broken', '#FF4D6D');
   }
   applyPromo() {
     const c = this.state.promo.trim().toUpperCase(); if (!c) return;
@@ -594,10 +665,9 @@ class Component extends DCLogic {
   }
   totals(s) {
     s = s || this.state;
-    const sub = s.cart.reduce((a, l) => a + l.unit * l.qty, 0), disc = s.promoOk ? Math.round(sub * .1) : 0, free = sub >= 150, fee = !sub || free ? 0 : 15;
+    const sub = s.cart.reduce((a, l) => a + l.unit * l.qty, 0), disc = s.promoOk ? Math.round(sub * .1) : 0, free = sub >= 150, fee = !s.cart.length || free ? 0 : 15;
     return { sub, disc, fee, free, total: sub - disc + fee, gain: sub - disc, left: Math.max(0, 150 - sub), pct: Math.min(100, Math.round(sub / 150 * 100)), count: s.cart.reduce((a, l) => a + l.qty, 0) };
   }
-  billSel(s) { s = s || this.state; const t = this.totals(s).total; if (s.bill === 'exact') return 'exact'; if (typeof s.bill === 'number' && s.bill >= t) return s.bill; return [50, 100, 200].find(v => v >= t) || 'exact'; }
   slots() { const d = new Date(this.state.now + 45 * 60000); d.setMinutes(d.getMinutes() < 30 ? 30 : 60, 0, 0); const out = []; for (let i = 0; i < 5; i++) { out.push(String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0')); d.setMinutes(d.getMinutes() + 30); } return out; }
   curSlot() { const sl = this.slots(); return sl.indexOf(this.state.slot) >= 0 ? this.state.slot : sl[1]; }
   slotMs(v) { const [h, m] = v.split(':').map(Number), d = new Date(); d.setHours(h, m, 0, 0); if (d.getTime() < Date.now()) d.setDate(d.getDate() + 1); return d.getTime() - Date.now(); }
@@ -631,11 +701,11 @@ class Component extends DCLogic {
     }, 1400);
   }
   commit(target) {
-    const s = this.state, t = this.totals(), bill = s.pay === 'cash' ? this.billSel() : null;
-    const m1 = s.miams + t.gain, unlocked = s.miams < 150 && m1 >= 150, st1 = s.weekDone ? s.streak : s.streak + 1;
-    const names = s.cart.map(l => this.P[l.id].full).filter((v, i, a) => a.indexOf(v) === i);
-    const o = { no: 'MC-' + (2400 + Math.floor(Math.random() * 600)), total: t.total, gain: t.gain, pay: s.pay, bill, change: typeof bill === 'number' ? bill - t.total : 0, last4: s.num.replace(/\D/g, '').slice(-4), m0: s.miams, m1, unlocked, st0: s.streak, st1, eta: Date.now() + (s.when === 'later' ? this.slotMs(this.curSlot()) : 30 * 60000) };
-    this.setState({ busy: false, order: o, miams: unlocked ? m1 - 150 : m1, rewards: s.rewards + (unlocked ? 1 : 0), streak: st1, weekDone: true, last: { names: names.join(', '), when: 'Aujourd\u2019hui', total: t.total, lines: s.cart.map(l => Object.assign({}, l)) }, cart: [], promoOk: false, promo: '', cardTry: false, stage: 1, prog: 0, streakShown: s.streak, unlockShown: false, tw: Object.assign({}, s.tw, { gain: 0, m: s.miams }) }, () => this.go(target || 'confirm', { reset: true }));
+    const s = this.state, t = this.totals();
+    const st1 = s.weekDone ? s.streak : s.streak + 1, bonus = !s.weekDone && st1 % this.FLAME.goal === 0 ? this.FLAME.bonus : 0, m1 = s.miams + t.gain + bonus;
+    const paid = s.cart.filter(l => !l.gift), names = paid.map(l => this.P[l.id].full).filter((v, i, a) => a.indexOf(v) === i);
+    const o = { no: 'MC-' + (2400 + Math.floor(Math.random() * 600)), total: t.total, gain: t.gain, pay: s.pay, last4: s.num.replace(/\D/g, '').slice(-4), m0: s.miams, m1, bonus, st0: s.streak, st1, eta: Date.now() + (s.when === 'later' ? this.slotMs(this.curSlot()) : 15 * this.etaSteps(s.dist) * 60000) };
+    this.setState({ busy: false, order: o, miams: m1, streak: st1, weekDone: true, orders: [{ date: this.ddmm(Date.now()), items: s.cart.map(l => this.P[l.id].full).filter((v, i, a) => a.indexOf(v) === i).join(', '), total: t.total }].concat(s.orders), savedCard: s.pay === 'card' && s.saveCard ? { brand: this.brand(s.num) || 'CARTE', last4: o.last4 } : s.savedCard, last: paid.length ? { names: names.join(', '), when: 'Aujourd\u2019hui', total: t.total, lines: paid.map(l => Object.assign({}, l)) } : s.last, cart: [], promoOk: false, promo: '', cardTry: false, stage: 1, prog: 0, streakShown: s.streak, unlockShown: false, tw: Object.assign({}, s.tw, { gain: 0, m: s.miams }) }, () => this.go(target || 'confirm', { reset: true }));
   }
 
   runScene() {
@@ -678,11 +748,12 @@ class Component extends DCLogic {
   sceneEnd() {
     const o = this.state.order; if (!o || !this.state.sceneOn) return;
     this.setState({ sceneOn: false });
-    this.tween('gain', 0, o.gain, 900); this.tween('m', o.m0, Math.min(150, o.m1), 900);
+    this.tween('gain', 0, o.gain, 900); this.tween('m', o.m0, o.m0 + o.gain, 900);
     if (this.rm()) this.snd('coin'); else [0, 220, 440, 660].forEach(ms => this.later(() => this.snd('coin'), ms));
     this.later(() => {
       this.setState({ streakShown: o.st1 }, () => { if (o.st1 !== o.st0) this.popEl('[data-flame]'); });
-      if (o.unlocked) this.setState({ unlockShown: true }, () => { this.snd('win'); this.buzz(20); this.burst('[data-unlock]', 50); });
+      if (o.bonus) this.tween('m', o.m0 + o.gain, o.m1, 700);
+      if (o.bonus) this.setState({ unlockShown: true }, () => { this.snd('win'); this.buzz(20); this.burst('[data-unlock]', 50); });
     }, this.rm() ? 0 : 1000);
   }
   loops(r) {
@@ -746,14 +817,14 @@ class Component extends DCLogic {
   }
   restart() {
     this.clearT(); this.stopAnims();
-    const st = JSON.parse(this.init0), was = this.state.screen; st.scale = this.state.scale; st.now = Date.now(); this.navBack = false;
+    const st = JSON.parse(this.init0), was = this.state.screen; st.scale = this.state.scale; st.ph = this.state.ph; st.now = Date.now(); this.navBack = false;
     this.setState(st, () => { if (was === 'splash') this.onEnter('splash'); });
   }
 
   renderVals() {
     const s = this.state, P = this.P, t = this.totals(), sc = s.screen, rtl = !!this.TW.rtl, flip = rtl ? -1 : 1;
     const is = {}; this.SCREENS.forEach(([k]) => { is[k] = sc === k; });
-    const qty = {}; s.cart.forEach(l => { qty[l.id] = (qty[l.id] || 0) + l.qty; });
+    const qty = {}; s.cart.forEach(l => { if (!l.gift) qty[l.id] = (qty[l.id] || 0) + l.qty; });
     const pst = this.phoneState(s);
     const norm = x => String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     const qn = norm(s.query.trim());
@@ -762,7 +833,7 @@ class Component extends DCLogic {
     const TAGS = { 'N°1': ['#FFD84D', '#3A0B40'], 'Nouveau': ['#8FCB6B', '#24062A'], 'DROP': ['#24062A', '#FFD84D'] };
     const prods = ids.map(id => {
       const p = P[id], n = qty[id] || 0, tg = TAGS[p.tag] || TAGS['N°1'];
-      return { id, slot: this.slot(id), name: p.name, sub: p.sub, full: p.full, price: p.price, tint: p.tint, tag: p.tag || '', hasTag: !!p.tag, tagBg: tg[0], tagFg: tg[1], fav: !!s.favs[id], soldOut: !!p.soldOut, canAdd: !p.soldOut && !n, inCart: !p.soldOut && n > 0, qty: n, ring: n ? '0 0 0 2px #FFD84D' : '0 0 0 1.5px rgba(255,216,77,.22)', cursor: p.soldOut ? 'default' : 'pointer', filter: p.soldOut ? 'grayscale(1)' : 'none', op: p.soldOut ? .6 : 1, onOpen: () => this.openOpts(id), onAdd: e => this.addSimple(id, e.currentTarget), onMinus: () => this.minusId(id) };
+      return { id, slot: this.slot(id), name: p.name, sub: p.sub, full: p.full, price: p.price, tint: p.tint, tag: p.tag || '', hasTag: !!p.tag, tagBg: tg[0], tagFg: tg[1], soldOut: !!p.soldOut, canAdd: !p.soldOut && !n, inCart: !p.soldOut && n > 0, qty: n, ring: n ? '0 0 0 2px #FFD84D' : '0 0 0 1.5px rgba(255,216,77,.22)', cursor: p.soldOut ? 'default' : 'pointer', filter: p.soldOut ? 'grayscale(1)' : 'none', op: p.soldOut ? .6 : 1, onOpen: () => this.openOpts(id), onAdd: e => this.addSimple(id, e.currentTarget), onMinus: () => this.minusId(id) };
     });
     const cats = this.CATS.map(([k, n, ic]) => { const on = !qn && s.cat === k; return { name: n, icon: ic, bg: on ? 'linear-gradient(#FFD36B,#F7B538)' : '#4E1256', sh: on ? 'inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 #C98A12' : '0 0 0 1.5px rgba(233,211,238,.18),0 4px 0 #24062A', fg: on ? '#3A0B40' : '#FFF6E9', ibg: on ? '#3A0B40' : 'rgba(0,0,0,.25)', onClick: () => { this.snd('tap'); this.setState({ cat: k, query: '' }); } }; });
     const steps = this.SCREENS.map(([k, l], i) => { const on = k === sc; return { n: String(i + 1).padStart(2, '0'), label: l, bg: on ? '#FFD84D' : 'transparent', fg: on ? '#3A0B40' : '#E9D3EE', nfg: on ? '#3A0B40' : '#C9A9D1', onClick: () => this.jump(k) }; });
@@ -772,40 +843,38 @@ class Component extends DCLogic {
     const bp = P[s.bid] || P['crepe-nb'], bv = this.bVis(bp, s.bsel);
     const bx = {}; this.EX.forEach(e => { bx[e.k] = Object.assign(sw(!!s.ex[e.k]), { onClick: () => this.toggleEx(e.k) }); if (e.k !== 'banane' && bv.inc[e.k]) bx[e.k].op = 1; });
     bx.sucre = Object.assign(sw(s.sugar), { onClick: () => this.toggleSugar() }); if (!bp.sugar) bx.sucre.op = 0;
-    const lines = s.cart.map((l, i) => { const p = P[l.id], d = [l.v].filter(Boolean).concat((l.ex || []).map(x => '+ ' + x)); if (l.sugar === false) d.push('Sans sucre glace'); if (l.note) d.push('« ' + l.note + ' »'); return { slot: this.slot(l.id), name: p.full, desc: d.length ? d.join(' · ') : p.sub, price: l.unit * l.qty, qty: l.qty, one: l.qty === 1, many: l.qty > 1, tint: p.tint, onMinus: () => this.lineQty(i, -1), onPlus: () => this.lineQty(i, 1) }; });
+    const lines = s.cart.map((l, i) => { const p = P[l.id], d = [l.v].filter(Boolean).concat((l.ex || []).map(x => '+ ' + x)); if (l.sugar === false) d.push('Sans sucre glace'); if (l.note) d.push('« ' + l.note + ' »'); if (l.gift) d.unshift('Cadeau · ' + this.gift(l.gift).cost * l.qty + ' Miams'); return { slot: this.slot(l.id), name: p.full, desc: d.length ? d.join(' · ') : p.sub, price: l.unit * l.qty, isGift: !!l.gift, paid: !l.gift, priceTxt: l.gift ? 'Offert' : l.unit * l.qty + ' DH', pc: l.gift ? '#8FCB6B' : '#FFD84D', qty: l.qty, one: l.qty === 1, many: l.qty > 1, tint: p.tint, onMinus: () => this.lineQty(i, -1), onPlus: () => this.lineQty(i, 1) }; });
     const ctShown = s.tw.ct != null ? s.tw.ct : t.total;
     const tot = { sub: t.sub, fee: t.fee ? t.fee + ' DH' : 'Offerte', feeColor: t.fee ? '#FFF6E9' : '#8FCB6B', disc: t.disc, hasDisc: t.disc > 0, total: ctShown };
     const free = { pct: t.pct + '%', left: t.left, done: t.free, notDone: !t.free, sub: t.free ? 'Dès 150 DH, la livraison est pour nous.' : t.sub + ' / 150 DH · sinon livraison 15 DH' };
     const cartUps = ['mojito-fraise', 'choux-nutella', 'shake-oreo', 'mojito-passion', 'choux-pistache'].filter(id => !qty[id]).slice(0, 3).map(id => ({ slot: this.slot(id), name: P[id].full, price: P[id].price, tint: P[id].tint, onAdd: e => this.addSimple(id, e.currentTarget) }));
     const ups = ['mojito-fraise', 'shake-oreo'].map(id => ({ slot: this.slot(id), name: P[id].full, price: P[id].price, tint: P[id].tint, added: !!s.upsAdded[id], notAdded: !s.upsAdded[id], onAdd: () => { this.addLine(this.defLine(id)); this.setState(st => ({ upsAdded: Object.assign({}, st.upsAdded, { [id]: true }) })); this.snd('ding'); this.buzz(8); this.bump(this.root && this.root.querySelector('[data-cart-target]')); } }));
-    const bsel = this.billSel();
-    const billStyle = (on, ok) => ({ bg: on ? '#FFD84D' : ok ? '#4E1256' : 'rgba(255,255,255,.06)', sh: on ? '0 0 0 2px #FFD84D,0 4px 0 2px #C98A12' : ok ? '0 0 0 1.5px rgba(233,211,238,.25)' : 'none', fg: on ? '#3A0B40' : ok ? '#FFF6E9' : '#C9A9D1', deco: ok ? 'none' : 'line-through', cur: ok ? 'pointer' : 'not-allowed' });
-    const bills = [50, 100, 200].map(v => { const ok = v >= t.total; return Object.assign(billStyle(ok && bsel === v, ok), { label: v + ' DH', onClick: () => { if (ok) { this.snd('tap'); this.setState({ bill: v }); } } }); });
-    bills.push(Object.assign(billStyle(bsel === 'exact', true), { label: 'Appoint exact', onClick: () => { this.snd('tap'); this.setState({ bill: 'exact' }); } }));
     const e0 = s.cardTry ? this.cardErrs() : {};
     const ring = k => (e0[k] ? '0 0 0 2px #FF6B85' : 'inset 0 0 0 1.5px rgba(233,211,238,.25)');
     const brand = this.brand(s.num), last4 = s.num.replace(/\D/g, '').slice(-4);
     const sel = on => (on ? '0 0 0 2px #FFD84D' : '0 0 0 1.5px rgba(233,211,238,.18)'), dot = on => (on ? 'inset 0 0 0 7px #FFD84D' : 'inset 0 0 0 2px #C9A9D1');
     const curSlot = this.curSlot();
     const slots = this.slots().map(v => { const on = v === curSlot; return { label: v, bg: on ? '#FFD84D' : '#4E1256', fg: on ? '#3A0B40' : '#FFF6E9', sh: on ? '0 3px 0 #C98A12' : '0 0 0 1.5px rgba(233,211,238,.25)', onClick: () => { this.snd('tap'); this.setState({ slot: v }); } }; });
-    const o = s.order || { no: 'MC-2481', gain: 0, m0: s.miams, m1: s.miams, st0: s.streak, st1: s.streak, eta: s.now + 1800000, unlocked: false, pay: 'cash', bill: 100, change: 0, total: 0, last4: '' };
+    const o = s.order || { no: 'MC-2481', gain: 0, m0: s.miams, m1: s.miams, st0: s.streak, st1: s.streak, eta: s.now + 900000, bonus: 0, pay: 'card', total: 0, last4: '4242' };
     const clock = ts => { const d = new Date(ts); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); };
-    const mNow = s.tw.m != null ? s.tw.m : o.m0, un = o.unlocked && s.unlockShown;
-    const cf = { no: o.no, eta: clock(o.eta), gain: s.tw.gain != null ? s.tw.gain : 0, mtxt: Math.min(150, mNow) + ' / 150', pct: Math.min(100, mNow / 150 * 100) + '%', unlocked: un, locked: !un, msg: 'Plus que ' + Math.max(0, 150 - mNow) + ' Miams pour ta crêpe offerte', streak: s.streakShown, streakSub: o.st1 > o.st0 ? 'Ta flamme grandit, rendez-vous la semaine prochaine' : 'Ta flamme est déjà entretenue cette semaine' };
-    const st = s.stage, mins = st <= 1 ? 25 : st === 2 ? Math.max(1, Math.ceil(18 * (1 - s.prog))) : 0;
+    const mNow = Math.round(s.tw.m != null ? s.tw.m : o.m0), un = !!o.bonus && s.unlockShown, nxc = this.nextGift(mNow);
+    const cf = { no: o.no, eta: clock(o.eta), gain: s.tw.gain != null ? s.tw.gain : 0, mtxt: mNow + ' Miams', pct: nxc.pct, unlocked: un, locked: !un, bonus: o.bonus, msg: nxc.msg, streak: s.streakShown, streakSub: o.bonus ? o.st1 + 'e flamme : +' + o.bonus + ' Miams gagnés !' : o.st1 > o.st0 ? 'Ta flamme grandit, rendez-vous la semaine prochaine' : 'Ta flamme est déjà entretenue cette semaine' };
+    const st = s.stage, mins = st <= 1 ? 15 : st === 2 ? Math.max(1, Math.ceil(10 * (1 - s.prog))) : 0;
     const TT = ['Commande confirmée', 'Ta crêpe dore en cuisine', 'Yassine est en route', 'Livrée, bon appétit !'];
-    const TS = ['On prévient la cuisine.', 'Départ dans quelques minutes', 'Arrivée prévue vers ' + clock(s.now + mins * 60000), 'Merci Hicham, à très vite chez M\u2019Chou.'];
+    const TS = ['On prévient la cuisine.', 'Départ dans quelques minutes', 'Arrivée prévue vers ' + clock(s.now + mins * 60000), 'Merci ' + s.fname + ', à très vite chez M\u2019Chou.'];
     const steps4 = [['check_circle', 'Confirmée'], ['skillet', 'En cuisine'], ['moped', 'En route'], ['home', 'Livrée']].map(([ic, l], i) => ({ icon: ic, label: l, bg: i <= st ? '#FFD84D' : '#4E1256', fg: i <= st ? '#3A0B40' : '#C9A9D1', ring: i === st && st < 3 ? '0 0 0 4px rgba(255,216,77,.28)' : 'none', lfg: i <= st ? '#FFF6E9' : '#C9A9D1', active: i === st && st < 3 }));
-    const lit = i => i < 4 || s.weekDone;
-    const weeks = ['S37', 'S38', 'S39', 'S40', 'S41'].map((l, i) => ({ l, bg: lit(i) ? '#24062A' : 'rgba(0,0,0,.25)', ring: lit(i) ? '0 0 0 2px #FFD84D' : 'inset 0 0 0 1.5px rgba(233,211,238,.3)', fg: lit(i) ? '#FFF6E9' : '#C9A9D1', ic: lit(i) ? '#FF4D6D' : '#C9A9D1', icon: lit(i) ? 'local_fire_department' : 'hourglass_top' }));
-    const ready = s.rewards > 0;
-    const rw = { title: ready ? 'Ta crêpe offerte est prête !' : 'Ta crêpe offerte', count: s.miams + ' / 150', pct: Math.min(100, s.miams / 150 * 100) + '%', msg: ready ? 'Elle t\u2019attend dans Cadeaux · ' + s.miams + ' Miams vers la suivante' : 'Plus que ' + Math.max(0, 150 - s.miams) + ' Miams · 1 DH = 1 Miam' };
+    const fl = this.flame(s), nx = this.nextGift(s.miams);
+    const rw = { title: nx.n ? (nx.n > 1 ? nx.n + ' cadeaux à portée de Miams' : '1 cadeau à portée de Miams') : 'Ton prochain cadeau', count: s.miams + ' Miams', pct: nx.pct, msg: nx.msg };
+    const gifts = this.GIFTS.map(g => { const ok = s.miams >= g.cost, p = P[g.lines[0][0]]; return { name: g.n, d: g.d, cost: g.cost, slot: this.slot(p.id), tint: p.tint, ok, lock: !ok, need: 'Encore ' + (g.cost - s.miams), op: ok ? 1 : .6, onOpen: () => this.openGift(g.k) }; });
+    const G0 = this.gift(s.gift), gOk = s.miams >= G0.cost, gp = P[G0.lines[0][0]];
+    const gs = { name: G0.n, d: G0.d, cost: G0.cost, slot: this.slot(gp.id), tint: gp.tint, ok: gOk, lock: !gOk, items: G0.lines.length > 1 ? 'Contenu : ' + this.giftLines(G0).map(l => P[l.id].full).join(' + ') + '. ' : '',
+      left: gOk ? 'Il te restera ' + (s.miams - G0.cost) + ' Miams' : 'Il te manque ' + (G0.cost - s.miams) + ' Miams', need: 'Encore ' + (G0.cost - s.miams) + ' Miams' };
     const now = new Date(s.now), end = new Date(s.now); end.setHours(24, 0, 0, 0);
     const left = Math.max(0, Math.floor((end - now) / 1000)), pad = n => String(n).padStart(2, '0');
     const L0 = s.last, l1 = L0 ? L0.lines[0] : null, l2 = L0 ? L0.lines[1] || L0.lines[0] : null;
-    const zone = s.inZone, addrValid = zone && s.street.trim().length >= 3;
+    const zone = s.inZone, addrValid = zone && pst !== 'err';
     const SB = { splash: 'transparent', login: 'transparent', builder: 'transparent', confirm: 'transparent', track: 'linear-gradient(rgba(36,6,42,.92) 45%,rgba(36,6,42,0))' };
-    const payNote = o.pay === 'card' ? 'Payé par carte •••• ' + o.last4 : o.bill === 'exact' ? 'Espèces · prépare l\u2019appoint : ' + o.total + ' DH' : 'Espèces · prépare ton billet de ' + o.bill + ' DH, Yassine te rend ' + o.change + ' DH';
+    const payNote = o.pay === 'card' ? 'Payé par carte •••• ' + o.last4 : 'Espèces à la livraison · ' + o.total + ' DH';
     const mq = norm(s.mq.trim()), FL = this.FLAV.find(x => x[0] === s.flav);
     const mIds = Object.keys(P).filter(id => { const p = P[id], f = this.FM[p.cat]; return (!FL || p.flav.indexOf(s.flav) >= 0) && (!mq || norm(p.full + ' ' + p.name + ' ' + p.d + ' ' + f.n + ' ' + f.t).indexOf(mq) >= 0); });
     const mRow = id => {
@@ -842,18 +911,20 @@ class Component extends DCLogic {
       return Object.assign(chip(on), { bg: on ? '#FFD84D' : '#4E1256', label: lb, price: pr, hasPrice: !!pr, onClick: () => { if (!on) this.setBsel(a, val); } }); }) }; });
     const v = {
       rootRef: this.rootRef, fxRef: this.fxRef, addrMapRef: this.addrMapRef, trackMapRef: this.trackMapRef,
-      scale: s.scale, wrapW: Math.round(410 * s.scale), wrapH: Math.round(864 * s.scale), dir: rtl ? 'rtl' : 'ltr', flip,
+      scale: s.scale, notMob: !this.MOB, wrapW: this.MOB ? Math.round(390 * s.scale) : Math.round(410 * s.scale), wrapH: this.MOB ? Math.round(s.ph * s.scale) : Math.round(864 * s.scale),
+      sh: this.MOB ? { pos: 'fixed', pad: '0', ov: 'hidden', bg: '#3A0B40', top: 0, fw: 390, fh: s.ph, ph: s.ph, m: 0, r: 0, bs: 'none' }
+        : { pos: 'relative', pad: '12px 24px', ov: 'visible', bg: '#24062A', top: 12, fw: 410, fh: 864, ph: 844, m: 10, r: 48, bs: '0 0 0 10px #1B1110,0 30px 60px -20px rgba(0,0,0,.7)' }, dir: rtl ? 'rtl' : 'ltr', flip,
       is, statusBg: SB[sc] || 'linear-gradient(#3A0B40 72%,rgba(58,11,64,0))', steps, hint: this.HINTS[sc],
       onRestart: () => this.restart(), onReplay: () => this.replay(),
       onAdvance: () => { const k = this.state.stage; if (k <= 1) this.setStage(2); else if (k === 2) { this.setState({ prog: 1 }); this.setStage(3); } },
-      showBar: is.home || is.menu, hasCount: t.count > 0, cartCount: t.count,
-      tabHome: { fg: is.home ? '#FFD84D' : '#C9A9D1', fill: is.home ? 1 : 0 }, tabMenu: { fg: is.menu ? '#FFD84D' : '#C9A9D1', fill: is.menu ? 1 : 0 },
+      showBar: is.home || is.menu || is.gifts || is.profile, hasCount: t.count > 0, cartCount: t.count,
+      tabHome: { fg: is.home ? '#FFD84D' : '#C9A9D1', fill: is.home ? 1 : 0 }, tabMenu: { fg: is.menu ? '#FFD84D' : '#C9A9D1', fill: is.menu ? 1 : 0 }, tabGifts: { fg: is.gifts ? '#FFD84D' : '#C9A9D1', fill: is.gifts ? 1 : 0 }, tabProfile: { fg: is.profile ? '#FFD84D' : '#C9A9D1', fill: is.profile ? 1 : 0 },
       onTabHome: () => { if (!is.home) { this.snd('tap'); this.go('home', { reset: true, back: true }); return; } const sc2 = this.root && this.root.querySelector('[data-screen="home"] > div:nth-child(2)'); if (sc2) sc2.scrollTo({ top: 0, behavior: 'smooth' }); },
       onTabMenu: () => { if (!is.menu) { this.snd('tap'); this.go('menu', { reset: true }); return; } const sc2 = this.menuSc(); if (sc2) sc2.scrollTo({ top: 0, behavior: 'smooth' }); },
-      mn, opt, sheetOpts: s.sheet === 'opts', onCloseOpts: () => this.closeSheet(), onTabGifts: () => this.soon('Cadeaux'), onTabProfile: () => this.soon('Profil'),
+      mn, opt, sheetOpts: s.sheet === 'opts', onCloseOpts: () => this.closeSheet(), onTabGifts: () => { if (!is.gifts) { this.snd('tap'); this.go('gifts', { reset: true }); } }, onGifts: () => { this.snd('tap'); this.go('gifts'); }, onTabProfile: () => { if (!is.profile) { this.snd('tap'); this.go('profile', { reset: true }); } },
       onCart: () => { this.snd('tap'); this.go('cart'); },
       hasToast: !!tt, toast,
-      sheetStreak: s.sheet === 'streak', sheetUpsell: s.sheet === 'upsell', onCloseSheet: () => this.closeSheet(),
+      sheetStreak: s.sheet === 'streak', sheetGift: s.sheet === 'gift', sheetUpsell: s.sheet === 'upsell', onCloseSheet: () => this.closeSheet(),
       gsheet: s.gsheet, gbusy: s.gbusy, onCloseG: () => { if (!this.state.gbusy) this.setState({ gsheet: false }); },
       onPickAccount: () => { if (this.state.gbusy) return; this.setState({ gbusy: true }); this.later(() => { this.setState({ gsheet: false, gbusy: false }); this.go('phone'); }, 1000); },
       onBack: () => { this.snd('tap'); this.back(); },
@@ -871,13 +942,22 @@ class Component extends DCLogic {
       onLocate: () => { this.snd('tap'); const m = this.maps.addr; if (m) m.flyTo(this.HOME0, 17, { duration: .9 }); },
       addrQ: s.q + ', ' + s.city, distColor: zone ? '#E9D3EE' : '#FF6B85',
       distTxt: zone ? '≈ ' + s.dist.toFixed(1).replace('.', ',') + ' km de M\u2019Chou · ' + this.etaRange(s.dist) : 'On livre jusqu\u2019à 6 km autour de M\u2019Chou',
-      street: s.street, onStreet: e => this.setState({ street: e.target.value.slice(0, 80) }), mark: s.mark, onMark: e => this.setState({ mark: e.target.value.slice(0, 80) }),
-      addrLabels: [['Maison', 'home'], ['Travail', 'work'], ['Autre', 'location_on']].map(([n, ic]) => { const on = s.label === n; return { name: n, icon: ic, bg: on ? '#FFD84D' : '#4E1256', fg: on ? '#3A0B40' : '#FFF6E9', sh: on ? '0 3px 0 #C98A12' : '0 0 0 1.5px rgba(233,211,238,.18)', onClick: () => { this.snd('tap'); this.setState({ label: n }); } }; }),
-      addrOk: addrValid, addrNotOk: !addrValid, addrCta: s.addrEdit ? 'Enregistrer' : 'C\u2019est parti !', addrCtaOff: !zone ? 'Hors zone de livraison' : 'Ajoute ta rue',
-      onAddrSave: () => { this.snd('ding'); if (this.state.addrEdit) { this.back(); setTimeout(() => this.toastShow('Adresse enregistrée'), 60); } else { this.go('home', { reset: true }); setTimeout(() => this.toastShow('C\u2019est parti, Hicham !', 'celebration', '#FFD84D'), 420); } },
+      addrOk: addrValid, addrNotOk: !addrValid, addrCta: s.addrEdit ? 'Enregistrer' : 'C\u2019est parti !', addrCtaOff: !zone ? 'Hors zone de livraison' : 'Vérifie ton numéro', phoneEmpty: pst === 'empty',
+      onAddrSave: () => { this.snd('ding'); if (this.state.addrEdit) { this.back(); setTimeout(() => this.toastShow('Adresse enregistrée'), 60); } else { this.go('home', { reset: true }); setTimeout(() => this.toastShow('C\u2019est parti, ' + this.state.fname + ' !', 'celebration', '#FFD84D'), 420); } },
       addrShort: s.q + ', ' + s.city, onAddr: () => { this.setState({ addrEdit: true }); this.go('address'); },
-      streak: s.streak, onStreak: () => { this.snd('tap'); this.setState({ sheet: 'streak' }); }, weeks,
-      streakMsg: s.weekDone ? 'Ta flamme est entretenue pour cette semaine. Rendez-vous la semaine prochaine.' : 'Une commande cette semaine et ta flamme passe à ' + (s.streak + 1) + '.',
+      streak: s.streak, onStreak: () => { this.snd('tap'); this.setState({ sheet: 'streak' }); }, fl,
+      miams: s.miams, gifts, gs, onRedeem: () => this.redeem(),
+      fname: s.fname, onFname: e => this.setState({ fname: e.target.value.replace(/\s+/g, ' ').slice(0, 24) }),
+      pf: { initial: (s.fname.trim()[0] || 'H').toUpperCase(), name: (s.fname.trim() || 'Hicham') + ' Benali', email: 'hicham.benali@gmail.com',
+        bdayOpen: !s.bday, bdayLocked: !!s.bday, bdayTxt: s.bday ? this.fmtBday(s.bday) : '', bdayDraft: s.bdayDraft, canBday: !!s.bdayDraft,
+        bdayBtnBg: s.bdayDraft ? '#24062A' : 'rgba(255,255,255,.08)', bdayBtnFg: s.bdayDraft ? '#FFD84D' : '#C9A9D1', bdayBtnSh: s.bdayDraft ? '0 0 0 1.5px #FFD84D' : 'none',
+        hasCard: !!s.savedCard, noCard: !s.savedCard, card: s.savedCard ? s.savedCard.brand + ' •••• ' + s.savedCard.last4 : '',
+        orders: s.orders.slice(0, 8), hasOrders: s.orders.length > 0, noOrders: !s.orders.length },
+      onBdayDraft: e => this.setState({ bdayDraft: e.target.value }), onBdaySave: () => this.saveBday(), onDropCard: () => this.dropCard(),
+      onLangAr: () => this.toastShow('La version arabe arrive bientôt', 'translate', '#C9A9D1'),
+      onContact: () => this.toastShow('Ouverture de WhatsApp…', 'chat', '#8FCB6B'), onFaq: () => this.soon('Les questions fréquentes'), onTerms: () => this.soon('Les conditions'),
+      onLogout: () => { this.snd('off'); this.go('login', { reset: true, back: true }); setTimeout(() => this.toastShow('À bientôt chez M\u2019Chou !', 'waving_hand', '#FFD84D'), 420); },
+      onDeleteAcc: () => this.toastShow('On t\u2019envoie un e-mail pour confirmer la suppression', 'mail', '#FF6B85'),
       query: s.query, onQuery: e => this.setState({ query: e.target.value.slice(0, 40) }), hasQuery: !!s.query, onClearQuery: () => this.setState({ query: '' }),
       cats, drop: { h: pad(Math.floor(left / 3600)), m: pad(Math.floor(left % 3600 / 60)), s: pad(left % 60) },
       onDrop: e => this.addSimple('brownie-pista', e.currentTarget), rw,
@@ -889,7 +969,6 @@ class Component extends DCLogic {
       onBPlus: () => { if (this.state.bqty < 9) { this.setState(x => ({ bqty: x.bqty + 1, bAdded: false })); this.snd('pop'); } },
       bNote: s.note, onBNote: e => this.setState({ note: e.target.value.slice(0, 120) }), bNoteLen: s.note.length,
       onBAdd: () => this.addBuilder(), bAddIdle: !s.bAdded, bAddDone: s.bAdded,
-      favColor: s.favs[bp.id] ? '#FF4D6D' : '#FFF6E9', favFill: s.favs[bp.id] ? 1 : 0, onBFav: e => this.toggleFav(bp.id, e.currentTarget),
       bv, bName: bp.full, bDesc: bp.desc, bBase: this.optUnit(bp, s.bsel), bSugar: bp.sugar, bTagOn: !!bp.tag, bTag: { 'N°1': 'N°1 DES VENTES', DROP: 'DROP DU JOUR', Nouveau: 'NOUVEAU' }[bp.tag] || '',
       bTagBg: (TAGS[bp.tag] || TAGS['N°1'])[0], bTagFg: (TAGS[bp.tag] || TAGS['N°1'])[1], bAxes, hasBAxes: bAxes.length > 0,
       ups, upsNoLabel: Object.keys(s.upsAdded).length ? 'Continuer' : 'Non merci',
@@ -901,15 +980,14 @@ class Component extends DCLogic {
       onPromoRemove: () => this.setState({ promoOk: false, promo: '' }),
       promoRing: s.promoOk ? '0 0 0 1.5px rgba(143,203,107,.8)' : s.promoErr ? '0 0 0 2px #FF6B85' : 'inset 0 0 0 1.5px rgba(233,211,238,.25)', promoIcon: s.promoOk ? '#8FCB6B' : '#FFD84D',
       onCheckout: () => { this.snd('tap'); this.go('checkout'); }, onClear: () => this.clearCart(), onFill: () => this.go('home', { reset: true, back: true }),
-      addrLabel: s.label, addrLine: s.street || 'Rue Al Qods, imm. 4, 2e étage', hasAddrNote: !!s.mark, addrNote: 'Repère : ' + s.mark,
+      addrLine: '≈ ' + s.dist.toFixed(1).replace('.', ',') + ' km de M’Chou',
       onEditAddr: () => { this.setState({ addrEdit: true }); this.go('address'); },
       whenAsap: s.when === 'asap', whenLater: s.when === 'later', asapRing: sel(s.when === 'asap'), laterRing: sel(s.when === 'later'),
       onAsap: () => { this.snd('tap'); this.setState({ when: 'asap' }); }, onLater: () => { this.snd('tap'); this.setState({ when: 'later' }); },
       slots, slotTxt: s.when === 'later' ? 'à ' + curSlot : 'Choisis un créneau', etaTxt: this.etaRange(s.dist),
-      phoneDisplay: '+212 ' + this.fmtPhone(s.phone || '612345678'),
+      phoneDisplay: s.phone ? '+212 ' + this.fmtPhone(s.phone) : 'Pas de numéro', phoneSub: s.phone ? 'Le livreur t’appelle à ce numéro si besoin' : 'Ajoute-le via Modifier, c’est conseillé',
       payCash: s.pay === 'cash', payCard: s.pay === 'card', cashRing: sel(s.pay === 'cash'), cardRing: sel(s.pay === 'card'), cashDot: dot(s.pay === 'cash'), cardDot: dot(s.pay === 'card'),
       onPayCash: () => { this.snd('tap'); this.setState({ pay: 'cash', payErr: '' }); }, onPayCard: () => { this.snd('tap'); this.setState({ pay: 'card', payErr: '' }); },
-      bills, changeTxt: bsel === 'exact' ? 'Tu donnes pile ' + t.total + ' DH, merci !' : 'Le livreur prépare ' + (bsel - t.total) + ' DH de monnaie à l\u2019avance.',
       num: s.num, onNum: e => this.setState({ num: this.edit(e.target.value, this.state.num, d => d.replace(/(\d{4})(?=\d)/g, '$1 '), 16), payErr: '' }),
       exp: s.exp, onExp: e => this.setState({ exp: this.edit(e.target.value, this.state.exp, d => (d.length > 2 ? d.slice(0, 2) + '/' + d.slice(2) : d), 4) }),
       cvv: s.cvv, onCvv: e => this.setState({ cvv: e.target.value.replace(/\D/g, '').slice(0, 4) }),
@@ -919,7 +997,7 @@ class Component extends DCLogic {
       rings: { num: ring('num'), exp: ring('exp'), cvv: ring('cvv'), name: ring('name') },
       onScan: () => this.scanCard(), saveSw: sw(s.saveCard), onSaveCard: () => { this.snd('tap'); this.setState(x => ({ saveCard: !x.saveCard })); },
       hasPayErr: !!s.payErr, payErr: s.payErr, onPlace: () => this.place(), busy: s.busy, notBusy: !s.busy,
-      ctaNote: s.pay === 'card' ? 'Carte · 3-D Secure par le CMI' : bsel === 'exact' ? 'Espèces · appoint exact' : 'Espèces · billet de ' + bsel + ' DH',
+      ctaNote: s.pay === 'card' ? 'Carte · 3-D Secure par le CMI' : 'Espèces à la livraison',
       itemsTxt: t.count + (t.count > 1 ? ' articles' : ' article'),
       tds: s.tds, tdsAmt: t.total.toFixed(2).replace('.', ',') + ' MAD', tdsCard: (brand || 'Carte') + ' •••• ' + last4, otp: s.otp,
       onOtp: e => this.setState({ otp: e.target.value.replace(/\D/g, '').slice(0, 6) }), tdsSms: s.tdsSms && s.otp.length < 6 && !s.tdsBusy,

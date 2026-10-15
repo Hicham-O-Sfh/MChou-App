@@ -15,9 +15,9 @@
 <span style="font:800 13px/16px Nunito;color:#E9D3EE;font-variant-numeric:tabular-nums">1/2</span>
 </div>
 <div style="position:relative;flex:1;display:flex;flex-direction:column;gap:10px;padding:28px 20px 0">
-<span style="font:400 26px/40px Pacifico;color:#FFD84D">Salut Hicham&nbsp;!</span>
+<span style="font:400 26px/40px Pacifico;color:#FFD84D">Salut {{ fname }}&nbsp;!</span>
 <span style="font:700 26px/30px Fredoka">Ton numéro de téléphone</span>
-<span style="font:500 16px/24px Nunito;color:#E9D3EE;text-wrap:pretty">Le livreur t'appelle seulement s'il ne trouve pas ta porte. Jamais de pub, promis.</span>
+<span style="font:500 16px/24px Nunito;color:#E9D3EE;text-wrap:pretty">Pour que le livreur puisse te contacter.</span>
 <label style="display:flex;flex-direction:column;gap:8px;margin-top:18px"><span style="font:700 14px/18px Nunito;color:#E9D3EE">Numéro de mobile</span>
 <span style="display:flex;align-items:center;gap:10px;height:60px;padding-inline:6px 16px;border-radius:18px;background:#4E1256;box-shadow:{{ phoneRing }};transition:box-shadow 180ms ease-out"><span dir="ltr" style="height:48px;padding:0 12px;display:flex;align-items:center;border-radius:14px;background:rgba(0,0,0,.25);font:600 17px/1 Fredoka">+212</span><input type="tel" dir="ltr" value="{{ phoneFmt }}" onChange="{{ onPhone }}" onFocus="{{ onPhoneFocus }}" onBlur="{{ onPhoneBlur }}" placeholder="6 12 34 56 78" style="flex:1;min-width:0;height:48px;padding:0;border:0;outline:none;background:none;font:600 19px/1 Fredoka;letter-spacing:.04em;color:#FFF6E9"><sc-if value="{{ phoneOk }}" hint-placeholder-val="{{ false }}"><span style="font:26px/1 'Material Symbols Rounded';font-variation-settings:'FILL' 1;color:#8FCB6B">check_circle</span></sc-if></span>
 </label>

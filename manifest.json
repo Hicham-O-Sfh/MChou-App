@@ -1,0 +1,16 @@
+{
+  "name": "M'Chou",
+  "short_name": "M'Chou",
+  "description": "Prototype de l'app M'Chou : crêpes, brownies, choux et mojitos à Oujda",
+  "lang": "fr",
+  "start_url": "./Ordering-Prototype.dc.html?mobile",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#3A0B40",
+  "theme_color": "#3A0B40",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
