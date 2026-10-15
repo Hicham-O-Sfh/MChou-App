@@ -255,16 +255,21 @@ class Component extends DCLogic {
       .map(([k, r]) => [k, nm.search(r)]).filter(x => x[1] >= 0).sort((a, b) => a[1] - b[1]).map(x => x[0]);
     const C = this.SAUCE[hit[0]], C2 = this.SAUCE[hit[1]], inc = {};
     [['banane', /banane/], ['pistache', /pista/], ['amande', /amande/], ['lotus', /lotus/], ['oreo', /oreo/], ['kunafa', /kunafa|duba/], ['bueno', /bueno/]].forEach(([k, r]) => { inc[k] = r.test(nm); });
-    const L = sel.taille === 'L', bw = L ? 176 : 144, choux = shape === 'choux';
+    const L = sel.taille === 'L', bw = L ? 190 : 156, bh = L ? 134 : 112, choux = shape === 'choux', brownie = shape === 'brownie', flat = shape === 'crepe' || shape === 'spaghetti';
     const pos = sel.pcs === '6' ? [[14, 46], [71, 38], [128, 46], [14, 106], [71, 114], [128, 106]] : [[40, 42], [102, 42], [40, 104], [102, 104]];
     const LB = { nutella: 'Nutella', pistache: 'Pistache', lotus: 'Lotus', bueno: 'Bueno', oreo: 'Oreo', amande: 'Amande', chocolat: 'Chocolat', banane: 'Banane', kunafa: 'Kunafa' };
     const chips = hit.concat(Object.keys(inc).filter(k => inc[k])).filter((k, i, a) => a.indexOf(k) === i).map(k => ({ name: LB[k] }));
-    if (shape === 'crepe' || shape === 'spaghetti') chips.push({ name: 'Pâte maison' });
+    if (flat) chips.push({ name: 'Pâte maison' });
+    if (brownie) chips.push({ name: 'Kunafa pistachou' }, { name: 'Crème fromagère' });
+    // Brownie rectangulaire : les garnitures (zone 200×200) sont aplaties en x/y pour tenir sur le dessus
+    const k = { spaghetti: .92, gaufre: .8, choux: .86 }[shape] || 1;
     return {
-      crepe: shape === 'crepe', spaghetti: shape === 'spaghetti', gaufre: shape === 'gaufre', brownie: shape === 'brownie', choux,
-      k: { spaghetti: .92, gaufre: .8, brownie: L ? .84 : .68, choux: .86 }[shape] || 1, bw, bo: 22 + (200 - bw) / 2,
-      sp: C && !choux ? 1 : 0, spk: shape === 'spaghetti' ? .6 : 1, s1: (C || [])[0] || 'transparent', s2: (C || [])[1] || 'transparent', s3: (C || [])[2] || 'transparent',
-      drz: C2 && !choux ? 1 : 0, d1: (C2 || [])[1] || 'transparent', incBan: inc.banane ? 1 : 0, bueno: inc.bueno ? 1 : 0, inc,
+      crepe: shape === 'crepe', spaghetti: shape === 'spaghetti', gaufre: shape === 'gaufre', brownie, choux,
+      kx: brownie ? (bw - 22) / 170 : k, ky: brownie ? (bh - 20) / 170 : k, ty: brownie ? -6 : 0,
+      bw, bh, bl: 122 - bw / 2, bt: 116 - bh / 2, bs: C && brownie ? 1 : 0, zz: (C2 || C || [])[1] || 'transparent', zo: (C2 || C || [])[2] || 'transparent',
+      sp: C && flat ? 1 : 0, spk: shape === 'spaghetti' ? .72 : 1, gs: C && shape === 'gaufre' ? 1 : 0, spg: shape === 'spaghetti' ? 1 : 0,
+      s1: (C || [])[0] || 'transparent', s2: (C || [])[1] || 'transparent', s3: (C || [])[2] || 'transparent',
+      drz: C2 && !choux && !brownie ? 1 : 0, d1: (C2 || [])[1] || 'transparent', incBan: inc.banane ? 1 : 0, bueno: inc.bueno ? 1 : 0, inc,
       puffs: pos.map(([x, y], i) => ({ x, y, g: ((i % 2 && C2) || C || ['', '#F1D9A8'])[1] })), cream: sel.garn === 'farcis' ? 1 : 0, creamC: sel.creme === 'chocolat' ? '#6B3A22' : '#FFF4CF',
       chips, watch: { crepe: 'Regarde ta crêpe se garnir', spaghetti: 'Regarde tes spaghetti se garnir', gaufre: 'Regarde ta gaufre se garnir', brownie: 'Regarde ton brownie se garnir', choux: 'Regarde tes choux se garnir' }[shape]
     };
