@@ -77,7 +77,7 @@
 <span style="align-self:center;width:36px;height:4px;border-radius:9px;background:#C4C7C5"></span>
 <div style="display:flex;align-items:center;gap:10px;font:400 14px/20px Roboto,system-ui,sans-serif;color:#444746"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path></svg>Se connecter avec Google</div>
 <div style="display:flex;flex-direction:column;gap:4px"><span style="font:400 24px/32px Roboto,system-ui,sans-serif;color:#1F1F1F">Choisis un compte</span><span style="font:400 14px/20px Roboto,system-ui,sans-serif;color:#444746">pour continuer vers <b style="font-weight:500;color:#1F1F1F">M'Chou</b></span></div>
-<button type="button" onClick="{{ onPickAccount }}" style="display:flex;align-items:center;gap:14px;min-height:64px;padding:0 4px;border:0;border-bottom:1px solid #E3E3E3;background:none;text-align:start;cursor:pointer"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#6B2D8B;color:#FFFFFF;display:grid;place-items:center;font:500 18px/1 Roboto,system-ui,sans-serif">H</span><span style="flex:1;display:flex;flex-direction:column"><span style="font:500 15px/20px Roboto,system-ui,sans-serif;color:#1F1F1F">Hicham Benali</span><span style="font:400 13px/18px Roboto,system-ui,sans-serif;color:#444746">hicham.benali@gmail.com</span></span><sc-if value="{{ gbusy }}" hint-placeholder-val="{{ false }}"><span data-spin="1" style="width:24px;height:24px;border-radius:50%;border:3px solid #D3E3FD;border-top-color:#0B57D0;box-sizing:border-box"></span></sc-if></button>
+<button type="button" onClick="{{ onPickAccount }}" style="display:flex;align-items:center;gap:14px;min-height:64px;padding:0 4px;border:0;border-bottom:1px solid #E3E3E3;background:none;text-align:start;cursor:pointer"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#6B2D8B;color:#FFFFFF;display:grid;place-items:center;font:500 18px/1 Roboto,system-ui,sans-serif">H</span><span style="flex:1;display:flex;flex-direction:column"><span style="font:500 15px/20px Roboto,system-ui,sans-serif;color:#1F1F1F">Hicham Saffih</span><span style="font:400 13px/18px Roboto,system-ui,sans-serif;color:#444746">Hicham.Saffih@gmail.com</span></span><sc-if value="{{ gbusy }}" hint-placeholder-val="{{ false }}"><span data-spin="1" style="width:24px;height:24px;border-radius:50%;border:3px solid #D3E3FD;border-top-color:#0B57D0;box-sizing:border-box"></span></sc-if></button>
 <div style="display:flex;align-items:center;gap:14px;min-height:52px;padding:0 4px;font:500 15px/20px Roboto,system-ui,sans-serif;color:#1F1F1F"><span style="width:40px;height:40px;display:grid;place-items:center;font:24px/1 'Material Symbols Rounded';color:#444746">person_add</span>Utiliser un autre compte</div>
 <span style="font:400 12px/18px Roboto,system-ui,sans-serif;color:#444746">Pour continuer, Google partagera ton nom, ton adresse e-mail et ta photo de profil avec M'Chou.</span>
 </div>
@@ -161,52 +161,51 @@ class Component extends DCLogic {
     login: 'Tap “Continuer avec Google”, then the account. “Continuer avec mon numéro” skips Google.',
     phone: 'Type a Moroccan mobile (6 or 7, then 8 digits) or tap the SIM suggestion. Start with 5 to see the error.',
     address: 'Drag the map: the pin lifts and drops, distance and zone update (6 km around the shop). Phone is optional, but must be valid if typed.',
-    home: 'Chips and search filter the list. “+” flies to the cart and becomes a stepper. Tap a card for its options (the Nutella banane card opens the builder). “Tout voir” opens the menu. Tap the flame.',
+    home: 'Family chips list the whole menu: a tap opens the Menu at that family. Search filters the list. “+” flies to the cart and becomes a stepper. Tap a card for its builder or options. Tap the flame.',
     menu: 'Flavour chips filter the whole menu, the family bar follows the scroll. “+” adds the cheapest option; tap a sweet to open its builder, a drink or pack for its options sheet. Packs and services at the bottom.',
     builder: 'Any sweet item opens here (tap a row in the menu). Pick options, toggle toppings and watch them land. The price counts up; “Ajouter” flies to the bag, then the drink sheet opens.',
     cart: 'Free-delivery bar at 150 DH, steppers with undo, “Vider” with undo. Promo code: MCHOU10.',
     checkout: 'Card is first and selected by default; cash on delivery is the second choice. “Scanner ma carte” fills a test card (add any CVV). 4000 0000 0000 0002 is declined after 3-D Secure.',
-    confirm: 'Crêpe scene then the scooter, about 7 s. “Passer” skips, the speaker mutes. Miams and streak count up at the end.',
+    confirm: 'The scooter rides in straight away (no crêpe scene, it would not match every order). The speaker mutes. Miams and streak count up.',
     track: 'Simulated timeline: kitchen, on the way, delivered. “Next status” jumps ahead.',
     gifts: '11 rewards paid in Miams (1 DH = 1 Miam). Tap one: a sheet confirms, Miams are spent and it lands in the cart for 0 DH. Removing it from the cart gives the Miams back. Tap the flame card for the streak.',
     profile: 'First name and phone save as you type. The birthday can be set only once, then it locks. Orders list every order placed (new ones on top). Arabic is not built yet.'
   };
-  CATS = [['crepes', 'Crêpes', 'skillet'], ['brownies', 'Brownies', 'cake'], ['choux', 'Choux', 'bakery_dining'], ['shakes', 'Milkshakes', 'icecream'], ['mojitos', 'Mojitos', 'local_bar']];
   SLOT = { 'crepe-nb': 'b-ml-1', 'brownie-bueno': 'b-ml-2', 'brownie-pista': 'b-drop', 'mojito-fraise': 'b-re-2' };
   // Vraie carte M'Chou (.notes/ecrans/menu.md). Prix en DH ; tableau = un prix par combinaison d'options.
   FAMS = [
-    { k: 'crepes', n: 'Crêpes', t: 'Crêpes sucrées', icon: 'skillet', tint: '#F7C873', pre: 'Crêpe ', sub: 'Crêpe sucrée', ex: true, bld: 'crepe', sugar: true, desc: 'Crêpe dorée, pliée en quart.', items: [
-      ['Nutella', 20], ['Nutella banane', 25, { id: 'crepe-nb', tag: 'N°1', pop: 1, desc: 'Crêpe dorée, Nutella généreux et rondelles de banane fraîche, pliée en quart.' }], ['Oreo', 25], ['Bueno', 25, { pop: 1 }], ['Lotus', 25, { pop: 1 }], ['Amande', 25],
-      ['Nutella crème pistache', 25], ['Nutella pistachio', 30, { pop: 1 }], ['Extra amande pistachio', 30], ['Croquant amande', 35], ['Extra pistachio', 35], ['Filet d’amande', 35]] },
-    { k: 'spaghetti', n: 'Spaghetti', t: 'Spaghetti crêpes', icon: 'dinner_dining', tint: '#F5D2A8', pre: 'Spaghetti crêpe ', sub: 'Spaghetti crêpe', ex: true, bld: 'spaghetti', sugar: true, desc: 'Crêpe coupée en lanières, nappée comme tu l’aimes.', items: [
-      ['Nutella', 25], ['Nutella banane', 30], ['Oreo', 30], ['Bueno', 30], ['Lotus', 35], ['Amande', 35],
-      ['Nutella crème pistache', 35], ['Nutella pistachio', 40], ['Croquant amande', 40], ['Extra pistachio', 45], ['Filet d’amande', 40]] },
-    { k: 'speciales', n: 'Spéciales', t: 'Crêpes spéciales', icon: 'auto_awesome', tint: '#F3D9B8', pre: 'Crêpe ', sub: 'Crêpe spéciale', ex: true, bld: 'crepe', sugar: true, desc: 'Une recette signature de la maison.', items: [
-      ['Kunafa pistachio burritos', 38, { tag: 'Nouveau', full: 'Kunafa pistachio burritos' }], ['Brownie chocolat', 35], ['Corne de gazelle', 45],
-      ['Brownie dubaï', 50, { soldOut: true }], ['Box mixte', 35, { full: 'Box mixte crêpes' }], ['Enfant', 35]] },
-    { k: 'gaufres', n: 'Gaufres', t: 'Gaufres croustillantes', icon: 'breakfast_dining', tint: '#F5C46A', pre: 'Gaufre ', sub: 'Gaufre croustillante', ex: true, bld: 'gaufre', sugar: true, desc: 'Gaufre croustillante et dorée.', items: [
-      ['Natural', 15], ['Nutella', 20], ['Nutella banane', 25], ['Oreo', 25], ['Lotus', 25], ['Bueno', 25], ['Amande', 25],
-      ['Nutella crème pistachio', 25], ['Nutella pistachio', 30], ['Croquant amande', 35], ['Box mixte', 35, { full: 'Box mixte gaufres' }], ['Extra pistachio', 40]] },
     { k: 'choux', n: 'Choux', t: 'Les choux', icon: 'bakery_dining', tint: '#E8C9A8', pre: 'Choux ', sub: 'Choux', ex: true, bld: 'choux', desc: 'Classiques, ou farcis à la crème vanille ou chocolat.', ax: ['pcs', 'garn', 'creme'], items: [
       ['Nutella', [12, 15, 18, 24], { pop: 1 }], ['Bueno', [13, 16, 20, 25]], ['Lotus', [16, 20, 22, 27], { pop: 1 }], ['Oreo', [15, 20, 20, 26]],
       ['Croquant amande', [20, 25, 30, 35]], ['Pistache', [20, 25, 25, 30], { pop: 1 }], ['Amande', [16, 20, 22, 27]], ['Box mixte', [20, 25, 25, 30], { full: 'Box mixte choux' }]] },
+    { k: 'crepes', n: 'Crêpes', t: 'Crêpes sucrées', icon: 'skillet', tint: '#F7C873', pre: 'Crêpe ', sub: 'Crêpe sucrée', ex: true, bld: 'crepe', sugar: true, desc: 'Crêpe dorée, pliée en quart.', items: [
+      ['Nutella', 20], ['Nutella banane', 25, { id: 'crepe-nb', tag: 'N°1', pop: 1, desc: 'Crêpe dorée, Nutella généreux et rondelles de banane fraîche, pliée en quart.' }], ['Oreo', 25], ['Bueno', 25, { pop: 1 }], ['Lotus', 25, { pop: 1 }], ['Amande', 25],
+      ['Nutella crème pistache', 25], ['Nutella pistachio', 30, { pop: 1 }], ['Extra amande pistachio', 30], ['Croquant amande', 35], ['Extra pistachio', 35], ['Filet d’amande', 35]] },
     { k: 'brownies', n: 'Brownies', t: 'Les brownies', icon: 'cake', tint: '#C9A27E', pre: 'Brownie ', sub: 'Brownie', note: 'Kunafa pistachou & crème fromagère', ex: true, bld: 'brownie', desc: 'Brownie fondant, avec kunafa pistachou et crème fromagère.', ax: ['taille'], items: [
       ['Nutella', [27, 49]], ['Bueno', [28, 50], { id: 'brownie-bueno', pop: 1 }], ['Nutella pistachou', [30, 55]], ['Nutella crème pistachio', [28, 50]], ['Amande', [30, 55]],
       ['Croquant amande', [35, 55]], ['Lotus', [30, 55], { pop: 1 }], ['Oreo', [30, 55]], ['Extra pistachio', [35, 59], { id: 'brownie-pista', tag: 'DROP', pop: 1 }], ['Box mixte', [30, 55], { full: 'Box mixte brownies' }]] },
-    { k: 'packs', n: 'Packs', t: 'Packs famille', icon: 'redeem', tint: '#FFE08A', pre: '', sub: 'Pack famille', pack: true, items: [
-      ['Choux mixtes', 93, { d: '24 pièces', icon: 'bakery_dining', full: 'Pack 24 choux mixtes' }], ['Brownies mixtes', 149, { d: '12 pièces', icon: 'cake', full: 'Pack 12 brownies mixtes' }],
-      ['Brownies extra pistachou', 155, { d: '12 pièces', icon: 'cake', full: 'Pack 12 brownies extra pistachou' }]] },
-    { k: 'shakes', n: 'Milkshakes', t: 'Milkshakes', icon: 'icecream', tint: '#E9E1EC', pre: 'Milkshake ', sub: 'Milkshake', items: [
-      ['Vanille', 27], ['Fraise', 27, { pop: 1 }], ['Framboise', 27], ['Banane', 27], ['Chocolat', 27, { pop: 1 }], ['Caramel', 27], ['Oreo', 27, { id: 'shake-oreo', pop: 1 }]] },
+    { k: 'gaufres', n: 'Gaufres', t: 'Gaufres croustillantes', icon: 'breakfast_dining', tint: '#F5C46A', pre: 'Gaufre ', sub: 'Gaufre croustillante', ex: true, bld: 'gaufre', sugar: true, desc: 'Gaufre croustillante et dorée.', items: [
+      ['Natural', 15], ['Nutella', 20], ['Nutella banane', 25], ['Oreo', 25], ['Lotus', 25], ['Bueno', 25], ['Amande', 25],
+      ['Nutella crème pistachio', 25], ['Nutella pistachio', 30], ['Croquant amande', 35], ['Box mixte', 35, { full: 'Box mixte gaufres' }], ['Extra pistachio', 40]] },
+    { k: 'spaghetti', n: 'Spaghetti', t: 'Spaghetti crêpes', icon: 'dinner_dining', tint: '#F5D2A8', pre: 'Spaghetti crêpe ', sub: 'Spaghetti crêpe', ex: true, bld: 'spaghetti', sugar: true, desc: 'Crêpe coupée en lanières, nappée comme tu l’aimes.', items: [
+      ['Nutella', 25], ['Nutella banane', 30], ['Oreo', 30], ['Bueno', 30], ['Lotus', 35], ['Amande', 35],
+      ['Nutella crème pistache', 35], ['Nutella pistachio', 40], ['Croquant amande', 40], ['Extra pistachio', 45], ['Filet d’amande', 40]] },
     { k: 'mojitos', n: 'Mojitos', t: 'Les mojitos', icon: 'local_bar', tint: '#FFB3C1', pre: 'Mojito ', sub: 'Mojito sans alcool', items: [
       ['Citron', 20, { pop: 1 }], ['Fraise', 20, { id: 'mojito-fraise', pop: 1 }], ['Framboise', 20], ['Blueberry', 20], ['Fruits de la passion', 20, { id: 'mojito-passion', pop: 1 }], ['Ananas', 20]] },
+    { k: 'shakes', n: 'Milkshakes', t: 'Milkshakes', icon: 'icecream', tint: '#E9E1EC', pre: 'Milkshake ', sub: 'Milkshake', items: [
+      ['Vanille', 27], ['Fraise', 27, { pop: 1 }], ['Framboise', 27], ['Banane', 27], ['Chocolat', 27, { pop: 1 }], ['Caramel', 27], ['Oreo', 27, { id: 'shake-oreo', pop: 1 }]] },
+    { k: 'cocktails', n: 'Cocktails', t: 'Cocktails', icon: 'blender', tint: '#FFD1DA', pre: 'Cocktail ', sub: 'Cocktail de fruits', items: [
+      ['Hawaï', 45, { d: 'Mangue et fraise' }], ['Bora Bora', 35, { d: 'Banane et pomme' }], ['Île Maurice', 45, { d: 'Ananas et kiwi' }], ['Île Fraîcheur', 45, { d: 'Ananas, citron et sirop de menthe' }]] },
     { k: 'jus', n: 'Jus', t: 'Les jus', icon: 'nutrition', tint: '#FFE08A', pre: 'Jus de ', sub: 'Jus', items: [
       ['Citron', 15], ['Orange', 20, { full: 'Jus d’orange' }], ['Pomme', [15, 25], { ax: ['lait'] }], ['Banane', [15, 25], { ax: ['lait'] }], ['Fraise', [23, 28], { ax: ['lait'] }],
       ['Avocat', [25, 30], { ax: ['lait'], full: 'Jus d’avocat' }], ['Ananas', 28, { full: 'Jus d’ananas' }], ['Mangue', 28], ['Kiwi', 28]] },
-    { k: 'cocktails', n: 'Cocktails', t: 'Cocktails', icon: 'blender', tint: '#FFD1DA', pre: 'Cocktail ', sub: 'Cocktail de fruits', items: [
-      ['Hawaï', 45, { d: 'Mangue et fraise' }], ['Bora Bora', 35, { d: 'Banane et pomme' }], ['Île Maurice', 45, { d: 'Ananas et kiwi' }], ['Île Fraîcheur', 45, { d: 'Ananas, citron et sirop de menthe' }]] },
     { k: 'chauds', n: 'Boissons chaudes', t: 'Boissons chaudes', icon: 'local_cafe', tint: '#D9C3B0', pre: '', sub: 'Boisson chaude', ax: ['arome'], items: [
-      ['Café noir', 8], ['Café expresso', 8], ['Café américain', 8], ['Café crème', 10], ['Chocolat chaud', 15], ['Chocolat fondu', 25], ['Cappuccino', 15], ['Nescafé', 10]] }
+      ['Café noir', 8], ['Café expresso', 8], ['Café américain', 8], ['Café crème', 10], ['Chocolat chaud', 15], ['Chocolat fondu', 25], ['Cappuccino', 15], ['Nescafé', 10]] },
+    { k: 'speciales', n: 'Spéciales', t: 'Crêpes spéciales', icon: 'auto_awesome', tint: '#F3D9B8', pre: 'Crêpe ', sub: 'Crêpe spéciale', ex: true, bld: 'crepe', sugar: true, desc: 'Une recette signature de la maison.', items: [
+      ['Kunafa pistachio burritos', 38, { tag: 'Nouveau', full: 'Kunafa pistachio burritos' }], ['Brownie chocolat', 35], ['Corne de gazelle', 45],
+      ['Brownie dubaï', 50, { soldOut: true }], ['Box mixte', 35, { full: 'Box mixte crêpes' }], ['Enfant', 35]] },
+    { k: 'packs', n: 'Packs', t: 'Packs famille', icon: 'redeem', tint: '#FFE08A', pre: '', sub: 'Pack famille', pack: true, items: [
+      ['Choux mixtes', 93, { d: '24 pièces', icon: 'bakery_dining', full: 'Pack 24 choux mixtes' }], ['Brownies mixtes', 149, { d: '12 pièces', icon: 'cake', full: 'Pack 12 brownies mixtes' }],
+      ['Brownies extra pistachou', 155, { d: '12 pièces', icon: 'cake', full: 'Pack 12 brownies extra pistachou' }]] }
   ];
   // o : [valeur, libellé du bouton, libellé dans le panier] ; price : l'axe change le prix de base
   AX = {
@@ -254,7 +253,7 @@ class Component extends DCLogic {
     screen: 'splash', hist: [], gsheet: false, gbusy: false,
     phone: '', phoneBlur: false, phoneFocus: false,
     q: 'Hay Al Qods', city: 'Oujda', ll: [34.6598, -1.9006], dist: 2.7, inZone: true, addrEdit: false,
-    cat: 'crepes', query: '', cart: [], mq: '', flav: '', mfam: 'crepes', po: null,
+    query: '', cart: [], mq: '', flav: '', mfam: 'choux', po: null,
     bid: 'crepe-nb', bsel: {}, ex: {}, sugar: true, bqty: 1, note: '', bAdded: false, upsAdded: {},
     promo: '', promoOk: false, promoErr: false, when: 'asap', slot: '',
     pay: 'card', num: '', exp: '', cvv: '', cname: '', cardTry: false, saveCard: true, payErr: '',
@@ -335,6 +334,7 @@ class Component extends DCLogic {
   }
   offIn(el, sc) { let y = 0; while (el && el !== sc) { y += el.offsetTop; el = el.offsetParent; } return y; }
   menuSc() { return this.root && this.root.querySelector('[data-menu-scroll]'); }
+  famGo(k) { this.snd('tap'); this.menuGo = k; this.setState({ flav: '', mq: '' }); this.go('menu', { reset: true }); }
   menuTo(k, smooth) {
     const sc = this.menuSc(), sec = sc && sc.querySelector('[data-sec="' + k + '"]'); if (!sec) return;
     const st = sc.querySelector('[data-menu-stick]'), h = st ? st.offsetHeight : 110;
@@ -682,7 +682,7 @@ class Component extends DCLogic {
     return e;
   }
   brand(n) { n = n.replace(/\D/g, ''); if (/^4/.test(n)) return 'VISA'; if (/^(5[1-5]|2[2-7])/.test(n)) return 'MASTERCARD'; return ''; }
-  scanCard() { this.snd('tap'); this.setState({ num: '4242 4242 4242 4242', exp: '12/28', cname: 'HICHAM BENALI', payErr: '' }); this.toastShow('Carte scannée, ajoute le cryptogramme', 'photo_camera', '#FFD84D'); }
+  scanCard() { this.snd('tap'); this.setState({ num: '4242 4242 4242 4242', exp: '12/28', cname: 'HICHAM Saffih', payErr: '' }); this.toastShow('Carte scannée, ajoute le cryptogramme', 'photo_camera', '#FFD84D'); }
   place() {
     const s = this.state; if (!s.cart.length || s.busy) return;
     if (s.pay === 'card') {
@@ -711,30 +711,13 @@ class Component extends DCLogic {
   runScene() {
     const r = this.root && this.root.querySelector('[data-screen="confirm"]'), o = this.state.order; if (!r || !o) return;
     const D = this.TW.rtl ? -1 : 1, A = (this.sceneAnims = []);
-    const an = (p, kf, op) => r.querySelectorAll('[data-p="' + p + '"]').forEach((el, i) => A.push(el.animate(kf, Object.assign({ fill: 'both', easing: 'cubic-bezier(.22,1,.36,1)' }, op, { delay: (op.delay || 0) + (op.stagger || 0) * i }))));
-    this.setState(s => ({ sceneOn: true, caption: 'On lance ta crêpe…', unlockShown: false, streakShown: o.st0, tw: Object.assign({}, s.tw, { gain: 0, m: o.m0 }) }));
+    const an = (p, kf, op) => r.querySelectorAll('[data-p="' + p + '"]').forEach(el => A.push(el.animate(kf, Object.assign({ fill: 'both', easing: 'cubic-bezier(.22,1,.36,1)' }, op))));
+    this.setState(s => ({ sceneOn: true, caption: 'En route !', unlockShown: false, streakShown: o.st0, tw: Object.assign({}, s.tw, { gain: 0, m: o.m0 }) }));
+    an('road', [{ translate: 390 * D + 'px 0', opacity: 0 }, { translate: '0 0', opacity: 1 }], { duration: 560, easing: 'cubic-bezier(.32,.72,0,1)' });
     an('card', [{ translate: '0 70px', opacity: 0 }, { translate: '0 0', opacity: 1 }], { duration: 560, delay: 200, easing: 'cubic-bezier(.32,.72,0,1)' });
-    an('ladle', [{ translate: '140px -120px', rotate: '20deg', opacity: 0 }, { translate: '0 0', rotate: '0deg', opacity: 1, offset: .35 }, { translate: '0 0', rotate: '-38deg', opacity: 1, offset: .6 }, { translate: '0 0', rotate: '-38deg', opacity: 1, offset: .8 }, { translate: '160px -140px', rotate: '0deg', opacity: 0 }], { duration: 1500, delay: 100, easing: 'ease-in-out' });
-    an('stream', [{ scale: '1 0', opacity: 1 }, { scale: '1 1', opacity: 1, offset: .3 }, { scale: '1 1', opacity: 1, offset: .75 }, { scale: '1 0', opacity: 0 }], { duration: 700, delay: 620 });
-    an('batter', [{ scale: '0' }, { scale: '.5', offset: .45 }, { scale: '.5', offset: .55 }, { scale: '1' }], { duration: 1300, delay: 750 });
-    an('rozell', [{ opacity: 0, rotate: '0deg' }, { opacity: 1, rotate: '60deg', offset: .15 }, { opacity: 1, rotate: '330deg', offset: .85 }, { opacity: 0, rotate: '400deg' }], { duration: 900, delay: 1250, easing: 'ease-in-out' });
-    an('brown', [{ opacity: 0 }, { opacity: 1 }], { duration: 700, delay: 1900, easing: 'ease-in-out' });
-    an('nut', [{ scale: '0', rotate: '-120deg' }, { scale: '1.06', rotate: '8deg', offset: .7 }, { scale: '1', rotate: '0deg' }], { duration: 650, delay: 2350 });
-    an('ban', [{ translate: '0 -110px', scale: '1.2', opacity: 0 }, { translate: '0 4px', scale: '.94', opacity: 1, offset: .75 }, { translate: '0 0', scale: '1', opacity: 1 }], { duration: 420, delay: 2950, stagger: 90 });
-    an('flat', [{ scale: '1 1', opacity: 1 }, { scale: '1 .04', opacity: 1, offset: .95 }, { scale: '1 .04', opacity: 0 }], { duration: 210, delay: 3750, easing: 'ease-in' });
-    an('fold', [{ scale: '1 .05', opacity: 0 }, { scale: '1 .05', opacity: 1, offset: .02 }, { scale: '1 1.08', opacity: 1, offset: .7 }, { scale: '1 1', opacity: 1 }], { duration: 440, delay: 3950, easing: 'cubic-bezier(.34,1.56,.64,1)' });
-    an('dust', [{ translate: '0 -30px', opacity: 0 }, { translate: '0 0', opacity: 1, offset: .4 }, { translate: '0 40px', opacity: 0 }], { duration: 700, delay: 4400, stagger: 60 });
-    an('sugar', [{ opacity: 0 }, { opacity: .95 }], { duration: 500, delay: 4550 });
-    an('box', [{ translate: '0 240px' }, { translate: '0 0' }], { duration: 520, delay: 5000, easing: 'cubic-bezier(.34,1.3,.64,1)' });
-    an('foldwrap', [{ translate: '0 0', scale: '1', opacity: 1 }, { translate: '0 44px', scale: '.55', opacity: 1, offset: .8 }, { translate: '0 54px', scale: '.5', opacity: 0 }], { duration: 450, delay: 5380, easing: 'ease-in' });
-    an('lid', [{ translate: '0 -70px', rotate: '-24deg', opacity: 0 }, { translate: '0 -70px', rotate: '-24deg', opacity: 1, offset: .2 }, { translate: '0 0', rotate: '0deg', opacity: 1 }], { duration: 460, delay: 5650, easing: 'cubic-bezier(.34,1.56,.64,1)' });
-    an('kitchen', [{ translate: '0 0', opacity: 1 }, { translate: -390 * D + 'px 0', opacity: 0 }], { duration: 560, delay: 6400, easing: 'cubic-bezier(.65,0,.35,1)' });
-    an('road', [{ translate: 390 * D + 'px 0', opacity: 0 }, { translate: '0 0', opacity: 1 }], { duration: 560, delay: 6400, easing: 'cubic-bezier(.65,0,.35,1)' });
-    const cap = (ms, txt) => this.later(() => this.setState({ caption: txt }), ms), fx = (ms, k) => this.later(() => this.snd(k), ms);
-    cap(2350, 'Nutella généreux…'); cap(2950, 'Banane fraîche !'); cap(3750, 'Pliée en quart'); cap(5000, 'Dans sa boîte !'); cap(6400, 'En route !');
-    fx(150, 'sizzle'); fx(800, 'pop'); fx(2400, 'pop'); for (let i = 0; i < 7; i++) fx(3250 + i * 90, 'pop'); fx(3750, 'whoosh'); fx(5950, 'ding'); fx(6400, 'whoosh'); fx(6850, 'vroom');
-    this.later(() => this.loops(r), 6960);
-    this.later(() => this.sceneEnd(), 7000);
+    this.later(() => this.snd('whoosh'), 100); this.later(() => this.snd('vroom'), 500);
+    this.later(() => this.loops(r), 560);
+    this.later(() => this.sceneEnd(), 900);
     if (this.rm()) this.skipScene();
   }
   skipScene() {
@@ -829,13 +812,13 @@ class Component extends DCLogic {
     const norm = x => String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     const qn = norm(s.query.trim());
     const catName = id => this.FM[P[id].cat].n;
-    const ids = Object.keys(P).filter(id => (qn ? norm(P[id].full + ' ' + P[id].sub + ' ' + catName(id)).indexOf(qn) >= 0 : P[id].cat === s.cat && P[id].pop)).slice(0, 12);
+    const ids = Object.keys(P).filter(id => (qn ? norm(P[id].full + ' ' + P[id].sub + ' ' + catName(id)).indexOf(qn) >= 0 : P[id].pop)).slice(0, 12);
     const TAGS = { 'N°1': ['#FFD84D', '#3A0B40'], 'Nouveau': ['#8FCB6B', '#24062A'], 'DROP': ['#24062A', '#FFD84D'] };
     const prods = ids.map(id => {
       const p = P[id], n = qty[id] || 0, tg = TAGS[p.tag] || TAGS['N°1'];
       return { id, slot: this.slot(id), name: p.name, sub: p.sub, full: p.full, price: p.price, tint: p.tint, tag: p.tag || '', hasTag: !!p.tag, tagBg: tg[0], tagFg: tg[1], soldOut: !!p.soldOut, canAdd: !p.soldOut && !n, inCart: !p.soldOut && n > 0, qty: n, ring: n ? '0 0 0 2px #FFD84D' : '0 0 0 1.5px rgba(255,216,77,.22)', cursor: p.soldOut ? 'default' : 'pointer', filter: p.soldOut ? 'grayscale(1)' : 'none', op: p.soldOut ? .6 : 1, onOpen: () => this.openOpts(id), onAdd: e => this.addSimple(id, e.currentTarget), onMinus: () => this.minusId(id) };
     });
-    const cats = this.CATS.map(([k, n, ic]) => { const on = !qn && s.cat === k; return { name: n, icon: ic, bg: on ? 'linear-gradient(#FFD36B,#F7B538)' : '#4E1256', sh: on ? 'inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 #C98A12' : '0 0 0 1.5px rgba(233,211,238,.18),0 4px 0 #24062A', fg: on ? '#3A0B40' : '#FFF6E9', ibg: on ? '#3A0B40' : 'rgba(0,0,0,.25)', onClick: () => { this.snd('tap'); this.setState({ cat: k, query: '' }); } }; });
+    const cats = this.FAMS.map(f => ({ name: f.n, icon: f.icon, bg: '#4E1256', sh: '0 0 0 1.5px rgba(233,211,238,.18),0 4px 0 #24062A', fg: '#FFF6E9', ibg: 'rgba(0,0,0,.25)', onClick: () => this.famGo(f.k) }));
     const steps = this.SCREENS.map(([k, l], i) => { const on = k === sc; return { n: String(i + 1).padStart(2, '0'), label: l, bg: on ? '#FFD84D' : 'transparent', fg: on ? '#3A0B40' : '#E9D3EE', nfg: on ? '#3A0B40' : '#C9A9D1', onClick: () => this.jump(k) }; });
     const tt = s.toast;
     const toast = tt ? { icon: tt.icon, color: tt.color, text: tt.text, hasAction: !!tt.action, label: tt.action ? tt.action.label : '', onAction: () => { const a = tt.action; this.setState({ toast: null }); if (a) a.fn(); } } : { icon: '', color: '#FFF6E9', text: '', hasAction: false, label: '', onAction: null };
@@ -948,7 +931,7 @@ class Component extends DCLogic {
       streak: s.streak, onStreak: () => { this.snd('tap'); this.setState({ sheet: 'streak' }); }, fl,
       miams: s.miams, gifts, gs, onRedeem: () => this.redeem(),
       fname: s.fname, onFname: e => this.setState({ fname: e.target.value.replace(/\s+/g, ' ').slice(0, 24) }),
-      pf: { initial: (s.fname.trim()[0] || 'H').toUpperCase(), name: (s.fname.trim() || 'Hicham') + ' Benali', email: 'hicham.benali@gmail.com',
+      pf: { initial: (s.fname.trim()[0] || 'H').toUpperCase(), name: (s.fname.trim() || 'Hicham') + ' Saffih', email: 'Hicham.Saffih@gmail.com',
         bdayOpen: !s.bday, bdayLocked: !!s.bday, bdayTxt: s.bday ? this.fmtBday(s.bday) : '', bdayDraft: s.bdayDraft, canBday: !!s.bdayDraft,
         bdayBtnBg: s.bdayDraft ? '#24062A' : 'rgba(255,255,255,.08)', bdayBtnFg: s.bdayDraft ? '#FFD84D' : '#C9A9D1', bdayBtnSh: s.bdayDraft ? '0 0 0 1.5px #FFD84D' : 'none',
         hasCard: !!s.savedCard, noCard: !s.savedCard, card: s.savedCard ? s.savedCard.brand + ' •••• ' + s.savedCard.last4 : '',
@@ -962,7 +945,7 @@ class Component extends DCLogic {
       cats, drop: { h: pad(Math.floor(left / 3600)), m: pad(Math.floor(left % 3600 / 60)), s: pad(left % 60) },
       onDrop: e => this.addSimple('brownie-pista', e.currentTarget), rw,
       hasLast: !!L0, last: L0 ? { names: L0.names, when: L0.when, total: L0.total, s1: this.slot(l1.id), s2: this.slot(l2.id), t1: P[l1.id].tint, t2: P[l2.id].tint } : { names: '', when: '', total: 0, s1: 'x', s2: 'y', t1: '', t2: '' },
-      onReorder: e => this.reorder(e.currentTarget), listTitle: qn ? 'Résultats' : 'Les plus aimés', onSeeAll: () => { this.snd('tap'); if (qn) this.setState({ mq: s.query.trim() }); else this.menuGo = s.cat; this.go('menu', { reset: true }); },
+      onReorder: e => this.reorder(e.currentTarget), listTitle: qn ? 'Résultats' : 'Les plus aimés', onSeeAll: () => { this.snd('tap'); if (qn) this.setState({ mq: s.query.trim() }); this.go('menu', { reset: true }); },
       prods, noResults: !ids.length, emptyQ: s.query.trim(),
       bx, bShown: s.tw.b != null ? s.tw.b : this.bPrice(), bQty: s.bqty, bMinusFg: s.bqty > 1 ? '#FFD84D' : 'rgba(201,169,209,.5)',
       onBMinus: () => { if (this.state.bqty > 1) { this.setState(x => ({ bqty: x.bqty - 1, bAdded: false })); this.snd('off'); } },
@@ -1003,7 +986,7 @@ class Component extends DCLogic {
       onOtp: e => this.setState({ otp: e.target.value.replace(/\D/g, '').slice(0, 6) }), tdsSms: s.tdsSms && s.otp.length < 6 && !s.tdsBusy,
       onTdsFill: () => { this.setState({ otp: '482913' }); this.snd('pop'); }, tdsReady: s.otp.length === 6 && !s.tdsBusy, tdsNotReady: s.otp.length < 6 && !s.tdsBusy, tdsBusy: s.tdsBusy,
       onTdsValidate: () => this.tdsValidate(), onTdsCancel: () => this.setState({ tds: false, tdsBusy: false }),
-      sceneOn: s.sceneOn, caption: s.caption, onSkip: () => this.skipScene(), soundIcon: s.muted || this.TW.sound === false ? 'volume_off' : 'volume_up',
+      sceneOn: s.sceneOn, caption: s.caption, soundIcon: s.muted || this.TW.sound === false ? 'volume_off' : 'volume_up',
       onMute: () => this.setState(x => ({ muted: !x.muted })), cf, onTrack: () => { this.snd('tap'); this.go('track'); }, onConfirmHome: () => this.go('home', { reset: true }),
       tk: { title: TT[st], sub: TS[st], mins }, steps4, trkPct: Math.min(100, (st === 2 ? (2 + s.prog) / 3 : st / 3) * 100) + '%',
       driver: st === 2, kitchen: st <= 1, delivered: st >= 3, notDelivered: st < 3, payNote,
