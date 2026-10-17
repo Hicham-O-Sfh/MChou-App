@@ -74,8 +74,7 @@ Chaque page = un template dans `<x-dc>…</x-dc>` + (optionnel) un script de log
 - Les chemins (`src="assets/…"`) dans un écran sont relatifs à la **page racine**, pas à `screens/`.
 - `onEnter()` attend que l'écran soit dans le DOM (fichier chargé au premier affichage) avant
   de lancer ses animations d'entrée.
-- Écrans : racine `data-screen="<id>"` + `data-screen-label="NN Nom"`. Ordre dans `SCREENS`,
-  aide du panneau gauche dans `HINTS`.
+- Écrans : racine `data-screen="<id>"` + `data-screen-label="NN Nom"`. Ordre dans `SCREENS`.
 - Navigation : `this.go('<id>')`, `this.back()`, `this.soon('Nom')` pour un écran pas encore fait.
 - Catalogue : `FAMS` (familles de la carte, avec leurs produits et prix), `AX` (options :
   pièces, façon, crème, taille, nature/au lait, arôme), `FLAV` (saveurs du filtre), `EX`
@@ -119,7 +118,7 @@ Chaque page = un template dans `<x-dc>…</x-dc>` + (optionnel) un script de log
 
 1. `screens/<id>.dc.html` : copier la structure d'un écran proche (racine
    `position:absolute;inset:0`, fond grain, ~54 px libres en haut sous la barre d'état, CTA en bas).
-2. Coquille : `['<id>', 'Nom']` dans `SCREENS`, entrée dans `HINTS`, bloc `<sc-if>/<dc-import>`
+2. Coquille : `['<id>', 'Nom']` dans `SCREENS`, bloc `<sc-if>/<dc-import>`
    à côté des autres, valeurs dans `renderVals()`.
 3. Brancher la navigation (remplacer le `this.soon(...)` correspondant).
 
