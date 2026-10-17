@@ -15,17 +15,14 @@
 <helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@500;600;700;800&family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script><script src="image-slot.js"></script><style>body{margin:0;background:#24062A;color:#FFF6E9;font-family:Nunito,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#FFD84D}a:hover{color:#FFF6E9}input::placeholder,textarea::placeholder{color:#C9A9D1;opacity:1}.leaflet-container{font-family:Nunito,system-ui,sans-serif}</style></helmet>
 <div style="position:{{ sh.pos }};inset:0;min-height:100vh;box-sizing:border-box;padding:{{ sh.pad }};display:flex;flex-wrap:wrap-reverse;align-items:flex-end;justify-content:center;gap:24px 48px;overflow:{{ sh.ov }};background:{{ sh.bg }};touch-action:manipulation">
 <sc-if value="{{ notMob }}" hint-placeholder-val="{{ true }}"><div style="flex:0 1 300px;min-width:250px;max-width:330px;max-height:calc(100vh - 24px);overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:16px">
-<div style="display:flex;align-items:center;gap:12px"><img src="assets/mchou-logo.png" alt="M'Chou" style="width:44px;height:44px;border-radius:50%"><div style="display:flex;flex-direction:column"><span style="font:400 22px/30px Pacifico;color:#FFD84D">Prototype</span><span style="font:600 13px/18px Nunito;color:#E9D3EE">Ordering flow · 13 screens · tap through</span></div></div>
+<div style="display:flex;align-items:center;gap:12px"><img src="assets/mchou-logo.png" alt="M'Chou" style="width:44px;height:44px;border-radius:50%"><div style="display:flex;flex-direction:column"><span style="font:600 22px/28px Fredoka;color:#FFD84D">Prototype</span></div></div>
 <div style="display:flex;flex-direction:column;gap:2px">
 <sc-for list="{{ steps }}" as="st" hint-placeholder-count="10"><button type="button" onClick="{{ st.onClick }}" style="display:flex;align-items:center;gap:12px;min-height:38px;padding:0 14px;border:0;border-radius:999px;background:{{ st.bg }};color:{{ st.fg }};font:600 15px/20px Fredoka;text-align:start;cursor:pointer"><span style="width:20px;font:800 12px/16px Nunito;letter-spacing:.04em;color:{{ st.nfg }};font-variant-numeric:tabular-nums">{{ st.n }}</span>{{ st.label }}</button></sc-for>
 </div>
-<div style="padding:14px 16px;border-radius:20px;background:#3A0B40;box-shadow:0 0 0 1.5px rgba(255,216,77,.18);display:flex;flex-direction:column;gap:6px"><span style="font:800 12px/16px Nunito;letter-spacing:.06em;color:#FFD84D">ON THIS SCREEN</span><span style="font:600 14px/21px Nunito;color:#E9D3EE;text-wrap:pretty">{{ hint }}</span></div>
 <div style="display:flex;flex-wrap:wrap;gap:8px">
-<button type="button" onClick="{{ onRestart }}" style="height:40px;padding:0 16px;display:flex;align-items:center;gap:6px;border:0;border-radius:999px;background:none;box-shadow:inset 0 0 0 1.5px rgba(233,211,238,.45);font:600 14px/1 Fredoka;color:#FFF6E9;cursor:pointer"><span style="font:18px/1 'Material Symbols Rounded'">restart_alt</span>Restart</button>
 <sc-if value="{{ is.track }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ onAdvance }}" style="height:40px;padding:0 16px;display:flex;align-items:center;gap:6px;border:0;border-radius:999px;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.35);font:600 14px/1 Fredoka;color:#FFF6E9;cursor:pointer"><span style="font:18px/1 'Material Symbols Rounded';color:#FFD84D">skip_next</span>Next status</button></sc-if>
 <sc-if value="{{ is.confirm }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ onReplay }}" style="height:40px;padding:0 16px;display:flex;align-items:center;gap:6px;border:0;border-radius:999px;background:#4E1256;box-shadow:0 0 0 1.5px rgba(255,216,77,.35);font:600 14px/1 Fredoka;color:#FFF6E9;cursor:pointer"><span style="font:18px/1 'Material Symbols Rounded';color:#FFD84D">replay</span>Replay scene</button></sc-if>
 </div>
-<span style="font:600 12px/18px Nunito;color:#C9A9D1;text-wrap:pretty">Sound, Reduce motion and RTL are set in the <code>TW</code> constant of the script. Photos go in the <code>src</code> of a slot.</span>
 </div></sc-if>
 <div style="flex:none;position:sticky;top:{{ sh.top }}px;width:{{ wrapW }}px;height:{{ wrapH }}px">
 <div style="width:{{ sh.fw }}px;height:{{ sh.fh }}px;transform:scale({{ scale }});transform-origin:0 0">
@@ -156,21 +153,6 @@ class Component extends DCLogic {
   // Mode téléphone : ?mobile dans l'URL ou écran étroit -> plein écran, sans panneau ni cadre
   MOB = /[?&]mobile\b/.test(location.search) || !!(window.matchMedia && window.matchMedia('(max-width: 600px)').matches);
   SCREENS = [['splash', 'Splash'], ['login', 'Google sign-in'], ['phone', 'Phone number'], ['address', 'Address'], ['home', 'Home'], ['menu', 'Menu'], ['builder', 'Builder'], ['cart', 'Cart'], ['checkout', 'Checkout'], ['confirm', 'Confirmation'], ['track', 'Tracking'], ['gifts', 'Gifts'], ['profile', 'Profile']];
-  HINTS = {
-    splash: 'Auto-advances after 2.6 s, or tap anywhere.',
-    login: 'Tap “Continuer avec Google”, then the account. “Continuer avec mon numéro” skips Google.',
-    phone: 'Type a Moroccan mobile (6 or 7, then 8 digits) or tap the SIM suggestion. Start with 5 to see the error.',
-    address: 'Drag the map: the pin lifts and drops, distance and zone update (6 km around the shop). Phone is optional, but must be valid if typed.',
-    home: 'Family chips list the whole menu: a tap opens the Menu at that family. Search filters the list. “+” flies to the cart and becomes a stepper. Tap a card for its builder or options. Tap the flame.',
-    menu: 'Flavour chips filter the whole menu, the family bar follows the scroll. “+” adds the cheapest option; tap a sweet to open its builder, a drink or pack for its options sheet. Packs and services at the bottom.',
-    builder: 'Any sweet item opens here (tap a row in the menu). Pick options, toggle toppings and watch them land. The price counts up; “Ajouter” flies to the bag, then the drink sheet opens.',
-    cart: 'Free-delivery bar at 150 DH, steppers with undo, “Vider” with undo. Promo code: MCHOU10.',
-    checkout: 'Card is first and selected by default; cash on delivery is the second choice. “Scanner ma carte” fills a test card (add any CVV). 4000 0000 0000 0002 is declined after 3-D Secure.',
-    confirm: 'The scooter rides in straight away (no crêpe scene, it would not match every order). The speaker mutes. Miams and streak count up.',
-    track: 'Simulated timeline: kitchen, on the way, delivered. “Next status” jumps ahead.',
-    gifts: '11 rewards paid in Miams (1 DH = 1 Miam). Tap one: a sheet confirms, Miams are spent and it lands in the cart for 0 DH. Removing it from the cart gives the Miams back. Tap the flame card for the streak.',
-    profile: 'First name and phone save as you type. The birthday can be set only once, then it locks. Orders list every order placed (new ones on top). Arabic is not built yet.'
-  };
   SLOT = { 'crepe-nb': 'b-ml-1', 'brownie-bueno': 'b-ml-2', 'brownie-pista': 'b-drop', 'mojito-fraise': 'b-re-2' };
   // Vraie carte M'Chou (.notes/ecrans/menu.md). Prix en DH ; tableau = un prix par combinaison d'options.
   FAMS = [
@@ -359,7 +341,6 @@ class Component extends DCLogic {
   trackMapRef = el => { if (el) this.waitL(() => this.initTrackMap(el)); else this.killMap('trk'); };
 
   componentDidMount() {
-    this.init0 = JSON.stringify(this.state);
     this._ps = this.state; this._pp = this.props;
     this.fit = () => {
       // En mode téléphone, largeur fixe de 390 px mise à l'échelle de l'écran, hauteur adaptée
@@ -798,11 +779,6 @@ class Component extends DCLogic {
     if (k === 'address') this.setState({ addrEdit: false });
     this.go(k, { reset: true });
   }
-  restart() {
-    this.clearT(); this.stopAnims();
-    const st = JSON.parse(this.init0), was = this.state.screen; st.scale = this.state.scale; st.ph = this.state.ph; st.now = Date.now(); this.navBack = false;
-    this.setState(st, () => { if (was === 'splash') this.onEnter('splash'); });
-  }
 
   renderVals() {
     const s = this.state, P = this.P, t = this.totals(), sc = s.screen, rtl = !!this.TW.rtl, flip = rtl ? -1 : 1;
@@ -897,8 +873,8 @@ class Component extends DCLogic {
       scale: s.scale, notMob: !this.MOB, wrapW: this.MOB ? Math.round(390 * s.scale) : Math.round(410 * s.scale), wrapH: this.MOB ? Math.round(s.ph * s.scale) : Math.round(864 * s.scale),
       sh: this.MOB ? { pos: 'fixed', pad: '0', ov: 'hidden', bg: '#3A0B40', top: 0, fw: 390, fh: s.ph, ph: s.ph, m: 0, r: 0, bs: 'none' }
         : { pos: 'relative', pad: '12px 24px', ov: 'visible', bg: '#24062A', top: 12, fw: 410, fh: 864, ph: 844, m: 10, r: 48, bs: '0 0 0 10px #1B1110,0 30px 60px -20px rgba(0,0,0,.7)' }, dir: rtl ? 'rtl' : 'ltr', flip,
-      is, statusBg: SB[sc] || 'linear-gradient(#3A0B40 72%,rgba(58,11,64,0))', steps, hint: this.HINTS[sc],
-      onRestart: () => this.restart(), onReplay: () => this.replay(),
+      is, statusBg: SB[sc] || 'linear-gradient(#3A0B40 72%,rgba(58,11,64,0))', steps,
+      onReplay: () => this.replay(),
       onAdvance: () => { const k = this.state.stage; if (k <= 1) this.setStage(2); else if (k === 2) { this.setState({ prog: 1 }); this.setStage(3); } },
       showBar: is.home || is.menu || is.gifts || is.profile, hasCount: t.count > 0, cartCount: t.count,
       tabHome: { fg: is.home ? '#FFD84D' : '#C9A9D1', fill: is.home ? 1 : 0 }, tabMenu: { fg: is.menu ? '#FFD84D' : '#C9A9D1', fill: is.menu ? 1 : 0 }, tabGifts: { fg: is.gifts ? '#FFD84D' : '#C9A9D1', fill: is.gifts ? 1 : 0 }, tabProfile: { fg: is.profile ? '#FFD84D' : '#C9A9D1', fill: is.profile ? 1 : 0 },
