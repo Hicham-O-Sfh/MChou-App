@@ -4,7 +4,7 @@
 
 - **En-tête** : initiale, nom, e-mail Google (lecture seule), solde de Miams et flamme ; un tap
   ouvre Cadeaux.
-- **Mes infos** : prénom modifiable (repris dans « Salut Hicham », toasts, suivi), numéro de
+- **Mes infos** : prénom modifiable (repris dans « Salut Marouane », toasts, suivi), numéro de
   téléphone (même valeur que l'onboarding et l'adresse), date d'anniversaire facultative.
   - L'anniversaire ne se renseigne **qu'une seule fois** : après « Valider », il est verrouillé.
   - Pas de cadeau d'anniversaire décidé pour l'instant.
