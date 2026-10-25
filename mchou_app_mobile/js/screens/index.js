@@ -1,4 +1,8 @@
 import { html } from 'lit-html';
+import splash from './splash.js';
+import login from './login.js';
+import phone from './phone.js';
+import address from './address.js';
 
 // Remplacé écran par écran par les modules portés (screens/<id>.js)
 const todo = (id, label, opts = {}) => ({
@@ -15,10 +19,10 @@ const todo = (id, label, opts = {}) => ({
 });
 
 export const SCREENS = [
-  todo('splash', 'Splash', { status: 'clear' }),
-  todo('login', 'Google sign-in', { status: 'clear' }),
-  todo('phone', 'Phone number'),
-  todo('address', 'Address'),
+  splash,
+  login,
+  phone,
+  address,
   todo('home', 'Home', { bar: true }),
   todo('menu', 'Menu', { bar: true }),
   todo('builder', 'Builder', { status: 'clear' }),

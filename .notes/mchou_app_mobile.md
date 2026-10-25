@@ -44,12 +44,21 @@ Toast : `app.toast(texte, { icon, tone: ok|gold|err|idle|soft, action: { label, 
    d'entrée (sens inversé au retour), toast, mécanique des sheets, sons, effets, `tween`, test du
    panier. Les 13 écrans sont des espaces réservés (« À porter » + écran suivant). Vérifié côte à
    côte : cadre, nav, panneau identiques au pixel, ainsi que le mode `?mobile`.
-2. Splash → login → téléphone → adresse
+2. ✅ **Splash → login → téléphone → adresse** + feuille Google. Logique `logic/phone.js`
+   (format, préfixes, état du champ) et `logic/geo.js` (distance, zone 6 km, délai) testées.
+   Carte Leaflet dans `ui/map.js`, créée à `enter` et détruite à `leave`. `components/photo.js`
+   remplace `<image-slot>` (même emplacement vide, sans « browse files » puisqu'on n'importe pas
+   de photo). Le focus du champ passe par `:focus-within` au lieu d'un état `phoneFocus`.
 3. Home → Menu (catalogue `FAMS/AX/FLAV/EX` dans `logic/`)
 4. Builder
 5. Panier → checkout → confirmation → suivi
 6. Cadeaux, profil, sheets restantes
 7. PWA (manifest et icônes déjà copiés), relecture finale
+
+## Écarts de l'original gardés tels quels (à trancher)
+
+- Feuille Google : l'avatar affiche « H » alors que le compte est « Marouane Berrichi ».
+- Adresse : « Pour que le livreur puisse **vous** contacter » (vouvoiement, le reste tutoie).
 
 Le panneau de gauche : `jump` ira chercher un `jump(app)` propre à l'écran quand il en faut un (données de
 démo pour panier, confirmation, suivi) ; les boutons contextuels (« Next status », « Replay scene ») passent

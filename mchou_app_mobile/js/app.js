@@ -67,6 +67,7 @@ export class App {
   enter(id, prev) {
     this.clearT();
     this.stopAnims();
+    if (prev) screen(prev).leave?.(this);
     const el = this.$(`[data-screen="${id}"]`);
     if (el && prev) screenIn(el, (TW.rtl ? -1 : 1) * (this.navBack ? -1 : 1));
     this.navBack = false;
