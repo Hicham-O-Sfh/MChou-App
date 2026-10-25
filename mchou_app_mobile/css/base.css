@@ -48,8 +48,15 @@ input::placeholder, textarea::placeholder { color: var(--mc-lilac-idle); opacity
 .scroll { overflow-y: auto; scrollbar-width: none; }
 .scroll::-webkit-scrollbar { display: none; }
 
+.scroll-x { overflow-x: auto; scrollbar-width: none; }
+.scroll-x::-webkit-scrollbar { display: none; }
+
+.tabnum { font-variant-numeric: tabular-nums; }
+
 .press { transition: transform var(--mc-dur-release) var(--mc-ease-spring); }
 .press:active { transform: translateY(3px) scale(.95); transition: transform var(--mc-dur-press) ease-out; }
+.press-soft { transition: transform var(--mc-dur-release) var(--mc-ease-spring); }
+.press-soft:active { transform: scale(.97); transition: transform var(--mc-dur-press) ease-out; }
 
 .tone-ok { color: var(--mc-success); }
 .tone-gold { color: var(--mc-banana); }

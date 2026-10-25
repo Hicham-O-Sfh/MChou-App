@@ -2,6 +2,30 @@ export const FREE_FROM = 150;
 export const FEE = 15;
 export const PROMO_RATE = .1;
 
+export const MAX_QTY = 20;
+
+const lineKey = l => [l.id, l.v || '', (l.ex || []).join(','), l.sugar === false ? 0 : 1, l.note || '', l.gift || ''].join('|');
+
+// Une ligne identique (mêmes options, suppléments, note, cadeau) s'additionne
+export function mergeLine(cart, l) {
+  const k = lineKey(l), i = cart.findIndex(x => lineKey(x) === k);
+  if (i < 0) return [...cart, { ...l }];
+  return cart.map((x, j) => (j === i ? { ...x, qty: Math.min(MAX_QTY, x.qty + l.qty) } : x));
+}
+
+// Retire une unité de la dernière ligne payante de ce produit
+export function minusLine(cart, id) {
+  const i = cart.findLastIndex(l => l.id === id && !l.gift);
+  if (i < 0) return cart;
+  return cart[i].qty > 1 ? cart.map((x, j) => (j === i ? { ...x, qty: x.qty - 1 } : x)) : cart.filter((_, j) => j !== i);
+}
+
+export function qtyById(cart) {
+  const q = {};
+  cart.forEach(l => { if (!l.gift) q[l.id] = (q[l.id] || 0) + l.qty; });
+  return q;
+}
+
 export function totals({ cart, promoOk }) {
   const sub = cart.reduce((a, l) => a + l.unit * l.qty, 0);
   const disc = promoOk ? Math.round(sub * PROMO_RATE) : 0;

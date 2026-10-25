@@ -4,6 +4,7 @@ import { createStore } from './core/store.js';
 import { initialState } from './state.js';
 import { screen } from './screens/index.js';
 import { shell } from './shell.js';
+import { sheetEffects } from './sheets/index.js';
 import { snd, buzz, setMuted } from './ui/sound.js';
 import { screenIn, sheetIn, sheetOut, toastIn, autoAnim } from './ui/motion.js';
 import { mountFx } from './ui/fx.js';
@@ -49,6 +50,7 @@ export class App {
     if (s.toast && s.toast !== prev.toast) toastIn(this.$('[data-toast]'));
     if (s.muted !== prev.muted) setMuted(s.muted);
     screen(s.screen).effects?.(prev, s, this);
+    sheetEffects(prev, s, this);
     autoAnim(this.root);
   }
 

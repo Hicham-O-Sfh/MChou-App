@@ -34,6 +34,10 @@ chaque écran porté est comparé côte à côte avec lui.
 | `js/logic/` | Calculs (panier, puis catalogue, prix, fidélité…) |
 | `css/` | `tokens`, `base` (reset, icônes, `.press`, tons), `components`, `shell` |
 
+**Piège des tailles** : les pages d'origine n'ont pas de `box-sizing: border-box` (seuls les boutons
+l'ont), alors qu'ici il est global. Un `div`/`span` avec largeur ou hauteur **et** padding dans l'original
+doit donc reprendre sa taille rendue (ex. carte produit 168 + 2×8 = 184 px, ligne du menu min 64 + 16 = 80 px).
+
 Conventions reprises de l'original : `data-screen`, `data-cart-target`, `data-badge`, `data-panel`,
 `data-scrim`, `data-toast`, `data-spin`, `data-pulse`, `data-scroll` (zone qui remonte au tap sur l'onglet).
 Toast : `app.toast(texte, { icon, tone: ok|gold|err|idle|soft, action: { label, fn } })`.
@@ -49,7 +53,12 @@ Toast : `app.toast(texte, { icon, tone: ok|gold|err|idle|soft, action: { label, 
    Carte Leaflet dans `ui/map.js`, créée à `enter` et détruite à `leave`. `components/photo.js`
    remplace `<image-slot>` (même emplacement vide, sans « browse files » puisqu'on n'importe pas
    de photo). Le focus du champ passe par `:focus-within` au lieu d'un état `phoneFocus`.
-3. Home → Menu (catalogue `FAMS/AX/FLAV/EX` dans `logic/`)
+3. ✅ **Home → Menu** + feuilles « série » et « options ». Données de la carte dans `js/data/`
+   (`catalog.js`, `loyalty.js`), calculs dans `js/logic/` (`catalog.js` : produits, prix, recherche ;
+   `loyalty.js` : prochain cadeau, flamme ; `cart.js` : fusion des lignes, retrait), actions qui
+   touchent l'état dans `js/actions/`. La feuille d'options n'affiche plus de suppléments : aucune
+   famille sans builder n'en a. En revenant sur le menu, la barre des familles se recale sur la
+   famille active (l'original la laissait au début).
 4. Builder
 5. Panier → checkout → confirmation → suivi
 6. Cadeaux, profil, sheets restantes
