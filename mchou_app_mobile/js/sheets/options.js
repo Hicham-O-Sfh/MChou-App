@@ -1,9 +1,9 @@
 import { html, nothing } from 'lit-html';
-import { AX } from '../data/catalog.js';
 import { P, FM, axOn, optUnit, optLabel, exNames } from '../logic/catalog.js';
 import { addLine, addedToast } from '../actions/cart.js';
 import { fly } from '../ui/fx.js';
 import { sheet } from '../components/sheet.js';
+import { axisPicker } from '../components/axis.js';
 
 const MAX = 9;
 
@@ -20,24 +20,6 @@ function add(app) {
   fly(app.$('[data-opt-thumb]'), p.icon, () => addLine(app, line), 56);
   app.closeSheet(() => addedToast(app, o.qty));
 }
-
-const axis = (app, p, po, a) => {
-  const A = AX[a];
-  return html`
-    <div class="opts__ax">
-      <span class="opts__axn">${A.n}</span>
-      <div class="opts__chips">
-        ${A.o.map(([val, label]) => {
-          const on = po.sel[a] === val, sel = { ...po.sel, [a]: val };
-          const pr = A.price ? `${optUnit(p, sel)} DH` : A.add && val ? `+${A.add} DH` : '';
-          return html`
-            <button type="button" class="opt-chip ${on ? 'is-on' : ''}" @click=${() => { if (!on) { app.snd('tap'); setPo(app, { sel }); } }}>
-              <span class="opt-chip__l">${label}</span>${pr ? html`<span class="opt-chip__p">${pr}</span>` : nothing}
-            </button>`;
-        })}
-      </div>
-    </div>`;
-};
 
 export const optionsSheet = (s, app) => {
   const po = s.po, p = po && P[po.id];
@@ -56,7 +38,9 @@ export const optionsSheet = (s, app) => {
         <button type="button" class="close-btn" aria-label="Fermer" @click=${() => app.closeSheet()}><span class="ms">close</span></button>
       </div>
     </div>
-    <div class="opts__body scroll">${p.ax.filter(a => axOn(a, po.sel)).map(a => axis(app, p, po, a))}</div>
+    <div class="opts__body scroll">
+      ${p.ax.filter(a => axOn(a, po.sel)).map(a => axisPicker(p, po.sel, a, sel => { app.snd('tap'); setPo(app, { sel }); }))}
+    </div>
     <div class="opts__foot">
       <div class="stepper">
         <button type="button" class=${po.qty > 1 ? '' : 'is-off'} aria-label="Moins" @click=${() => { if (po.qty > 1) { app.snd('off'); setPo(app, { qty: po.qty - 1 }); } }}><span class="ms">remove</span></button>

@@ -58,3 +58,14 @@ export const EX = [
 ];
 
 export const TAG_STYLE = { 'N°1': 'n1', Nouveau: 'new', DROP: 'drop' };
+export const TAG_LONG = { 'N°1': 'N°1 DES VENTES', DROP: 'DROP DU JOUR', Nouveau: 'NOUVEAU' };
+
+// Nappage du builder : [reflet, couleur, ombre]
+export const SAUCE = {
+  nutella: ['#8A5636', '#4B2615', '#351A0D'], pistache: ['#CDEBB0', '#8FCB6B', '#5E9A3E'], lotus: ['#E6A866', '#C77B30', '#9A5A1E'],
+  bueno: ['#F6DDB2', '#E7B97A', '#B98A4E'], oreo: ['#FFFFFF', '#EFE8DE', '#CFC2B0'], amande: ['#FFF6E6', '#EAD7BF', '#C9A06A'],
+  chocolat: ['#7A4A30', '#4B2615', '#2B1409']
+};
+
+// Ordre des suppléments dans le builder (différent de EX)
+export const BUILDER_EX = ['banane', 'pistache', 'amande', 'fraise', 'lotus', 'chantilly', 'oreo', 'kunafa'];

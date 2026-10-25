@@ -5,6 +5,7 @@ import phone from './phone.js';
 import address from './address.js';
 import home from './home.js';
 import menu from './menu.js';
+import builder from './builder.js';
 
 // Remplacé écran par écran par les modules portés (screens/<id>.js)
 const todo = (id, label, opts = {}) => ({
@@ -27,7 +28,7 @@ export const SCREENS = [
   address,
   home,
   menu,
-  todo('builder', 'Builder', { status: 'clear' }),
+  builder,
   todo('cart', 'Cart'),
   todo('checkout', 'Checkout'),
   todo('confirm', 'Confirmation', { status: 'clear' }),
