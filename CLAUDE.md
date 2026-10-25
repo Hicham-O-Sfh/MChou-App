@@ -32,6 +32,7 @@ Méthodologie de travail détaillée : [.notes/methodologie.md](.notes/methodolo
 | `assets/`, `uploads/` | Logo M'Chou (+ `assets/photos/` pour d'éventuelles photos) |
 | `screenshots/` | Captures de vérification de la carte (export Claude Design) |
 | `.notes/` | Notes de travail en Markdown (méthodologie, décisions, specs d'écrans) |
+| `mchou_app_mobile/` | Portage en HTML/CSS/JS propre (lit-html, sans build), en cours. Le `.dc.html` reste la référence. Voir [.notes/mchou_app_mobile.md](.notes/mchou_app_mobile.md) |
 
 ## Lancer le prototype
 
