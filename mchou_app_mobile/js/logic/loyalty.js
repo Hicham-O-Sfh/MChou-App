@@ -1,4 +1,23 @@
 import { GIFTS, FLAME } from '../data/loyalty.js';
+import { P, defSel, optLabel } from './catalog.js';
+
+export const giftOf = k => GIFTS.find(g => g.k === k) || GIFTS[0];
+
+// Miams rendus quand on retire des cadeaux ; le duo a deux lignes, remboursé une seule fois
+export function giftRefund(cart) {
+  const seen = new Set();
+  return cart.reduce((a, l) => {
+    if (!l.gift || seen.has(l.gift)) return a;
+    seen.add(l.gift);
+    return a + giftOf(l.gift).cost * l.qty;
+  }, 0);
+}
+
+// Lignes de panier d'un cadeau : options figées, prix 0
+export const giftLines = g => g.lines.map(([id, sel]) => {
+  const s2 = { ...defSel(P[id]), ...sel };
+  return { id, v: optLabel(P[id], s2), ex: [], sugar: true, note: '', unit: 0, qty: 1, gift: g.k };
+});
 
 export function nextGift(m) {
   const g = GIFTS.find(x => x.cost > m), n = GIFTS.filter(x => x.cost <= m).length;

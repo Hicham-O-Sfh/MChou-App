@@ -6,6 +6,10 @@ import address from './address.js';
 import home from './home.js';
 import menu from './menu.js';
 import builder from './builder.js';
+import cart from './cart.js';
+import checkout from './checkout.js';
+import confirm from './confirm.js';
+import track from './track.js';
 
 // Remplacé écran par écran par les modules portés (screens/<id>.js)
 const todo = (id, label, opts = {}) => ({
@@ -29,10 +33,10 @@ export const SCREENS = [
   home,
   menu,
   builder,
-  todo('cart', 'Cart'),
-  todo('checkout', 'Checkout'),
-  todo('confirm', 'Confirmation', { status: 'clear' }),
-  todo('track', 'Tracking', { status: 'track' }),
+  cart,
+  checkout,
+  confirm,
+  track,
   todo('gifts', 'Gifts', { bar: true }),
   todo('profile', 'Profile', { bar: true })
 ];

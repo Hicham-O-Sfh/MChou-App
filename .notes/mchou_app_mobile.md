@@ -7,7 +7,7 @@ chaque écran porté est comparé côte à côte avec lui.
 ## Lancer
 
 - Claude Code : config `app` de `.claude/launch.json` (port 8766), la référence sur `prototype` (8765).
-- À la main : `python -m http.server 8766 --bind 127.0.0.1 --directory mchou_app_mobile`.
+- À la main : `npm start` dans `mchou_app_mobile/` (lance `python dev-server.py 8766`, sans cache).
 - Tests de la logique : `npm test` dans `mchou_app_mobile/` (Node ≥ 20, sans dépendance).
 
 ## Choix techniques (2026-10-25)
@@ -67,7 +67,14 @@ Toast : `app.toast(texte, { icon, tone: ok|gold|err|idle|soft, action: { label, 
 **Piège de test** : quand la fenêtre de Claude n'est pas au premier plan, le panneau navigateur ne
 dessine plus d'images, donc `requestAnimationFrame` et les animations s'arrêtent à mi-chemin. Pour
 vérifier une animation, remplacer temporairement `requestAnimationFrame` par un `setTimeout` de 16 ms.
-5. Panier → checkout → confirmation → suivi
+5. ✅ **Panier → paiement → confirmation → suivi** + feuille 3-D Secure. Calculs dans `js/logic/`
+   (`payment.js` : saisie et contrôle de la carte, Luhn, code promo ; `time.js` : créneaux ;
+   `order.js` : passage de commande, Miams, flamme, bonus, historique ; `loyalty.js` : cadeaux et
+   remboursement) avec leurs tests ; actions dans `js/actions/order.js`. Panneau : « Replay scene »
+   et « Next status » via `tools()`. Écart volontaire : la ligne « +200 Miams bonus » de la
+   confirmation tient sur une ligne (l'original la cassait à cause du runtime dc).
+   `dev-server.py` remplace `python -m http.server` : sans en-tête de cache, le navigateur gardait
+   d'anciens modules JS.
 6. Cadeaux, profil, sheets restantes
 7. PWA (manifest et icônes déjà copiés), relecture finale
 

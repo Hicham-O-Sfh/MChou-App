@@ -10,7 +10,7 @@
     {
       "name": "app",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8766", "--bind", "127.0.0.1", "--directory", "mchou_app_mobile"],
+      "runtimeArgs": ["mchou_app_mobile/dev-server.py", "8766"],
       "port": 8766
     }
   ]

@@ -12,12 +12,18 @@ Remarques et suggestions au fil de l'eau. Cocher quand c'est réglé, avec la da
       Même défaut dans l'original.
 - [ ] Vibration : les navigateurs bloquent `navigator.vibrate` avant le premier vrai tap (message rouge dans la
       console). Tester `navigator.userActivation.hasBeenActive` avant d'appeler, pour une console propre.
+- [ ] L'heure courante (`now`) n'avance que sur l'accueil : ailleurs, les créneaux du paiement et
+      l'« arrivée prévue vers » du suivi se basent sur une heure figée (même comportement que l'original).
+      Faire avancer `now` sur le paiement et le suivi aussi.
+- [ ] Le badge « Livreur » du suivi et les photos de produits restent des emplacements vides.
 - [ ] Déployer sur GitHub Pages pour ouvrir l'app sur le téléphone (voir `.notes/mobile.md`).
 
 ## Prototype d'origine (référence)
 
 - [ ] En revenant sur le menu, la barre des familles reste au début au lieu de montrer la famille active
       (corrigé dans mchou_app_mobile seulement).
+- [ ] Confirmation : la ligne « +200 Miams bonus, 5 semaines d'affilée ! » se casse en morceaux (le runtime
+      dc découpe le texte autour de `{{ cf.bonus }}` dans un conteneur flex). Correct dans mchou_app_mobile.
 
 ## Réglé
 

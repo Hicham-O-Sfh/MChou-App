@@ -12,4 +12,21 @@ export function km(a, b) {
 export const etaSteps = d => Math.max(1, Math.ceil(d / 5));
 export const etaRange = d => { const n = etaSteps(d); return `${10 * n}–${15 * n} min`; };
 
+// Trajet courbe de a vers b (Bézier quadratique), en n+1 points
+export function curve(a, b, n = 40) {
+  const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1];
+  const cx = mx - dy * .35, cy = my + dx * .35;
+  return Array.from({ length: n + 1 }, (_, i) => {
+    const t = i / n, u = 1 - t;
+    return [u * u * a[0] + 2 * u * t * cx + t * t * b[0], u * u * a[1] + 2 * u * t * cy + t * t * b[1]];
+  });
+}
+
+// Position à la fraction p du trajet, et le trajet déjà parcouru
+export function along(route, p) {
+  const n = route.length - 1, f = p * n, i = Math.min(n - 1, Math.floor(f)), t = f - i, A = route[i], B = route[i + 1];
+  const pos = [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
+  return { pos, done: [...route.slice(0, i + 1), pos] };
+}
+
 export const fmtKm = d => d.toFixed(1).replace('.', ',');
