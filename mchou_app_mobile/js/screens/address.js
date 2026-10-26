@@ -86,7 +86,7 @@ export default {
             ${phoneField(s, app, 'field--m')}
           </label>
           ${phoneError(s)}
-          ${pst === 'empty' ? html`<span class="hint">Pour que le livreur puisse vous contacter.</span>` : nothing}
+          ${pst === 'empty' ? html`<span class="hint">Pour que le livreur puisse te contacter.</span>` : nothing}
         </div>
         <div class="addr__cta">
           ${ok

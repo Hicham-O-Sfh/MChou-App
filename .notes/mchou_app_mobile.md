@@ -71,10 +71,7 @@ vérifier une animation, remplacer temporairement `requestAnimationFrame` par un
 6. Cadeaux, profil, sheets restantes
 7. PWA (manifest et icônes déjà copiés), relecture finale
 
-## Écarts de l'original gardés tels quels (à trancher)
-
-- Feuille Google : l'avatar affiche « H » alors que le compte est « Marouane Berrichi ».
-- Adresse : « Pour que le livreur puisse **vous** contacter » (vouvoiement, le reste tutoie).
+Remarques, suggestions et points à peaufiner : [todo.md](../todo.md) à la racine.
 
 Le panneau de gauche : `jump` ira chercher un `jump(app)` propre à l'écran quand il en faut un (données de
 démo pour panier, confirmation, suivi) ; les boutons contextuels (« Next status », « Replay scene ») passent

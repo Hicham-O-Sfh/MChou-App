@@ -15,7 +15,7 @@ export const googleSheet = (s, app) => sheet({ cls: 'gsi', onClose: () => { if (
     <span class="gsi__sub">pour continuer vers <b>M'Chou</b></span>
   </div>
   <button type="button" class="gsi__account" @click=${() => pick(app)}>
-    <span class="gsi__avatar">H</span>
+    <span class="gsi__avatar">M</span>
     <span class="gsi__who"><span class="gsi__name">Marouane Berrichi</span><span class="gsi__mail">Marouane.Berrichi@gmail.com</span></span>
     ${s.gbusy ? html`<span class="gsi__spin" data-spin></span>` : nothing}
   </button>
