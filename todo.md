@@ -19,19 +19,8 @@ Remarques et suggestions au fil de l'eau. Cocher quand c'est réglé, avec la da
 - [ ] Profil : dans l'en-tête, « 112 Miams » et « Mes cadeaux » passent sur deux lignes (aussi dans l'original).
       Raccourcir ou réduire la police pour tenir sur une ligne.
 - [ ] Déployer sur GitHub Pages pour ouvrir l'app sur le téléphone (voir `.notes/mobile.md`).
-- [ ] Bouton/geste « retour » d'Android : la navigation n'utilise pas l'historique du navigateur, donc le
-      retour système quitte l'app installée au lieu de revenir à l'écran précédent. Brancher `go/back` sur
-      `history.pushState` / `popstate` (et fermer la feuille ouverte d'abord).
-- [ ] Rien n'est gardé : fermer ou recharger l'app remet panier, Miams, commandes, prénom, anniversaire à zéro,
-      et repasse par splash + connexion. Sauver l'état utile dans `localStorage` et sauter l'onboarding si déjà fait.
-- [ ] Zones sûres du téléphone : avec `viewport-fit=cover`, la nav du bas peut passer sous la barre de gestes
-      Android/iOS. Ajouter `env(safe-area-inset-bottom)` (nav, pieds de page, feuilles).
-- [ ] Hors ligne / sans CDN : lit-html, polices, icônes et Leaflet viennent d'internet. Copier lit-html (et
-      éventuellement les polices) dans le dossier ; un service worker permettrait d'ouvrir l'app hors connexion.
-- [ ] Accessibilité : les champs carte, prénom et date n'ont aucun style de focus (`outline: none`) ; ajouter un
-      anneau banane au focus comme le champ téléphone.
-- [ ] Écrans encore annoncés par « arrive dans le prochain lot » : FAQ, conditions, chat livreur, aide du suivi.
-- [ ] Version arabe (RTL) : le code prévoit `TW.rtl` et les propriétés logiques, mais rien n'est traduit.
+- [x] 2026-10-26 — Zones sûres du téléphone : en mode `?mobile`, l'app se loge entre l'encoche et la barre de
+      gestes (`env(safe-area-inset-*)` sur `.stage--mob`, hauteur recalculée dans `fit()`).
 
 ## Prototype d'origine (référence)
 
@@ -43,6 +32,11 @@ Remarques et suggestions au fil de l'eau. Cocher quand c'est réglé, avec la da
       padding par défaut du bouton n'est pas remis à zéro. Égaux dans mchou_app_mobile.
 - [ ] Profil : la police arabe « Baloo Bhaijaan 2 » n'est chargée nulle part (ni dans l'original ni dans le
       portage) ; le bouton العربية retombe sur une police système.
+
+## Écarté (2026-10-26)
+
+- Retour Android via l'historique, sauvegarde de l'état entre deux lancements, fonctionnement hors ligne,
+  focus des champs, écrans « prochain lot », version arabe : pas nécessaires pour le prototype.
 
 ## Réglé
 
