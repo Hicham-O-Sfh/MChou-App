@@ -109,7 +109,8 @@ Chaque page = un template dans `<x-dc>…</x-dc>` + (optionnel) un script de log
 - Cadre téléphone 390×844 avec mise à l'échelle auto. **Mode téléphone** (`MOB` : `?mobile` ou écran
   ≤ 600 px) : plein écran, sans panneau, cadre ni fausse barre d'état ; largeur 390 mise à
   l'échelle de l'écran, hauteur adaptée (`ph`). `manifest.json` + `icons/` : installable sur
-  l'écran d'accueil (PWA, ouvre `?mobile`). `index.html` redirige vers la coquille.
+  l'écran d'accueil (PWA, ouvre `?mobile`). `index.html` (racine) redirige vers `mchou_app_mobile/` ; le prototype d'origine s'ouvre
+  directement par `Ordering-Prototype.dc.html`.
 - Pas de favoris dans l'app (retirés). Paiement : carte en 1re position et cochée par défaut,
   espèces à la livraison en 2e, sans choix du billet.
 - Profil (`screens/profile`) : prénom (`fname`, réutilisé dans les messages), téléphone,
