@@ -14,7 +14,6 @@ const WATCH = {
   brownie: 'Regarde ton brownie se garnir', choux: 'Regarde tes choux se garnir'
 };
 
-// Description de l'assiette d'un produit selon ses options
 export function plateOf(p, sel) {
   const nm = p.name.toLowerCase(), shape = p.bld || 'crepe';
   const hit = SAUCE_HIT.map(([k, r]) => [k, nm.search(r)]).filter(x => x[1] >= 0).sort((a, b) => a[1] - b[1]).map(x => x[0]);

@@ -14,6 +14,7 @@ export class App {
   timers = [];
   anims = [];
   raf = {};
+  toastT = 0;
   navBack = false;
   root = null;
 
@@ -69,7 +70,7 @@ export class App {
   }
 
   enter(id, prev) {
-    this.clearT();
+    this.clearTimers();
     this.stopAnims();
     if (prev) screen(prev).leave?.(this);
     const el = this.$(`[data-screen="${id}"]`);
@@ -132,7 +133,7 @@ export class App {
   // Minuteurs et animations d'écran : coupés à chaque changement d'écran
   later(fn, ms) { const id = setTimeout(fn, ms); this.timers.push(['t', id]); return id; }
   every(fn, ms) { const id = setInterval(fn, ms); this.timers.push(['i', id]); return id; }
-  clearT() { this.timers.forEach(([k, id]) => (k === 't' ? clearTimeout(id) : clearInterval(id))); this.timers = []; }
+  clearTimers() { this.timers.forEach(([k, id]) => (k === 't' ? clearTimeout(id) : clearInterval(id))); this.timers = []; }
   keep(anim) { this.anims.push(anim); return anim; }
   stopAnims() { this.anims.forEach(a => { try { a.cancel(); } catch {} }); this.anims = []; }
 

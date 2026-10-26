@@ -6,7 +6,7 @@ import { fmtPhone } from '../logic/phone.js';
 import { slots, currentSlot } from '../logic/time.js';
 import { brand, cardErrors, cardInput, expInput, cvvInput, nameInput } from '../logic/payment.js';
 import { place, scanCard, DEMO_CART } from '../actions/order.js';
-import { backButton } from '../components/onboarding.js';
+import { backButton } from '../components/back.js';
 import { miamCoin, feeRows } from '../components/money.js';
 
 const pick = (app, patch) => { app.snd('tap'); app.set(patch); };
@@ -19,7 +19,7 @@ const payOption = (isOn, icon, tone, title, sub, onClick) => html`
   </button>`;
 
 const cardField = (label, err, input) => html`
-  <label class="cform__field">
+  <label class="form-field">
     <span class="field-label">${label}</span>
     ${input}
     ${err ? html`<span class="cform__err">${err}</span>` : nothing}
@@ -69,7 +69,7 @@ export default {
             <div class="deliv__addr">
               <span class="deliv__ic"><span class="ms fill">location_on</span></span>
               <span class="deliv__txt"><span class="deliv__main">${s.q}, ${s.city}</span><span class="deliv__sub">≈ ${fmtKm(s.dist)} km de M’Chou</span></span>
-              <button type="button" class="deliv__edit" @click=${() => { app.set({ addrEdit: true }); app.go('address'); }}>Modifier</button>
+              <button type="button" class="link-action" @click=${() => { app.set({ addrEdit: true }); app.go('address'); }}>Modifier</button>
             </div>
             <div class="deliv__sep"></div>
             <div class="deliv__when">
@@ -111,6 +111,12 @@ export default {
             : html`<button type="button" class="place" @click=${() => place(app)}>Je me régale&nbsp;!<span class="place__total">${shown} DH</span></button>`}
         </div>
       </section>`;
+  },
+
+  // Les créneaux suivent l'heure courante
+  enter(app) {
+    app.set({ now: Date.now() });
+    app.every(() => app.set({ now: Date.now() }), 1000);
   },
 
   jump(app) {

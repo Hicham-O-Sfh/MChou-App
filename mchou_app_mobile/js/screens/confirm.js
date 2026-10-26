@@ -48,7 +48,7 @@ function sceneEnd(app) {
 
 function skipScene(app, r) {
   if (!app.s.sceneOn) return;
-  app.clearT();
+  app.clearTimers();
   sceneAnims.forEach(a => { try { a.finish(); } catch {} });
   loops(app, r);
   sceneEnd(app);
@@ -73,7 +73,7 @@ function runScene(app) {
 
 function replay(app) {
   if (!app.s.order) return;
-  app.clearT();
+  app.clearTimers();
   app.stopAnims();
   delete app.$('[data-screen="confirm"]')?.dataset.looping;
   app.set({ sceneOn: false }, () => runScene(app));
@@ -139,7 +139,7 @@ export default {
               : html`<span class="confirm__msg">${nx.msg}</span>`}
           </div>
           <div class="confirm__streak">
-            <span class="streak-btn__in" data-flame><span class="ms fill">local_fire_department</span><span class="streak-btn__n tabnum">${s.streakShown}</span></span>
+            <span class="streak-pill" data-flame><span class="ms fill">local_fire_department</span><span class="streak-pill__n tabnum">${s.streakShown}</span></span>
             <span class="confirm__streak-txt"><span class="confirm__streak-n">${s.streakShown} semaines d'affilée</span><span class="confirm__streak-sub">${streakSub}</span></span>
           </div>
           <button type="button" class="cta press" @click=${() => { app.snd('tap'); app.go('track'); }}><span class="ms fill">moped</span>Suivre ma commande</button>

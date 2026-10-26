@@ -41,7 +41,7 @@ export default {
           </div>
           <button type="button" class="streak-card press-soft" @click=${() => { app.snd('tap'); app.openSheet('streak'); }}>
             <div class="streak-card__head">
-              <span class="streak-btn__in"><span class="ms fill">local_fire_department</span><span class="streak-btn__n tabnum">${s.streak}</span></span>
+              <span class="streak-pill"><span class="ms fill">local_fire_department</span><span class="streak-pill__n tabnum">${s.streak}</span></span>
               <span class="streak-card__txt"><span class="streak-card__title">${fl.head}</span><span class="streak-card__sub">Une commande par semaine, 5 semaines d'affilée</span></span>
               <span class="ms flip-rtl streak-card__go">chevron_right</span>
             </div>

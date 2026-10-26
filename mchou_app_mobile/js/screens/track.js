@@ -52,6 +52,8 @@ function initMap(app, el) {
 
 // 5 s en cuisine, puis 24 s de trajet
 function run(app) {
+  app.set({ now: Date.now() });
+  app.every(() => app.set({ now: Date.now() }), 1000);
   if (app.s.stage < 1) app.set({ stage: 1 });
   if (app.s.stage <= 1) app.later(() => { if (app.s.stage === 1) setStage(app, 2); }, 5000);
   app.every(() => {
