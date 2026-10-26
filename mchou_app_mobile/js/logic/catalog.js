@@ -2,7 +2,7 @@ import { FAMS, AX, FLAV, EX } from '../data/catalog.js';
 
 export const FM = Object.fromEntries(FAMS.map(f => [f.k, f]));
 
-export const norm = x => String(x).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const norm = x => String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 const slug = x => norm(x).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const BRAND = /^(Nutella|Oreo|Lotus|Bueno|Kunafa)/;
 

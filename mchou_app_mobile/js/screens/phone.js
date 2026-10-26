@@ -1,6 +1,7 @@
 import { html, nothing } from 'lit-html';
 import { phoneState } from '../logic/phone.js';
-import { backButton, progress, phoneField, phoneError } from '../components/onboarding.js';
+import { backButton } from '../components/back.js';
+import { progress, phoneField, phoneError } from '../components/onboarding.js';
 
 export default {
   id: 'phone',

@@ -9,7 +9,7 @@ export const DEMO_CART = [
   { id: 'mojito-fraise', ex: [], sugar: true, note: '', unit: 20, qty: 1 }
 ];
 
-export function commit(app, target = 'confirm') {
+function commit(app, target = 'confirm') {
   app.set(placeOrder(app.s, Date.now()), () => app.go(target, { reset: true }));
 }
 

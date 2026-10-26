@@ -67,7 +67,7 @@ export default {
               <span class="home__addr-v"><span>${s.q}, ${s.city}</span><span class="ms">expand_more</span></span>
             </button>
             <button type="button" class="streak-btn press" aria-label="Ma série" @click=${() => { app.snd('tap'); app.openSheet('streak'); }}>
-              <span class="streak-btn__in"><span class="ms fill">local_fire_department</span><span class="streak-btn__n">${s.streak}</span></span>
+              <span class="streak-pill"><span class="ms fill">local_fire_department</span><span class="streak-pill__n">${s.streak}</span></span>
             </button>
           </div>
           <div class="home__hello">
@@ -125,6 +125,7 @@ export default {
   },
 
   enter(app) {
+    app.set({ now: Date.now() });
     app.every(() => app.set({ now: Date.now() }), 1000);
   }
 };

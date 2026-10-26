@@ -161,6 +161,8 @@ export default {
     if (pendingFam) scrollToFam(app, pendingFam);
     showChip(app, pendingFam || app.s.mfam);
     pendingFam = null;
+    // Les largeurs des pastilles changent quand les polices arrivent : recaler une fois chargées
+    document.fonts?.ready.then(() => showChip(app, app.s.mfam));
   },
 
   effects(prev, s, app) {

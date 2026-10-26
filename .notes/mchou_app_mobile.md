@@ -78,7 +78,15 @@ vérifier une animation, remplacer temporairement `requestAnimationFrame` par un
 6. ✅ **Cadeaux, profil** + feuille cadeau. Les 13 écrans et les 7 feuilles sont portés ; plus
    d'espace réservé (`screens/index.js` ne liste que les modules). Échange de Miams dans
    `js/actions/gifts.js`, date d'anniversaire en toutes lettres dans `logic/time.js`.
-7. PWA (manifest et icônes déjà copiés), relecture finale
+7. ✅ **PWA et relecture** : manifeste vérifié (nom, `standalone`, départ sur `?mobile`, icônes 192
+   et 512). Plus de chemin encodé `screens%2F…` : le dossier peut aller tel quel sur GitHub Pages.
+   Relecture : aucun export, import ou classe CSS inutilisé ; styles partagés remontés dans
+   `components.css` ; bouton retour dans son composant ; échappements `̀-ͯ` rétablis dans
+   `logic/catalog.js`. Corrigés au passage (absents de l'original) : pas de vibration avant le
+   premier tap, barre des familles recalée après chargement des polices, heure courante qui avance
+   aussi sur le paiement et le suivi. `README.md` dans le dossier.
+
+**Portage terminé** (2026-10-26) : 13 écrans, 7 feuilles, 35 tests.
 
 Remarques, suggestions et points à peaufiner : [todo.md](../todo.md) à la racine.
 

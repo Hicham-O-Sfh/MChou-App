@@ -1,8 +1,10 @@
-export const FREE_FROM = 150;
-export const FEE = 15;
-export const PROMO_RATE = .1;
+const FREE_FROM = 150;
+const FEE = 15;
+const PROMO_RATE = .1;
 
 export const MAX_QTY = 20;
+// Plafond du sélecteur de quantité (builder, feuille d'options)
+export const MAX_PICK = 9;
 
 const lineKey = l => [l.id, l.v || '', (l.ex || []).join(','), l.sugar === false ? 0 : 1, l.note || '', l.gift || ''].join('|');
 

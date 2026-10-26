@@ -59,6 +59,8 @@ export function snd(k) {
   } catch {}
 }
 
+// Le navigateur refuse (et le signale en console) toute vibration avant le premier vrai tap
 export function buzz(ms = 8) {
+  if (navigator.userActivation && !navigator.userActivation.hasBeenActive) return;
   try { navigator.vibrate?.(ms); } catch {}
 }

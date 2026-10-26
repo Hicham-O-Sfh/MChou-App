@@ -4,7 +4,8 @@ import { EASE } from '../ui/motion.js';
 import { whenLeaflet, baseMap, killMap, reverse } from '../ui/map.js';
 import { SHOP, HOME0, ZONE_KM, km, etaRange, fmtKm } from '../logic/geo.js';
 import { phoneState } from '../logic/phone.js';
-import { backButton, progress, phoneField, phoneError } from '../components/onboarding.js';
+import { backButton } from '../components/back.js';
+import { progress, phoneField, phoneError } from '../components/onboarding.js';
 
 let map = null, revT = 0;
 

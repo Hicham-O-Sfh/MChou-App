@@ -33,7 +33,7 @@ Méthodologie de travail détaillée : [.notes/methodologie.md](.notes/methodolo
 | `screenshots/` | Captures de vérification de la carte (export Claude Design) |
 | `.notes/` | Notes de travail en Markdown (méthodologie, décisions, specs d'écrans) |
 | `todo.md` | Remarques, suggestions et points à peaufiner, au fil de l'eau (à tenir à jour) |
-| `mchou_app_mobile/` | Portage en HTML/CSS/JS propre (lit-html, sans build), en cours ; config `app` (port 8766). Le `.dc.html` reste la référence. Voir [.notes/mchou_app_mobile.md](.notes/mchou_app_mobile.md) |
+| `mchou_app_mobile/` | Portage complet en HTML/CSS/JS propre (lit-html, sans build) ; config `app` (port 8766), voir son `README.md`. Le `.dc.html` reste la référence. Voir [.notes/mchou_app_mobile.md](.notes/mchou_app_mobile.md) |
 
 ## Lancer le prototype
 

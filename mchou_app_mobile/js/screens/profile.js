@@ -88,10 +88,10 @@ export default {
           </div>
 
           <span class="section-k profile__k">MES INFOS</span>
-          <label class="cform__field"><span class="field-label">Prénom</span>
+          <label class="form-field"><span class="field-label">Prénom</span>
             <input class="text-input" placeholder="Ton prénom" .value=${live(s.fname)} @input=${e => app.set({ fname: e.target.value.replace(/\s+/g, ' ').slice(0, 24) })}>
           </label>
-          <label class="cform__field"><span class="field-label">Numéro de téléphone <span class="field-label__opt">facultatif, mais conseillé</span></span>
+          <label class="form-field"><span class="field-label">Numéro de téléphone <span class="field-label__opt">facultatif, mais conseillé</span></span>
             ${phoneField(s, app, 'field--m')}
           </label>
           ${phoneError(s)}
@@ -99,7 +99,7 @@ export default {
 
           <span class="section-k profile__k">MON ADRESSE</span>
           ${infoRow('location_on', html`<span class="info-row__main">${s.q}, ${s.city}</span>`, `≈ ${fmtKm(s.dist)} km de M’Chou`,
-            html`<button type="button" class="deliv__edit" @click=${() => { app.set({ addrEdit: true }); app.go('address'); }}>Modifier</button>`)}
+            html`<button type="button" class="link-action" @click=${() => { app.set({ addrEdit: true }); app.go('address'); }}>Modifier</button>`)}
 
           <span class="section-k profile__k">MES COMMANDES</span>
           ${s.orders.length ? html`
@@ -112,7 +112,7 @@ export default {
           <span class="section-k profile__k">PAIEMENT</span>
           ${s.savedCard
             ? infoRow('credit_card', html`<span class="info-row__main" dir="ltr">${s.savedCard.brand} •••• ${s.savedCard.last4}</span>`, 'Carte enregistrée',
-              html`<button type="button" class="deliv__edit info-row__drop" @click=${() => dropCard(app)}>Supprimer</button>`)
+              html`<button type="button" class="link-action info-row__drop" @click=${() => dropCard(app)}>Supprimer</button>`)
             : html`<span class="profile__empty">Aucune carte enregistrée. Elle s'enregistre à ton prochain paiement par carte.</span>`}
 
           <span class="section-k profile__k">LANGUE</span>

@@ -6,7 +6,7 @@ import { giftOf } from '../logic/loyalty.js';
 import { promoInput } from '../logic/payment.js';
 import { addSimple, lineQty, clearCart, applyPromo } from '../actions/cart.js';
 import { DEMO_CART } from '../actions/order.js';
-import { backButton } from '../components/onboarding.js';
+import { backButton } from '../components/back.js';
 import { photo } from '../components/photo.js';
 import { miamCoin, feeRows } from '../components/money.js';
 

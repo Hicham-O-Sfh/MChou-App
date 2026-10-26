@@ -4,18 +4,20 @@ Remarques et suggestions au fil de l'eau. Cocher quand c'est réglé, avec la da
 
 ## Portage mchou_app_mobile
 
-- [ ] Étapes 5 à 7 du portage (panier → suivi, cadeaux et profil, PWA) — voir `.notes/mchou_app_mobile.md`.
+- [x] 2026-10-26 — Étapes 5 à 7 du portage (panier → suivi, cadeaux et profil, PWA) — voir `.notes/mchou_app_mobile.md`.
 - [ ] Ajouter de vraies photos : les emplacements `photo()` (ex-`<image-slot>`) attendent des fichiers dans
       `assets/photos/` ; prévoir une table produit → photo quand les photos arrivent.
-- [ ] Après un rechargement, la barre des familles du menu peut se caler trop loin si les polices ne sont pas
+- [x] 2026-10-26 — Après un rechargement, la barre des familles du menu peut se caler trop loin si les polices ne sont pas
       encore chargées (largeurs calculées avec la police de secours). Recaler après `document.fonts.ready`.
       Même défaut dans l'original.
-- [ ] Vibration : les navigateurs bloquent `navigator.vibrate` avant le premier vrai tap (message rouge dans la
+- [x] 2026-10-26 — Vibration : les navigateurs bloquent `navigator.vibrate` avant le premier vrai tap (message rouge dans la
       console). Tester `navigator.userActivation.hasBeenActive` avant d'appeler, pour une console propre.
-- [ ] L'heure courante (`now`) n'avance que sur l'accueil : ailleurs, les créneaux du paiement et
+- [x] 2026-10-26 — L'heure courante (`now`) n'avance que sur l'accueil : ailleurs, les créneaux du paiement et
       l'« arrivée prévue vers » du suivi se basent sur une heure figée (même comportement que l'original).
       Faire avancer `now` sur le paiement et le suivi aussi.
 - [ ] Le badge « Livreur » du suivi et les photos de produits restent des emplacements vides.
+- [ ] Profil : dans l'en-tête, « 112 Miams » et « Mes cadeaux » passent sur deux lignes (aussi dans l'original).
+      Raccourcir ou réduire la police pour tenir sur une ligne.
 - [ ] Déployer sur GitHub Pages pour ouvrir l'app sur le téléphone (voir `.notes/mobile.md`).
 
 ## Prototype d'origine (référence)

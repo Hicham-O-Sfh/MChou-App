@@ -2,11 +2,6 @@ import { html, nothing } from 'lit-html';
 import { live } from 'lit-html/directives/live.js';
 import { fmtPhone, phoneInput, phoneState } from '../logic/phone.js';
 
-export const backButton = app => html`
-  <button type="button" class="icon-btn" aria-label="Retour" @click=${() => { app.snd('tap'); app.back(); }}>
-    <span class="ms flip-rtl">arrow_back</span>
-  </button>`;
-
 export const progress = (done, total) => html`
   <div class="progress">${Array.from({ length: total }, (_, i) => html`<span class=${i < done ? 'is-on' : ''}></span>`)}</div>
   <span class="progress-n">${done}/${total}</span>`;

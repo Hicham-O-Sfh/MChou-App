@@ -1,11 +1,10 @@
 import { html, nothing } from 'lit-html';
 import { P, FM, axOn, optUnit, optLabel, exNames } from '../logic/catalog.js';
+import { MAX_PICK } from '../logic/cart.js';
 import { addLine, addedToast } from '../actions/cart.js';
 import { fly } from '../ui/fx.js';
 import { sheet } from '../components/sheet.js';
 import { axisPicker } from '../components/axis.js';
-
-const MAX = 9;
 
 const price = s => {
   const o = s.po, p = o && P[o.id];
@@ -45,7 +44,7 @@ export const optionsSheet = (s, app) => {
       <div class="stepper">
         <button type="button" class=${po.qty > 1 ? '' : 'is-off'} aria-label="Moins" @click=${() => { if (po.qty > 1) { app.snd('off'); setPo(app, { qty: po.qty - 1 }); } }}><span class="ms">remove</span></button>
         <span class="stepper__n">${po.qty}</span>
-        <button type="button" aria-label="Plus" @click=${() => { if (po.qty < MAX) { app.snd('pop'); setPo(app, { qty: po.qty + 1 }); } }}><span class="ms">add</span></button>
+        <button type="button" aria-label="Plus" @click=${() => { if (po.qty < MAX_PICK) { app.snd('pop'); setPo(app, { qty: po.qty + 1 }); } }}><span class="ms">add</span></button>
       </div>
       <button type="button" class="cta cta--fill press" @click=${() => add(app)}>Ajouter<span class="cta__dot"></span><span class="tabnum">${s.tw.o ?? price(s)} DH</span></button>
     </div>`);

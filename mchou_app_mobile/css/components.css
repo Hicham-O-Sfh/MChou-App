@@ -11,7 +11,6 @@
   font: var(--mc-type-button);
   color: var(--mc-text-on-gold);
 }
-.cta--xl { height: var(--mc-button-xl); }
 .cta--m { height: var(--mc-button-m); padding-inline: 14px 20px; font: 600 16px/1 var(--mc-font-display); }
 .cta--m .ms { font-size: 22px; font-variation-settings: "FILL" 1, "wght" 600; }
 .cta--fill { flex: 1; gap: 10px; padding: 0; }
@@ -46,6 +45,23 @@
 .page__body { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .page__scroll { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; padding: 8px 20px 20px; }
 .page__foot { flex: none; padding: 12px 20px 34px; background: var(--mc-plum-900); box-shadow: 0 -1px 0 rgba(233,211,238,.12); }
+
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.link-action { flex: none; height: var(--mc-touch-min); padding: 0 12px; font: 700 15px/1 var(--mc-font-body); color: var(--mc-banana); }
+
+.streak-pill {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 42px;
+  padding-inline: 10px 14px;
+  border-radius: var(--mc-radius-pill);
+  background: var(--mc-plum-950);
+  box-shadow: var(--mc-sticker);
+}
+.streak-pill .ms { color: var(--mc-raspberry); }
+.streak-pill__n { font: 700 17px/1 var(--mc-font-display); color: var(--mc-cream); }
 
 .section-k { font: 800 12px/16px var(--mc-font-body); letter-spacing: .06em; color: var(--mc-banana); }
 .section-k--gap { margin-top: 8px; }

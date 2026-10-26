@@ -3,7 +3,7 @@ import { live } from 'lit-html/directives/live.js';
 import { rm } from '../config.js';
 import { EX, BUILDER_EX, TAG_LONG, TAG_STYLE } from '../data/catalog.js';
 import { P, axOn, optUnit, optLabel, exNames } from '../logic/catalog.js';
-import { totals } from '../logic/cart.js';
+import { totals, MAX_PICK } from '../logic/cart.js';
 import { plateOf } from '../logic/plate.js';
 import { addLine } from '../actions/cart.js';
 import { openBuilder } from '../actions/catalog.js';
@@ -11,7 +11,6 @@ import { fly, rel, floatTxt } from '../ui/fx.js';
 import { plateView } from '../components/plate.js';
 import { axisPicker } from '../components/axis.js';
 
-const MAX = 9;
 const EXTRA = Object.fromEntries(EX.map(e => [e.k, e]));
 
 const unit = s => optUnit(P[s.bid], s.bsel, s.ex);
@@ -58,7 +57,7 @@ function toggleSugar(app) {
 
 function setQty(app, d) {
   const q = app.s.bqty + d;
-  if (q < 1 || q > MAX) return;
+  if (q < 1 || q > MAX_PICK) return;
   app.set({ bqty: q, bAdded: false });
   app.snd(d > 0 ? 'pop' : 'off');
 }
