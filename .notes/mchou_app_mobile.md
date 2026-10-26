@@ -59,12 +59,14 @@ Toast : `app.toast(texte, { icon, tone: ok|gold|err|idle|soft, action: { label, 
    touchent l'état dans `js/actions/`. La feuille d'options n'affiche plus de suppléments : aucune
    famille sans builder n'en a. En revenant sur le menu, la barre des familles se recale sur la
    famille active (l'original la laissait au début).
-4. 🚧 **Builder** + feuille « Une boisson avec ça ? » : porté et comparé (5 formes d'assiette, 8
+4. ✅ **Builder** + feuille « Une boisson avec ça ? » : porté et comparé (5 formes d'assiette, 8
    garnitures, parcours d'ajout identiques). Pièces de l'assiette converties en données
    (`js/data/plate-pieces.js`, `css/plate-pieces.css`, générés depuis `screens/builder.dc.html`).
-   **Reste à vérifier** : le prix animé du CTA s'est figé en cours de route lors d'un test
-   (62 au lieu de 70 DH), peut-être parce que le panneau de test ne rafraîchit pas les images
-   (requestAnimationFrame en pause). À revérifier dans une fenêtre visible avant de clore l'étape.
+   Prix animé vérifié (25 → 50 DH en courbe, valeurs finales justes).
+
+**Piège de test** : quand la fenêtre de Claude n'est pas au premier plan, le panneau navigateur ne
+dessine plus d'images, donc `requestAnimationFrame` et les animations s'arrêtent à mi-chemin. Pour
+vérifier une animation, remplacer temporairement `requestAnimationFrame` par un `setTimeout` de 16 ms.
 5. Panier → checkout → confirmation → suivi
 6. Cadeaux, profil, sheets restantes
 7. PWA (manifest et icônes déjà copiés), relecture finale
