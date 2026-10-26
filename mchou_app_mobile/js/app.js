@@ -17,6 +17,7 @@ export class App {
   toastT = 0;
   navBack = false;
   root = null;
+  probe = null;
 
   constructor(host) {
     this.host = host;
@@ -57,14 +58,22 @@ export class App {
     autoAnim(this.root);
   }
 
-  // Téléphone : largeur 390 mise à l'échelle de l'écran. Bureau : cadre 410×864 réduit si besoin.
+  // Zones sûres (encoche, barre de gestes) en px, lues sur un élément sonde
+  insets() {
+    this.probe ??= document.body.appendChild(Object.assign(document.createElement('div'), { className: 'safe-probe' }));
+    const cs = getComputedStyle(this.probe), px = p => parseFloat(cs[p]) || 0;
+    return { t: px('paddingTop'), r: px('paddingRight'), b: px('paddingBottom'), l: px('paddingLeft') };
+  }
+
+  // Téléphone : largeur 390 mise à l'échelle de la zone sûre. Bureau : cadre 410×864 réduit si besoin.
   fit() {
-    const W = innerWidth, H = innerHeight;
     if (MOB) {
+      const i = this.insets(), W = innerWidth - i.l - i.r, H = innerHeight - i.t - i.b;
       const k = W / 390, ph = Math.round(H / k);
       if (Math.abs(k - this.s.scale) > .004 || ph !== this.s.ph) this.set({ scale: k, ph });
       return;
     }
+    const W = innerWidth, H = innerHeight;
     const k = Math.max(.45, Math.min(1, (H - 24) / 864, (W - 24) / 410));
     if (Math.abs(k - this.s.scale) > .004) this.set({ scale: k });
   }

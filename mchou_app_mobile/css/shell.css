@@ -11,7 +11,14 @@
   background: var(--mc-plum-950);
   touch-action: manipulation;
 }
-.stage--mob { position: fixed; padding: 0; overflow: hidden; background: var(--mc-plum-900); }
+/* Téléphone : l'app se loge entre l'encoche et la barre de gestes, le fond plum remplit les bords */
+.stage--mob {
+  position: fixed;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  overflow: hidden;
+  background: var(--mc-plum-900);
+}
+.safe-probe { position: fixed; visibility: hidden; pointer-events: none; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
 
 .panel {
   flex: 0 1 300px;
