@@ -63,3 +63,4 @@ input::placeholder, textarea::placeholder { color: var(--mc-lilac-idle); opacity
 .tone-err { color: var(--mc-danger); }
 .tone-idle { color: var(--mc-lilac-idle); }
 .tone-soft { color: var(--mc-lilac); }
+.tone-flame { color: var(--mc-raspberry); }

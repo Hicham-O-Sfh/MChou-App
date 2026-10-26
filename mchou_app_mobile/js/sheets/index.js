@@ -4,13 +4,15 @@ import { streakSheet } from './streak.js';
 import { optionsSheet, optionsEffects } from './options.js';
 import { upsellSheet } from './upsell.js';
 import { tdsSheet } from './tds.js';
+import { giftSheet } from './gift.js';
 
 const SHEETS = {
   google: googleSheet,
   streak: streakSheet,
   opts: optionsSheet,
   upsell: upsellSheet,
-  tds: tdsSheet
+  tds: tdsSheet,
+  gift: giftSheet
 };
 
 export const sheetView = (s, app) => SHEETS[s.sheet]?.(s, app) ?? nothing;

@@ -74,8 +74,10 @@ vérifier une animation, remplacer temporairement `requestAnimationFrame` par un
    et « Next status » via `tools()`. Écart volontaire : la ligne « +200 Miams bonus » de la
    confirmation tient sur une ligne (l'original la cassait à cause du runtime dc).
    `dev-server.py` remplace `python -m http.server` : sans en-tête de cache, le navigateur gardait
-   d'anciens modules JS.
-6. Cadeaux, profil, sheets restantes
+   d'anciens modules JS (pour un cache déjà pollué, ouvrir `127.0.0.1:8766` au lieu de `localhost`).
+6. ✅ **Cadeaux, profil** + feuille cadeau. Les 13 écrans et les 7 feuilles sont portés ; plus
+   d'espace réservé (`screens/index.js` ne liste que les modules). Échange de Miams dans
+   `js/actions/gifts.js`, date d'anniversaire en toutes lettres dans `logic/time.js`.
 7. PWA (manifest et icônes déjà copiés), relecture finale
 
 Remarques, suggestions et points à peaufiner : [todo.md](../todo.md) à la racine.

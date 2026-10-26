@@ -24,6 +24,10 @@ Remarques et suggestions au fil de l'eau. Cocher quand c'est réglé, avec la da
       (corrigé dans mchou_app_mobile seulement).
 - [ ] Confirmation : la ligne « +200 Miams bonus, 5 semaines d'affilée ! » se casse en morceaux (le runtime
       dc découpe le texte autour de `{{ cf.bonus }}` dans un conteneur flex). Correct dans mchou_app_mobile.
+- [ ] Profil, langue : les boutons « Français » et « العربية » n'ont pas la même largeur (165 / 177 px), car le
+      padding par défaut du bouton n'est pas remis à zéro. Égaux dans mchou_app_mobile.
+- [ ] Profil : la police arabe « Baloo Bhaijaan 2 » n'est chargée nulle part (ni dans l'original ni dans le
+      portage) ; le bouton العربية retombe sur une police système.
 
 ## Réglé
 

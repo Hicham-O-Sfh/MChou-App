@@ -58,6 +58,9 @@ export const initialState = () => ({
     { date: '29/09', items: 'Choux pistache', total: 30 },
     { date: '22/09', items: 'Crêpe Bueno, Jus d’orange', total: 45 }
   ],
+  gift: 'crepe',
+  bday: '',
+  bdayDraft: '',
   miams: 112,
   streak: 4,
   weekDone: false,

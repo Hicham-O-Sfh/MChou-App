@@ -115,18 +115,3 @@
   background: var(--mc-cream);
   pointer-events: none;
 }
-
-/* Écrans pas encore portés */
-.todo {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 0 var(--mc-screen-gutter);
-  text-align: center;
-}
-.todo__tag { font: var(--mc-type-caption); letter-spacing: .06em; text-transform: uppercase; color: var(--mc-lilac-idle); }
-.todo__title { margin: 0 0 8px; font: var(--mc-type-h1); }
