@@ -1,12 +1,14 @@
 # mchou_app_mobile — portage du prototype en HTML/CSS/JS
 
 But : un prototype au code propre et maintenable, fidèle au prototype `.dc.html` (rendu,
-comportements, animations, sons). Le prototype d'origine reste intact et sert de **référence** :
-chaque écran porté est comparé côte à côte avec lui.
+comportements, animations, sons). Chaque écran porté a été comparé côte à côte avec lui.
+
+**2026-10-26 : portage terminé, ancien prototype supprimé du dépôt** (pages `.dc.html`, runtime
+Claude Design, `tokens/`, captures). Il reste dans l'historique git : `git show 6057350:<fichier>`.
 
 ## Lancer
 
-- Claude Code : config `app` de `.claude/launch.json` (port 8766), la référence sur `prototype` (8765).
+- Claude Code : config `app` de `.claude/launch.json` (port 8766).
 - À la main : `npm start` dans `mchou_app_mobile/` (lance `python dev-server.py 8766`, sans cache).
 - Tests de la logique : `npm test` dans `mchou_app_mobile/` (Node ≥ 20, sans dépendance).
 
@@ -16,7 +18,7 @@ chaque écran porté est comparé côte à côte avec lui.
 - **lit-html 3.2.1** (CDN jsdelivr, import map) pour le rendu : seules les parties qui changent sont
   mises à jour, donc les animations ne sont pas interrompues. `keyed(screen)` recrée le DOM à
   chaque changement d'écran (comme `sc-if` dans l'original).
-- **CSS en classes + variables** (`css/tokens.css` = thème Fidèle de `tokens/`). Plus de styles inline,
+- **CSS en classes + variables** (`css/tokens.css` = thème Fidèle, ex-`tokens/`). Plus de styles inline,
   sauf les valeurs calculées (échelle, positions des effets).
 - **Un seul état partagé** (`core/store.js`) : `set(patch, cb)` comme `setState`, rendu groupé.
 - Logique métier pure dans `js/logic/` (sans DOM) → testable avec `node --test`.

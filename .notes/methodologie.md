@@ -13,7 +13,7 @@ spécification visuelle et comportementale pour le développement Flutter.
 |---|---|
 | **Retouche** (texte, couleur, espacement) | Modif directe → vérif navigateur → validation |
 | **Nouvel écran / parcours** | Spec courte dans `.notes/ecrans/<id>.md` → validation de la spec → réalisation → vérif → validation |
-| **Évolution du design system** (nouvelle couleur, nouveau composant) | Décision notée dans `decisions.md` → mise à jour `Design-System.dc.html` + `tokens/` → application aux écrans |
+| **Évolution du design system** (nouvelle couleur, nouveau composant) | Décision notée dans `decisions.md` → mise à jour `mchou_app_mobile/css/tokens.css` + composants → application aux écrans |
 
 ## Cycle d'une modification
 
@@ -50,7 +50,7 @@ spécification visuelle et comportementale pour le développement Flutter.
 ## Préparer le passage à Flutter
 
 - Penser en composants réutilisables : un même bouton, une même carte produit → un widget.
-- Toute valeur visuelle doit exister dans `tokens/` (source pour le `ThemeData`).
+- Toute valeur visuelle doit exister dans `css/tokens.css` (source pour le `ThemeData`).
 - Les données de démo du script (`P`, `CATS`, `EX`, `state`) donnent une première idée des
   modèles de données.
 - Les animations sont décrites dans le design system (durées et courbes) : les reprendre telles

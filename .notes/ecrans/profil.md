@@ -1,4 +1,4 @@
-# Écran Profil (`screens/profile.dc.html`)
+# Écran Profil (`js/screens/profile.js`)
 
 ## Décisions (2026-10-15)
 

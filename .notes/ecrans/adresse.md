@@ -1,4 +1,4 @@
-# Écran Adresse (`screens/address.dc.html`)
+# Écran Adresse (`js/screens/address.js`)
 
 ## Décisions (2026-10-15)
 

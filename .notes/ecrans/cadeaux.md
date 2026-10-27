@@ -1,4 +1,4 @@
-# Écran Cadeaux (`screens/gifts.dc.html`) et flamme
+# Écran Cadeaux (`js/screens/gifts.js`) et flamme
 
 ## Miams (2026-10-15)
 
@@ -36,4 +36,4 @@
   la 5e (puis 10e, 15e…). La confirmation affiche le bonus.
 - La feuille de la flamme montre une timeline de 5 nœuds (plus de S37, S38… qui prêtaient à
   confusion) avec un texte d'en-tête qui dit combien il reste. Timeline partagée :
-  `parts/flame.dc.html` (feuille + carte de l'écran Cadeaux).
+  `js/components/flame.js` (feuille + carte de l'écran Cadeaux).

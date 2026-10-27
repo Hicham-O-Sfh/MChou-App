@@ -1,8 +1,8 @@
 # M'Chou — prototype mobile
 
 Prototype interactif de l'app M'Chou (crêpes, choux, brownies, mojitos à Oujda), en HTML/CSS/JS
-sans étape de build. Portage fidèle du prototype Claude Design (`../Ordering-Prototype.dc.html`),
-qui reste la référence visuelle et fonctionnelle.
+sans étape de build. Portage fidèle du prototype Claude Design (`.dc.html`), supprimé du dépôt une
+fois le portage terminé (il reste dans l'historique git, commit `6057350`).
 
 ## Lancer
 
@@ -47,8 +47,8 @@ changent sont mises à jour, ce qui laisse les animations tranquilles.
 
 - Les pages d'origine sont en `content-box` (sauf les boutons) ; ici tout est en `border-box`. Un bloc
   qui a une taille **et** un padding dans l'original reprend sa taille rendue.
-- `js/data/plate-pieces.js` et `css/plate-pieces.css` ont été générés depuis `screens/builder.dc.html` :
-  ce sont désormais eux qu'on modifie.
+- `js/data/plate-pieces.js` et `css/plate-pieces.css` ont été générés depuis l'ancien
+  `screens/builder.dc.html` : ce sont désormais eux qu'on modifie.
 - Pour vérifier une animation quand la fenêtre n'est pas au premier plan, remplacer
   `requestAnimationFrame` par un `setTimeout` de 16 ms : sinon elle reste figée.
 

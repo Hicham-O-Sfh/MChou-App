@@ -5,7 +5,7 @@ Remarques et suggestions au fil de l'eau. Cocher quand c'est réglé, avec la da
 ## Portage mchou_app_mobile
 
 - [x] 2026-10-26 — Étapes 5 à 7 du portage (panier → suivi, cadeaux et profil, PWA) — voir `.notes/mchou_app_mobile.md`.
-- [ ] Ajouter de vraies photos : les emplacements `photo()` (ex-`<image-slot>`) attendent des fichiers dans
+- [ ] Ajouter de vraies photos : les emplacements `photo()` attendent des fichiers dans
       `assets/photos/` ; prévoir une table produit → photo quand les photos arrivent.
 - [x] 2026-10-26 — Après un rechargement, la barre des familles du menu peut se caler trop loin si les polices ne sont pas
       encore chargées (largeurs calculées avec la police de secours). Recaler après `document.fonts.ready`.
@@ -21,17 +21,8 @@ Remarques et suggestions au fil de l'eau. Cocher quand c'est réglé, avec la da
 - [ ] Déployer sur GitHub Pages pour ouvrir l'app sur le téléphone (voir `.notes/mobile.md`).
 - [x] 2026-10-26 — Zones sûres du téléphone : en mode `?mobile`, l'app se loge entre l'encoche et la barre de
       gestes (`env(safe-area-inset-*)` sur `.stage--mob`, hauteur recalculée dans `fit()`).
-
-## Prototype d'origine (référence)
-
-- [ ] En revenant sur le menu, la barre des familles reste au début au lieu de montrer la famille active
-      (corrigé dans mchou_app_mobile seulement).
-- [ ] Confirmation : la ligne « +200 Miams bonus, 5 semaines d'affilée ! » se casse en morceaux (le runtime
-      dc découpe le texte autour de `{{ cf.bonus }}` dans un conteneur flex). Correct dans mchou_app_mobile.
-- [ ] Profil, langue : les boutons « Français » et « العربية » n'ont pas la même largeur (165 / 177 px), car le
-      padding par défaut du bouton n'est pas remis à zéro. Égaux dans mchou_app_mobile.
-- [ ] Profil : la police arabe « Baloo Bhaijaan 2 » n'est chargée nulle part (ni dans l'original ni dans le
-      portage) ; le bouton العربية retombe sur une police système.
+- [ ] Profil : la police arabe « Baloo Bhaijaan 2 » n'est chargée nulle part ; le bouton العربية retombe sur
+      une police système.
 
 ## Écarté (2026-10-26)
 
