@@ -1,4 +1,4 @@
-/* Généré depuis screens/builder.dc.html (pièces de l'assiette) */
+/* Pièces de l'assiette du builder, générées depuis l'ancien screens/builder.dc.html ; modifier ici */
 .pc { position: absolute; }
 .pc-noodles-1 { border-radius: 50%; border: 8px solid transparent; border-top-color: #F4C56F; filter: drop-shadow(0 1px 0 rgba(160,86,10,.35)); }
 .pc-noodles-2 { border-radius: 50%; border: 8px solid transparent; border-top-color: #EBB65E; filter: drop-shadow(0 1px 0 rgba(160,86,10,.35)); }

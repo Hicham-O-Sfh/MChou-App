@@ -5,7 +5,7 @@ const EMPTY_ICON = html`
     <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
   </svg>`;
 
-// Remplace <image-slot> : une photo de assets/photos/ si elle existe, sinon l'emplacement vide légendé
+// Photo de assets/photos/ si elle est fournie, sinon l'emplacement vide légendé
 export const photo = (label, src) => src
   ? html`<img class="photo" src=${src} alt=${label}>`
   : html`<div class="photo photo--empty">${EMPTY_ICON}<span class="photo__cap">${label}</span></div>`;
