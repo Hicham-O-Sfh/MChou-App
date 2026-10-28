@@ -1,5 +1,5 @@
-# Réglages Claude Code propres à la machine
-.claude/settings.local.json
+# Réglages locaux de Claude Code, jamais publiés
+.claude/
 
 # OS / éditeurs
 Thumbs.db
@@ -7,6 +7,3 @@ Desktop.ini
 .DS_Store
 .vscode/
 .idea/
-
-# Python (serveur local)
-__pycache__/
