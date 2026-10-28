@@ -1,0 +1,203 @@
+/* Copyright (c) 2026 - Ing. Développeur Hicham Oussama Saffih */
+/* Pièces de l'assiette du builder, une classe par garniture (positions dans js/data/plate-pieces.js) */
+.pc {
+  position: absolute;
+}
+.pc-noodles-1 {
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #f4c56f;
+  filter: drop-shadow(0 1px 0 rgba(160, 86, 10, 0.35));
+}
+.pc-noodles-2 {
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #ebb65e;
+  filter: drop-shadow(0 1px 0 rgba(160, 86, 10, 0.35));
+}
+.pc-noodles-3 {
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #f7d58a;
+  filter: drop-shadow(0 1px 0 rgba(160, 86, 10, 0.35));
+}
+.pc-noodles-4 {
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #e9ae55;
+  filter: drop-shadow(0 1px 0 rgba(160, 86, 10, 0.35));
+}
+.pc-strands-1 {
+  border-radius: 50%;
+  border: 7px solid transparent;
+  border-top-color: #f4c56f;
+  filter: drop-shadow(0 1px 0 rgba(160, 86, 10, 0.35));
+}
+.pc-strands-2 {
+  border-radius: 50%;
+  border: 7px solid transparent;
+  border-top-color: #ebb65e;
+  filter: drop-shadow(0 1px 0 rgba(160, 86, 10, 0.35));
+}
+.pc-strands-3 {
+  border-radius: 50%;
+  border: 7px solid transparent;
+  border-top-color: #f7d58a;
+  filter: drop-shadow(0 1px 0 rgba(160, 86, 10, 0.35));
+}
+.pc-strands-4 {
+  border-radius: 50%;
+  border: 7px solid transparent;
+  border-top-color: #e9ae55;
+  filter: drop-shadow(0 1px 0 rgba(160, 86, 10, 0.35));
+}
+.pc-incBanana-1 {
+  border-radius: 50%;
+  background: radial-gradient(circle, #e9cf7c 0 9%, #fff4cf 11% 62%, #e9cf7c 64% 100%);
+  box-shadow: 0 2px 0 rgba(150, 110, 40, 0.45);
+}
+.pc-bueno-1 {
+  border-radius: 8px;
+  background:
+    linear-gradient(#4b2615 0 0) 50% 0/100% 5px no-repeat,
+    repeating-linear-gradient(90deg, #e7b97a 0 7px, #d9a564 7px 9px);
+  box-shadow:
+    0 2px 0 rgba(75, 38, 21, 0.5),
+    inset 0 0 0 1.5px #a86f35;
+}
+.pc-fraise-1 {
+  border-radius: 50% 50% 50% 50%/42% 42% 58% 58%;
+  background:
+    radial-gradient(circle, #ffe08a 0.9px, transparent 1.4px) 0 0/6px 6px,
+    radial-gradient(circle at 50% 35%, #ff8fa3, #e0284b 72%);
+  box-shadow: 0 2px 0 rgba(120, 10, 30, 0.4);
+}
+.pc-amande-1 {
+  border-radius: 50%;
+  background: linear-gradient(90deg, #fbf0de, #e9c99c);
+  box-shadow:
+    inset 0 0 0 1.5px #c9a06a,
+    0 2px 0 rgba(120, 80, 30, 0.35);
+}
+.pc-lotus-1 {
+  inset: 16px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #8e5219 0 1.3px, transparent 1.9px) 0 0/12px 12px,
+    radial-gradient(circle, #e0a15c 0 1.1px, transparent 1.7px) 6px 8px/15px 15px;
+  -webkit-mask-image: radial-gradient(circle, #000 55%, transparent 72%);
+  mask-image: radial-gradient(circle, #000 55%, transparent 72%);
+}
+.pc-lotus-2 {
+  border-radius: 2px 4px 3px 2px;
+  background: #b8722f;
+  box-shadow:
+    inset -1.5px -1.5px 0 #6e3d12,
+    0 1px 1px rgba(60, 25, 5, 0.45);
+}
+.pc-lotus-3 {
+  border-radius: 2px 4px 3px 2px;
+  background: #e0a15c;
+  box-shadow:
+    inset -1.5px -1.5px 0 #8e5219,
+    0 1px 1px rgba(60, 25, 5, 0.45);
+}
+.pc-lotus-4 {
+  border-radius: 5px;
+  background: repeating-linear-gradient(45deg, #c77b30 0 4px, #b96e28 4px 6px);
+  box-shadow:
+    inset 0 0 0 2px #8e5219,
+    inset 0 0 0 5px #c77b30,
+    inset 0 0 0 6px rgba(142, 82, 25, 0.7),
+    0 3px 0 rgba(60, 25, 5, 0.5),
+    0 4px 6px rgba(60, 25, 5, 0.35);
+}
+.pc-chantilly-1 {
+  border-radius: 50% 50% 46% 46%/56% 56% 44% 44%;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.95) 0 14%, transparent 15%),
+    radial-gradient(ellipse at 50% 100%, rgba(190, 160, 130, 0.45), transparent 60%),
+    repeating-conic-gradient(from 8deg at 50% 40%, #ffffff 0 16deg, #e9dccb 19deg 25deg, #ffffff 28deg 36deg);
+  box-shadow:
+    0 4px 0 rgba(58, 11, 64, 0.18),
+    0 6px 10px -4px rgba(58, 11, 64, 0.3);
+}
+.pc-chantilly-2 {
+  border-radius: 1px 60% 60% 60%;
+  background: repeating-conic-gradient(from 0deg at 30% 30%, #ffffff 0 20deg, #eadfd0 24deg 32deg, #ffffff 36deg 45deg);
+}
+.pc-oreo-1 {
+  border-radius: 40%;
+  background: #3d2216;
+}
+.pc-oreo-2 {
+  border-radius: 40%;
+  background: #1e0d06;
+}
+.pc-oreo-3 {
+  border-radius: 40% 60% 50% 45%;
+  background: #1e0d06;
+  box-shadow:
+    inset 1.5px 1.5px 0 #4a2a1a,
+    0 1px 1px rgba(0, 0, 0, 0.4);
+}
+.pc-oreo-4 {
+  border-radius: 40% 60% 50% 45%;
+  background: #2b1409;
+  box-shadow:
+    inset 1.5px 1.5px 0 #4a2a1a,
+    0 1px 1px rgba(0, 0, 0, 0.4);
+}
+.pc-oreo-5 {
+  border-radius: 45%;
+  background: #f4eee4;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+.pc-oreo-6 {
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, #2b1409 0 3px, #3d2216 3px 5px);
+  box-shadow:
+    inset 0 0 0 2px #1e0d06,
+    inset 0 0 0 4px #3d2216,
+    0 3px 0 rgba(0, 0, 0, 0.45),
+    0 4px 6px rgba(0, 0, 0, 0.3);
+}
+.pc-pistache-1 {
+  border-radius: 45%;
+  background: #8fcb6b;
+  box-shadow: inset -2px -2px 0 #6fa84e;
+}
+.pc-pistache-2 {
+  border-radius: 45%;
+  background: #a5d883;
+  box-shadow: inset -2px -2px 0 #6fa84e;
+}
+.pc-kunafa-1 {
+  border-radius: 2px;
+  background: #d9892a;
+  box-shadow: 0 1px 0 rgba(140, 70, 10, 0.45);
+}
+.pc-kunafa-2 {
+  border-radius: 2px;
+  background: #f5c46a;
+  box-shadow: 0 1px 0 rgba(140, 70, 10, 0.45);
+}
+.pc-kunafa-3 {
+  border-radius: 2px;
+  background: #e9a23b;
+  box-shadow: 0 1px 0 rgba(140, 70, 10, 0.45);
+}
+.pc-kunafa-4 {
+  border-radius: 2px;
+  background: #fbd98a;
+  box-shadow: 0 1px 0 rgba(140, 70, 10, 0.45);
+}
+.pc-kunafa-5 {
+  border-radius: 45%;
+  background: #a5d883;
+  box-shadow: inset -1.5px -1.5px 0 #5e9a3e;
+}
+.pc-kunafa-6 {
+  border-radius: 45%;
+  background: #8fcb6b;
+  box-shadow: inset -1.5px -1.5px 0 #5e9a3e;
+}

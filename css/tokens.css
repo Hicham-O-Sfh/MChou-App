@@ -1,0 +1,104 @@
+/* Copyright (c) 2026 - Ing. Développeur Hicham Oussama Saffih */
+/* Thème « Fidèle » : tokens du design system (v0.2), source de vérité des couleurs, typos, rayons et durées */
+:root {
+  --mc-cream: #fff6e9;
+  --mc-caramel: #f7b538;
+  --mc-caramel-light: #ffd36b;
+  --mc-caramel-lip: #c98a12;
+  --mc-plum: #6b2d8b;
+  --mc-plum-logo: #651a6c;
+  --mc-plum-800: #4e1256;
+  --mc-plum-900: #3a0b40;
+  --mc-plum-950: #24062a;
+  --mc-lilac: #e9d3ee;
+  --mc-lilac-idle: #c9a9d1;
+  --mc-raspberry: #ff4d6d;
+  --mc-raspberry-600: #e0284b;
+  --mc-raspberry-300: #ff6b85;
+  --mc-banana: #ffd84d;
+  --mc-pistachio: #8fcb6b;
+
+  --mc-bg: var(--mc-plum-900);
+  --mc-surface: var(--mc-plum-800);
+  --mc-surface-sunken: rgba(0, 0, 0, 0.25);
+  --mc-border: rgba(255, 216, 77, 0.25);
+  --mc-border-subtle: rgba(233, 211, 238, 0.18);
+  --mc-text: var(--mc-cream);
+  --mc-text-muted: var(--mc-lilac);
+  --mc-text-on-gold: var(--mc-plum-900);
+  --mc-price: var(--mc-banana);
+  --mc-nav: var(--mc-plum-950);
+  --mc-nav-active: var(--mc-banana);
+  --mc-nav-idle: var(--mc-lilac-idle);
+  --mc-success: var(--mc-pistachio);
+  --mc-danger: var(--mc-raspberry-300);
+  --mc-scrim: rgba(18, 2, 21, 0.6);
+  --mc-device-frame: #1b1110;
+
+  --mc-grad-cta: linear-gradient(180deg, var(--mc-caramel-light) 0%, var(--mc-caramel) 100%);
+  --mc-grad-gold-card: linear-gradient(160deg, #ffe08a 0%, var(--mc-caramel) 100%);
+  --mc-grain: radial-gradient(circle, rgba(255, 216, 77, 0.09) 1px, transparent 1.6px) 0 0/23px 23px,
+    radial-gradient(circle, rgba(233, 211, 238, 0.07) 1.3px, transparent 2px) 11px 17px/37px 37px;
+
+  --mc-font-script: 'Pacifico', cursive;
+  --mc-font-display: 'Fredoka', 'Baloo Bhaijaan 2', system-ui, sans-serif;
+  --mc-font-body: 'Nunito', 'Baloo Bhaijaan 2', system-ui, sans-serif;
+  --mc-type-script: 400 26px/40px var(--mc-font-script);
+  --mc-type-display: 700 32px/36px var(--mc-font-display);
+  --mc-type-h1: 700 26px/30px var(--mc-font-display);
+  --mc-type-h2: 600 20px/26px var(--mc-font-display);
+  --mc-type-h3: 600 17px/22px var(--mc-font-display);
+  --mc-type-body: 500 16px/24px var(--mc-font-body);
+  --mc-type-body-sm: 600 14px/20px var(--mc-font-body);
+  --mc-type-caption: 700 12px/16px var(--mc-font-body);
+  --mc-type-button: 600 17px/20px var(--mc-font-display);
+  --mc-type-price: 700 18px/22px var(--mc-font-display);
+
+  --mc-radius-sm: 12px;
+  --mc-radius-md: 20px;
+  --mc-radius-lg: 28px;
+  --mc-radius-pill: 999px;
+
+  --mc-space-1: 4px;
+  --mc-space-2: 8px;
+  --mc-space-3: 12px;
+  --mc-space-4: 16px;
+  --mc-space-5: 20px;
+  --mc-space-6: 24px;
+  --mc-space-8: 32px;
+  --mc-space-10: 40px;
+
+  --mc-touch-min: 48px;
+  --mc-button-m: 48px;
+  --mc-button-l: 56px;
+  --mc-button-xl: 64px;
+  --mc-bottom-bar: 72px;
+  --mc-screen-gutter: 20px;
+
+  --mc-lip-gold: inset 0 2px 0 rgba(255, 255, 255, 0.6), 0 4px 0 var(--mc-caramel-lip);
+  --mc-lip-plum: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 4px 0 var(--mc-plum-950);
+  --mc-ring-gold: 0 0 0 1.5px rgba(255, 216, 77, 0.2);
+  --mc-shadow-float: 0 20px 36px -14px rgba(0, 0, 0, 0.8);
+  --mc-sticker: 0 0 0 2px var(--mc-banana), 0 4px 0 2px var(--mc-caramel-lip);
+
+  --mc-dur-press: 90ms;
+  --mc-dur-fast: 180ms;
+  --mc-dur-base: 280ms;
+  --mc-dur-sheet: 360ms;
+  --mc-dur-release: 420ms;
+  --mc-dur-countup: 600ms;
+  --mc-dur-fly: 720ms;
+  --mc-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --mc-ease-in: cubic-bezier(0.45, 0.05, 0.8, 0.35);
+  --mc-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --mc-ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --mc-dur-release: 150ms;
+    --mc-dur-countup: 0ms;
+    --mc-dur-fly: 0ms;
+    --mc-ease-spring: ease-out;
+  }
+}

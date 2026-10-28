@@ -1,42 +1,43 @@
 # M'Chou — prototype d'app mobile
 
 Prototype interactif d'une app de commande/livraison de crêpes, brownies, choux, milkshakes et
-mojitos à Oujda (Maroc), en **HTML/CSS/JS sans build** (dossier `mchou_app_mobile/`). L'app finale
-sera développée en **Flutter/Dart** ; ce dépôt sert à itérer sur le design et le comportement avant.
+mojitos à Oujda (Maroc), en **HTML/CSS/JS sans build**, à la racine du dépôt. L'app finale sera
+développée en **Flutter/Dart** ; ce dépôt sert à itérer sur le design et le comportement avant.
+Publié sur GitHub Pages : <https://hicham-o-sfh.github.io/MChou-App/>.
 
 Le prototype vient d'un export Claude Design (`.dc.html`), porté puis supprimé le 2026-10-26 ;
 il reste dans l'historique git (dernier commit qui le contient : `6057350`).
 
 Méthodologie de travail : [.notes/methodologie.md](.notes/methodologie.md).
-Détails du portage, structure et pièges : [mchou_app_mobile/README.md](mchou_app_mobile/README.md)
-et [.notes/mchou_app_mobile.md](.notes/mchou_app_mobile.md).
+Structure et pièges : [README.md](README.md).
 
 ## Décisions en cours
 
 - **Thème « Fidèle » (sombre) uniquement.** Le thème clair « Nutella Fun » est abandonné.
 - **Images** : emplacements vides `photo()` (`js/components/photo.js`). Une vraie photo va dans
-  `mchou_app_mobile/assets/photos/` et se passe en second argument de `photo()`.
+  `assets/photos/` et se passe en second argument de `photo()`.
 - **Réglages figés** : son activé, Reduce motion désactivé, LTR (`TW` dans `js/config.js`).
 - **Données = vraie carte M'Chou** partout (`js/data/catalog.js`). Retranscription et décisions :
   [.notes/ecrans/menu.md](.notes/ecrans/menu.md).
-- Pas de retour Android par l'historique, pas de sauvegarde entre deux lancements, pas de mode hors
-  ligne, pas de version arabe : écartés pour le prototype (voir `todo.md`).
+- Écartés pour le prototype : retour Android par l'historique, sauvegarde entre deux lancements,
+  mode hors ligne, focus des champs, version arabe.
 
 ## Fichiers
 
 | Fichier | Rôle |
 |---|---|
-| `mchou_app_mobile/` | Le prototype (voir son `README.md`) |
-| `index.html` | Redirige la racine du site vers `mchou_app_mobile/` (GitHub Pages depuis la racine) |
-| `.notes/` | Notes de travail : méthodologie, specs d'écrans, portage, téléphone |
-| `todo.md` | Remarques, suggestions et points à peaufiner, au fil de l'eau (à tenir à jour) |
+| `index.html` | Le prototype (panneau des écrans sur bureau, plein écran sur téléphone ou avec `?mobile`) |
+| `design-system.html` | Vitrine des tokens et composants, rendus avec les vrais composants de l'app |
+| `css/`, `js/`, `assets/`, `icons/` | Sources du prototype (voir `README.md`) |
+| `tests/` | Tests de `js/logic/` (`npm test`) |
+| `.notes/` | Notes de travail : méthodologie, specs d'écrans |
+| `.claude/` | Réglages locaux de Claude Code, **non versionnés** (`.gitignore`) |
 
 ## Lancer
 
-- Dans Claude Code : config `app` de `.claude/launch.json` (port 8766).
-- À la main : `npm start` dans `mchou_app_mobile/`, puis `http://localhost:8766/` (bureau, avec le
-  panneau des écrans) ou `http://localhost:8766/?mobile` (plein écran).
-- Tests de la logique : `npm test` dans `mchou_app_mobile/`.
+- Live Server (VS Code) sur `index.html`, ou tout serveur HTTP statique (pas de `file://`).
+- Dans Claude Code : config `app` de `.claude/launch.json` (live-server, port 8766), fichier local.
+- Tests de la logique : `npm test`. Mise en forme : `npx prettier --write .` (`.prettierrc.json`).
 - Internet nécessaire : lit-html (CDN), Google Fonts, Material Symbols, Leaflet + tuiles OSM.
 
 ## Architecture (résumé)
@@ -68,7 +69,7 @@ et [.notes/mchou_app_mobile.md](.notes/mchou_app_mobile.md).
 
 ## Conventions du design system (thème « Fidèle »)
 
-Source de vérité : `mchou_app_mobile/css/tokens.css`. Résumé :
+Source de vérité : `css/tokens.css`, visible dans `design-system.html`. Résumé :
 
 - **Couleurs** : fond plum 900 `#3A0B40`, cartes/inputs plum 800 `#4E1256`, barre plum 950
   `#24062A`, texte crème `#FFF6E9`, texte secondaire lilas `#E9D3EE`, nav inactive `#C9A9D1`,
@@ -101,4 +102,6 @@ Source de vérité : `mchou_app_mobile/css/tokens.css`. Résumé :
   réinventer un style.
 - Après une modif, vérifier dans le navigateur (rendu + console) avant de conclure.
 - Penser à la traduction Flutter : composants réutilisables, valeurs issues des tokens.
-- Consigner décisions et specs dans `.notes/`, remarques et idées dans `todo.md`.
+- Un composant nouveau ou modifié s'ajoute aussi à `design-system.html` (`js/design-system.js`).
+- En-tête de chaque fichier CSS/JS/HTML : `Copyright (c) 2026 - Ing. Développeur Hicham Oussama Saffih`.
+- Consigner décisions et specs dans `.notes/`.

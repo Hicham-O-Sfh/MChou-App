@@ -13,7 +13,7 @@ spécification visuelle et comportementale pour le développement Flutter.
 |---|---|
 | **Retouche** (texte, couleur, espacement) | Modif directe → vérif navigateur → validation |
 | **Nouvel écran / parcours** | Spec courte dans `.notes/ecrans/<id>.md` → validation de la spec → réalisation → vérif → validation |
-| **Évolution du design system** (nouvelle couleur, nouveau composant) | Décision notée dans `decisions.md` → mise à jour `mchou_app_mobile/css/tokens.css` + composants → application aux écrans |
+| **Évolution du design system** (nouvelle couleur, nouveau composant) | Décision notée dans `decisions.md` → mise à jour `css/tokens.css` + composants + `design-system.html` → application aux écrans |
 
 ## Cycle d'une modification
 
@@ -43,7 +43,6 @@ spécification visuelle et comportementale pour le développement Flutter.
 - `decisions.md` : journal des décisions (date, décision, raison). À créer à la première décision.
 - `ecrans/<id>.md` : spec d'un écran (but, contenu, états, interactions, navigation entrante et
   sortante, cas limites). Sert aussi de base pour le dev Flutter.
-- `mobile.md` : plan pour ouvrir le prototype sur téléphone (mode téléphone, GitHub Pages, PWA).
 - `flutter.md` : notes de passage à Flutter (correspondance composants ↔ widgets, tokens ↔
   `ThemeData`). Plus tard.
 
@@ -51,7 +50,7 @@ spécification visuelle et comportementale pour le développement Flutter.
 
 - Penser en composants réutilisables : un même bouton, une même carte produit → un widget.
 - Toute valeur visuelle doit exister dans `css/tokens.css` (source pour le `ThemeData`).
-- Les données de démo du script (`P`, `CATS`, `EX`, `state`) donnent une première idée des
+- Les données (`js/data/`) et l'état initial (`js/state.js`) donnent une première idée des
   modèles de données.
-- Les animations sont décrites dans le design system (durées et courbes) : les reprendre telles
+- Les animations sont décrites dans `design-system.html` (durées et courbes) : les reprendre telles
   quelles côté Flutter.

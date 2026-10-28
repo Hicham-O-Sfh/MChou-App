@@ -1,0 +1,58 @@
+/* Copyright (c) 2026 - Ing. Développeur Hicham Oussama Saffih */
+.splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: var(--mc-plum-logo);
+  cursor: pointer;
+}
+.grain--strong {
+  background:
+    radial-gradient(circle, rgba(255, 216, 77, 0.12) 1px, transparent 1.6px) 0 0/23px 23px,
+    radial-gradient(circle, rgba(233, 211, 238, 0.09) 1.3px, transparent 2px) 11px 17px/37px 37px;
+}
+.splash__glow {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 216, 77, 0.22), rgba(255, 216, 77, 0) 65%);
+  pointer-events: none;
+}
+.splash__logo {
+  position: relative;
+  width: 188px;
+  height: 188px;
+  border-radius: 50%;
+  box-shadow: 0 26px 40px -16px rgba(0, 0, 0, 0.65);
+}
+.splash__tag {
+  position: relative;
+  font: 400 28px/40px var(--mc-font-script);
+  color: var(--mc-banana);
+}
+.splash__foot {
+  position: absolute;
+  bottom: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.splash__crepe {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(160, 86, 10, 0.5) 0 3px, transparent 4px),
+    radial-gradient(circle at 66% 62%, rgba(160, 86, 10, 0.45) 0 4px, transparent 5px),
+    radial-gradient(circle at 62% 26%, rgba(160, 86, 10, 0.4) 0 2px, transparent 3px),
+    radial-gradient(circle at 40% 40%, #f5c46a, #d98e34);
+  box-shadow: 0 0 0 3px var(--mc-plum-900);
+}
+.splash__city {
+  font: 800 13px/16px var(--mc-font-body);
+  letter-spacing: 0.16em;
+  color: var(--mc-lilac);
+}
