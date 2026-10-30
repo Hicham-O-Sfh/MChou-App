@@ -9,7 +9,7 @@ Le prototype vient d'un export Claude Design (`.dc.html`), porté puis supprimé
 il reste dans l'historique git (dernier commit qui le contient : `6057350`).
 
 Méthodologie de travail : [.notes/methodologie.md](.notes/methodologie.md).
-Structure et pièges : [README.md](README.md).
+Présentation publique : [README.md](README.md). Structure et pièges : [.notes/developpement.md](.notes/developpement.md).
 
 ## Décisions en cours
 
