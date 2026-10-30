@@ -1,9 +1,8 @@
-# Réglages locaux de Claude Code, jamais publiés
-.claude/
-
-# OS / éditeurs
 Thumbs.db
 Desktop.ini
 .DS_Store
+.claude/
+.notes/
 .vscode/
 .idea/
+CLAUDE.md
