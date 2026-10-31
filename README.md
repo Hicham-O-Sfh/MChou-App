@@ -1,5 +1,7 @@
 <div align="center">
 
+🌐 **Français** · [English](README.en.md)
+
 <img src="assets/mchou-logo.png" alt="Logo M'Chou" width="140">
 
 # M'Chou — l'app gourmande, en prototype
@@ -9,9 +11,7 @@
 <a href="https://hicham-o-sfh.github.io/MChou-App/" target="_blank" rel="noopener"><b>▶ Essayer le prototype</b></a> ·
 <a href="https://hicham-o-sfh.github.io/MChou-App/design-system.html" target="_blank" rel="noopener"><b>🎨 Voir le design system</b></a>
 
-<!-- 📸 PLACEHOLDER — GIF « hero » : un parcours complet (accueil → builder → panier → suivi), ~6-10 s.
-<img src="assets/readme/hero.gif" alt="Parcours de commande dans l'app M'Chou" width="300">
--->
+<img src="assets/readme/parcours.gif" alt="Parcours de commande dans l'app M'Chou" width="300">
 
 </div>
 
@@ -40,18 +40,21 @@ Ce qu'on peut y faire :
 - 🎁 **Gagner des Miams** (1 DH = 1 Miam) et les échanger contre des cadeaux, avec une flamme
   qui récompense les commandes régulières.
 
-<!-- 📸 PLACEHOLDER — Galerie de captures d'écran (une ligne de 3 ou 4).
 <p align="center">
-  <img src="assets/readme/accueil.png"  alt="Accueil"  width="200">
-  <img src="assets/readme/menu.png"     alt="Menu"     width="200">
-  <img src="assets/readme/builder.png"  alt="Builder"  width="200">
-  <img src="assets/readme/cadeaux.png"  alt="Cadeaux"  width="200">
+  <img src="assets/readme/accueil.png" alt="Accueil" width="240">
+  <img src="assets/readme/menu.png" alt="Menu" width="240">
+  <img src="assets/readme/builder.png" alt="Builder" width="240">
 </p>
--->
+
+<p align="center">
+  <img src="assets/readme/confirmation.png" alt="Confirmation" width="240">
+  <img src="assets/readme/suivi.png" alt="Suivi de livraison" width="240">
+  <img src="assets/readme/cadeaux.png" alt="Cadeaux" width="240">
+</p>
 
 ## 🤝 Le verdict du client
 
-Le prototype a été présenté au client, qui l'a **validé** et a franchement été **surpris du
+Le prototype a été présenté au client, Marouane, qui l'a **validé** et a franchement été **surpris du
 résultat** : il s'attendait à des images d'écrans, il s'est retrouvé à composer sa propre crêpe
 sur un téléphone, à voir le scooter avancer sur la carte et les confettis tomber à
 l'arrivée de sa commande. Le genre de démo où on n'a plus besoin d'expliquer, on tend juste le
@@ -63,14 +66,6 @@ téléphone.
 
 Le vrai sujet de ce projet, c'est **la façon dont il a été fait**. En quelques jours, on passe
 d'une discussion autour d'une table à une app qu'on peut installer. Voici le chemin.
-
-<!-- 📸 PLACEHOLDER — Image « avant / après » : un sketch papier à côté de l'écran final.
-<p align="center">
-  <img src="assets/readme/sketch-papier.jpg" alt="Sketch papier d'un écran" width="280">
-  &nbsp;→&nbsp;
-  <img src="assets/readme/ecran-final.png" alt="Le même écran dans le prototype" width="280">
-</p>
--->
 
 ### 💬 1. Comprendre le besoin, avec le client
 
@@ -165,11 +160,13 @@ un code que l'IA et moi lisons facilement. Flutter viendra quand le prototype se
   Chrome, menu ⋮ → **« Installer l'application »**. Elle arrive sur l'écran d'accueil avec son
   icône et s'ouvre en plein écran.
 
-<!-- 📸 PLACEHOLDER — Capture « installée » : l'icône M'Chou sur l'écran d'accueil d'un téléphone,
-     ou le prototype en mode bureau avec le panneau des écrans.
 <p align="center">
-  <img src="assets/readme/bureau.png" alt="Le prototype sur ordinateur" width="560">
-  <img src="assets/readme/installee.png" alt="L'app installée sur un téléphone" width="200">
+  <img src="assets/readme/bureau.png" alt="Le prototype sur ordinateur, avec le panneau des écrans" width="720">
+</p>
+
+<!-- 📸 PLACEHOLDER — capture de l'icône M'Chou installée sur l'écran d'accueil du téléphone.
+<p align="center">
+  <img src="assets/readme/installee.png" alt="L'app installée sur un téléphone" width="240">
 </p>
 -->
 
