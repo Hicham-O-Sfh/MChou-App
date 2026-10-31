@@ -198,6 +198,13 @@ tests/                tests de la logique
 
 ---
 
+## 🔒 Licence
+
+© 2026 Hicham Oussama Saffih, tous droits réservés. Consultation libre, toute réutilisation interdite sans
+accord écrit : voir [LICENSE](LICENSE). Le nom et le logo M'Chou appartiennent à leur propriétaire.
+
+---
+
 <div align="center">
 
 Conçu et développé par **Hicham Oussama Saffih**.
