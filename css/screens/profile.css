@@ -103,10 +103,38 @@
   display: flex;
   gap: 8px;
 }
-.bday__input {
+.bday__field {
+  position: relative;
   flex: 1;
   min-width: 0;
+  display: flex;
+}
+/* Android remplace l'icône calendrier native par un chevron : on la masque et on pose la nôtre */
+.bday__input {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding-inline-end: 48px;
+  appearance: none;
+  -webkit-appearance: none;
   color-scheme: dark;
+}
+.bday__input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  opacity: 0;
+  cursor: pointer;
+}
+.bday__ic {
+  position: absolute;
+  inset-inline-end: 14px;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 22px;
+  color: var(--mc-banana);
+  pointer-events: none;
 }
 .bday__save {
   flex: none;

@@ -61,7 +61,10 @@ function bday(app, s) {
     <div class="bday">
       <span class="field-label">Ton anniversaire <span class="field-label__opt">facultatif</span></span>
       <div class="bday__row">
-        <input class="text-input bday__input" type="date" aria-label="Date d'anniversaire" .value=${live(s.bdayDraft)} @input=${e => app.set({ bdayDraft: e.target.value })}>
+        <label class="bday__field">
+          <input class="text-input bday__input" type="date" aria-label="Date d'anniversaire" .value=${live(s.bdayDraft)} @input=${e => app.set({ bdayDraft: e.target.value })}>
+          <span class="ms bday__ic">calendar_month</span>
+        </label>
         <button type="button" class="bday__save ${s.bdayDraft ? 'is-ready' : ''}" @click=${() => saveBday(app)}>Valider</button>
       </div>
       <span class="bday__hint"><span class="ms">info</span>Tu ne pourras la renseigner qu'une seule fois, vérifie bien.</span>
