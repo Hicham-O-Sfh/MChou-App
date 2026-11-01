@@ -201,7 +201,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 56px 20px 8px;
+  padding: calc(var(--mc-inset-top) + 16px) 20px 8px;
 }
 .page__top--tight {
   padding-inline-end: 12px;
@@ -227,7 +227,7 @@
 }
 .page__foot {
   flex: none;
-  padding: 12px 20px 34px;
+  padding: 12px 20px calc(var(--mc-inset-bottom) + 16px);
   background: var(--mc-plum-900);
   box-shadow: 0 -1px 0 rgba(233, 211, 238, 0.12);
 }
@@ -270,7 +270,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 58px 20px 8px;
+  padding: calc(var(--mc-inset-top) + 18px) 20px 8px;
 }
 .tab-top__title {
   flex: 1;
@@ -914,7 +914,7 @@
 .toast {
   position: absolute;
   inset-inline: 16px;
-  top: 56px;
+  top: calc(var(--mc-inset-top) + 16px);
   z-index: 50;
   display: flex;
   align-items: center;
@@ -953,7 +953,7 @@
 .nav {
   position: absolute;
   inset-inline: 16px;
-  bottom: 22px;
+  bottom: max(16px, calc(var(--mc-inset-bottom) + 4px));
   z-index: 30;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));

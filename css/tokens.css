@@ -73,6 +73,9 @@
   --mc-button-l: 56px;
   --mc-button-xl: 64px;
   --mc-bottom-bar: 72px;
+  /* Place réservée à la fausse barre d'état et à la barre de gestes ; 0 en mode téléphone */
+  --mc-inset-top: 40px;
+  --mc-inset-bottom: 18px;
   --mc-screen-gutter: 20px;
 
   --mc-lip-gold: inset 0 2px 0 rgba(255, 255, 255, 0.6), 0 4px 0 var(--mc-caramel-lip);

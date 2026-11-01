@@ -2,7 +2,7 @@
 .home__scroll {
   position: absolute;
   inset: 0;
-  padding: 54px 0 130px;
+  padding: calc(var(--mc-inset-top) + 14px) 0 130px;
 }
 
 .home__top {

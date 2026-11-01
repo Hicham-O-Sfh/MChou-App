@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 58px 20px 0;
+  padding: calc(var(--mc-inset-top) + 18px) 20px 0;
 }
 .onb__title-edit {
   flex: 1;
